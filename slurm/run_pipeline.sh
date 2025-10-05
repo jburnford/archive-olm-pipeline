@@ -46,6 +46,7 @@ source "$VENV_DIR/bin/activate" || {
 }
 
 # Parse command line arguments
+CONFIG_FILE="${CONFIG_FILE:-config/pipeline_config.yaml}"
 TOTAL_ITEMS="${TOTAL_ITEMS:-100000}"
 BATCH_SIZE="${BATCH_SIZE:-1000}"
 START_BATCH="${START_BATCH:-1}"
@@ -54,6 +55,10 @@ NO_CLEANUP="${NO_CLEANUP:-false}"
 # Allow override via command line
 while [[ $# -gt 0 ]]; do
     case "$1" in
+        --config)
+            CONFIG_FILE="$2"
+            shift 2
+            ;;
         --total-items)
             TOTAL_ITEMS="$2"
             shift 2
@@ -78,6 +83,7 @@ while [[ $# -gt 0 ]]; do
 done
 
 echo "Configuration:"
+echo "  Config file: $CONFIG_FILE"
 echo "  Total items: $TOTAL_ITEMS"
 echo "  Batch size: $BATCH_SIZE"
 echo "  Start batch: $START_BATCH"
@@ -93,6 +99,7 @@ if [ "$NO_CLEANUP" = "true" ]; then
 fi
 
 python3 orchestration/pipeline_orchestrator.py run-batches \
+    --config "$CONFIG_FILE" \
     --total-items "$TOTAL_ITEMS" \
     --batch-size "$BATCH_SIZE" \
     --start-batch "$START_BATCH" \

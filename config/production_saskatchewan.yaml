@@ -1,0 +1,67 @@
+# Production Configuration - Saskatchewan Items 1808-1946
+# Full dataset: 16,075 items
+
+# Paths to existing component repositories
+components:
+  downloader_repo: /home/jic823/projects/def-jic823/InternetArchive
+  olmocr_repo: /home/jic823/projects/def-jic823/cluster/olmocr
+
+# Working directories
+directories:
+  pdf_dir: /home/jic823/projects/def-jic823/pdfs_sask_production
+  database: /home/jic823/projects/def-jic823/InternetArchive/archive_tracking.db
+
+# Batch processing settings
+batching:
+  batch_size: 1000  # Process 1000 items per batch (17 batches total)
+  total_items: 16075  # Total Saskatchewan items
+  batch_delay: 300  # 5 minutes between batches
+
+# Download phase settings
+download:
+  # Path to pre-fetched identifiers file
+  identifiers_file: /home/jic823/projects/def-jic823/pdfs_sask_test/identifiers.json
+  delay: 0.05
+  download_all_pdfs: false  # One PDF per item
+  subcollection: saskatchewan_1808_1946
+
+# OCR phase settings
+ocr:
+  max_pages_per_chunk: 1500
+  workers: auto
+  pages_per_group: auto
+  max_wait_hours: 24  # Allow up to 24 hours for OCR jobs
+
+# Ingestion phase settings
+ingestion:
+  parse_jsonl: true
+  verify_data: true
+
+# Cleanup phase settings
+cleanup:
+  auto_delete: true  # Auto-delete PDFs after successful ingest
+  grace_period_days: 0  # Delete immediately after verification
+  require_confirmation: false  # No confirmation needed in production
+  create_manifest: true
+
+# SLURM settings
+slurm:
+  email: jic823@usask.ca
+  account: def-jic823
+  time_limits:
+    download: "04:00:00"
+    ocr: "24:00:00"
+    ingest: "02:00:00"
+    cleanup: "01:00:00"
+
+# Safety settings
+safety:
+  require_ocr_completed: true
+  require_ocr_data_in_db: true
+  require_valid_json: true
+  max_deletions_per_run: 2000  # Allow up to 2000 deletions per cleanup run
+
+# Logging
+logging:
+  level: INFO  # Standard logging for production
+  log_dir: /home/jic823/projects/def-jic823/archive-olm-pipeline/logs
