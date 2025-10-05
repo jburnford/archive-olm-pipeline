@@ -133,6 +133,18 @@ def download_pdfs_from_identifiers(
                 if output_path.exists():
                     print(f"  ⏭ Already exists: {filename}")
                     stats['skipped'] += 1
+
+                    # Save to database even if file already exists
+                    if db_conn:
+                        file_size = output_path.stat().st_size
+                        _save_file_download(
+                            db_conn,
+                            identifier,
+                            filename,
+                            str(output_path),
+                            file_size,
+                            subcollection
+                        )
                     continue
 
                 # Download the file
