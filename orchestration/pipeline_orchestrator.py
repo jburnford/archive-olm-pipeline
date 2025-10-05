@@ -261,19 +261,24 @@ class PipelineOrchestrator:
 
         while time.time() - start_time < max_wait_seconds:
             # Check if any olmocr jobs are running
+            # Note: Job names are like "olmocr_pdf_1", "olmocr_pdf_2", etc.
             try:
                 result = subprocess.run(
-                    ["squeue", "-u", os.environ.get("USER"), "-n", "olmocr_pdf", "-h"],
+                    ["squeue", "-u", os.environ.get("USER"), "-h"],
                     capture_output=True,
                     text=True
                 )
 
-                if not result.stdout.strip():
+                # Filter for olmocr_pdf jobs (matches olmocr_pdf, olmocr_pdf_1, etc.)
+                olmocr_jobs = [line for line in result.stdout.strip().split("\n")
+                              if line and "olmocr_pdf" in line]
+
+                if not olmocr_jobs:
                     self.logger.info("All olmOCR jobs completed")
                     return
 
                 # Count running jobs
-                job_count = len(result.stdout.strip().split("\n"))
+                job_count = len(olmocr_jobs)
                 self.logger.info(f"  {job_count} olmOCR jobs still running...")
 
             except Exception as e:
