@@ -171,14 +171,13 @@ class PipelineOrchestrator:
         self.logger.info(f"Running: {' '.join(cmd)}")
 
         try:
-            result = subprocess.run(cmd, check=True, capture_output=True, text=True)
+            # Don't capture output - let it stream to console to avoid buffer blocking
+            result = subprocess.run(cmd, check=True)
             self.logger.info("Download phase completed successfully")
             self._record_pipeline_run("download", "completed", batch_number, batch_size)
             return True
         except subprocess.CalledProcessError as e:
             self.logger.error(f"Download phase failed: {e}")
-            self.logger.error(f"STDOUT: {e.stdout}")
-            self.logger.error(f"STDERR: {e.stderr}")
             self._record_pipeline_run("download", "failed", batch_number, 0,
                                      error_message=str(e))
             return False
