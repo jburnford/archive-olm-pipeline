@@ -196,29 +196,15 @@ def download_pdfs_from_identifiers(
 
 
 def _ensure_db_tables(conn: sqlite3.Connection, subcollection: str = None):
-    """Ensure database tables exist."""
+    """Ensure database tables exist - matches existing InternetArchive schema."""
     cursor = conn.cursor()
 
-    # Items table
-    cursor.execute("""
-        CREATE TABLE IF NOT EXISTS items (
-            identifier TEXT PRIMARY KEY,
-            title TEXT,
-            creator TEXT,
-            date TEXT,
-            publisher TEXT,
-            language TEXT,
-            subject TEXT,
-            description TEXT,
-            mediatype TEXT,
-            collection TEXT,
-            subcollection TEXT,
-            metadata_json TEXT,
-            first_seen_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-        )
-    """)
+    # Items table - use existing schema, don't recreate
+    # The table already exists with this schema:
+    # identifier, title, creator, publisher, date, year, language, subject,
+    # collection, description, item_url, download_date, metadata_json, notes
 
-    # Files table
+    # Files table - check if exists, create if needed
     cursor.execute("""
         CREATE TABLE IF NOT EXISTS files (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -227,7 +213,6 @@ def _ensure_db_tables(conn: sqlite3.Connection, subcollection: str = None):
             file_path TEXT,
             file_size INTEGER,
             download_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-            subcollection TEXT,
             UNIQUE(identifier, filename)
         )
     """)
@@ -236,26 +221,35 @@ def _ensure_db_tables(conn: sqlite3.Connection, subcollection: str = None):
 
 
 def _save_item_metadata(conn: sqlite3.Connection, identifier: str, metadata: dict, subcollection: str = None):
-    """Save item metadata to database."""
+    """Save item metadata to database - matches existing schema."""
     cursor = conn.cursor()
+
+    # Extract year from date if possible
+    year = None
+    date_str = metadata.get('date')
+    if date_str:
+        import re
+        year_match = re.search(r'\d{4}', str(date_str))
+        if year_match:
+            year = int(year_match.group())
 
     cursor.execute("""
         INSERT OR REPLACE INTO items
-        (identifier, title, creator, date, publisher, language, subject,
-         description, mediatype, collection, subcollection, metadata_json)
+        (identifier, title, creator, publisher, date, year, language, subject,
+         collection, description, item_url, metadata_json)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     """, (
         identifier,
         metadata.get('title'),
         metadata.get('creator'),
-        metadata.get('date'),
         metadata.get('publisher'),
+        metadata.get('date'),
+        year,
         metadata.get('language'),
         _join_if_list(metadata.get('subject')),
-        metadata.get('description'),
-        metadata.get('mediatype'),
         _join_if_list(metadata.get('collection')),
-        subcollection,
+        metadata.get('description'),
+        f"https://archive.org/details/{identifier}",
         json.dumps(metadata)
     ))
 
@@ -273,9 +267,9 @@ def _save_file_download(
 
     cursor.execute("""
         INSERT OR REPLACE INTO files
-        (identifier, filename, file_path, file_size, subcollection)
-        VALUES (?, ?, ?, ?, ?)
-    """, (identifier, filename, file_path, file_size, subcollection))
+        (identifier, filename, file_path, file_size)
+        VALUES (?, ?, ?, ?)
+    """, (identifier, filename, file_path, file_size))
 
 
 def _join_if_list(value):
