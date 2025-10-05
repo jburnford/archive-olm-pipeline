@@ -149,11 +149,21 @@ class PipelineOrchestrator:
             "--db-path", str(db_path),
             "--batch-size", str(batch_size),
             "--delay", str(download_cfg.get("delay", 0.05)),
-            "--subject", download_cfg.get("subject", "India -- Gazetteers"),
-            "--start-year", str(download_cfg.get("start_year", 1815)),
-            "--end-year", str(download_cfg.get("end_year", 1960)),
-            "--sort", download_cfg.get("sort_order", "date desc"),
         ]
+
+        # Use search_query if provided, otherwise use subject/year
+        if download_cfg.get("search_query"):
+            cmd.extend(["--search-query", download_cfg["search_query"]])
+        else:
+            if download_cfg.get("subject"):
+                cmd.extend(["--subject", download_cfg["subject"]])
+            if download_cfg.get("start_year"):
+                cmd.extend(["--start-year", str(download_cfg["start_year"])])
+            if download_cfg.get("end_year"):
+                cmd.extend(["--end-year", str(download_cfg["end_year"])])
+
+        if download_cfg.get("sort_order"):
+            cmd.extend(["--sort", download_cfg["sort_order"]])
 
         if download_cfg.get("download_all_pdfs"):
             cmd.append("--download-all-pdfs")
