@@ -112,13 +112,14 @@ class PipelineOrchestrator:
         finally:
             conn.close()
 
-    def run_download_phase(self, batch_size: int, batch_number: int = None) -> bool:
+    def run_download_phase(self, batch_size: int, batch_number: int = None, start_from: int = 0) -> bool:
         """
         Run download phase using existing archive_cluster_downloader.py.
 
         Args:
             batch_size: Number of items to download
             batch_number: Batch number for tracking
+            start_from: Starting position in search results
 
         Returns:
             True if successful
@@ -148,6 +149,7 @@ class PipelineOrchestrator:
             "--download-dir", str(pdf_dir),
             "--db-path", str(db_path),
             "--max-items", str(batch_size),  # Limit total items processed
+            "--start-from", str(start_from),  # Starting position in results
             "--batch-size", "10",  # Internal API batch size
             "--delay", str(download_cfg.get("delay", 0.05)),
         ]
@@ -374,7 +376,7 @@ class PipelineOrchestrator:
                                      error_message=str(e))
             return False
 
-    def run_batch(self, batch_size: int, batch_number: int, cleanup: bool = True) -> bool:
+    def run_batch(self, batch_size: int, batch_number: int, cleanup: bool = True, start_from: int = 0) -> bool:
         """
         Run complete pipeline for one batch.
 
@@ -382,18 +384,19 @@ class PipelineOrchestrator:
             batch_size: Number of items in batch
             batch_number: Batch number for tracking
             cleanup: Whether to run cleanup phase
+            start_from: Starting position in search results
 
         Returns:
             True if all phases successful
         """
         self.logger.info("")
         self.logger.info("#" * 70)
-        self.logger.info(f"# BATCH {batch_number}: Processing {batch_size} items")
+        self.logger.info(f"# BATCH {batch_number}: Processing {batch_size} items (starting from {start_from})")
         self.logger.info("#" * 70)
         self.logger.info("")
 
         # Phase 1: Download
-        if not self.run_download_phase(batch_size, batch_number):
+        if not self.run_download_phase(batch_size, batch_number, start_from):
             self.logger.error(f"Batch {batch_number} failed at download phase")
             return False
 
@@ -454,8 +457,11 @@ class PipelineOrchestrator:
             items_remaining = total_items - ((batch_num - 1) * batch_size)
             items_this_batch = min(batch_size, items_remaining)
 
+            # Calculate starting position in search results
+            start_from = (batch_num - 1) * batch_size
+
             # Run the batch
-            success = self.run_batch(items_this_batch, batch_num, cleanup)
+            success = self.run_batch(items_this_batch, batch_num, cleanup, start_from)
 
             if not success:
                 self.logger.error(f"Pipeline failed at batch {batch_num}")
