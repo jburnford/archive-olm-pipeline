@@ -153,7 +153,7 @@ class PipelineOrchestrator:
 
         # Use search_query if provided, otherwise use subject/year
         if download_cfg.get("search_query"):
-            cmd.extend(["--search-query", download_cfg["search_query"]])
+            cmd.extend(["--query", download_cfg["search_query"]])
         else:
             if download_cfg.get("subject"):
                 cmd.extend(["--subject", download_cfg["subject"]])
