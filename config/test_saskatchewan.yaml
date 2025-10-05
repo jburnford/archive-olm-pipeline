@@ -24,7 +24,7 @@ download:
   # Path to pre-fetched identifiers file
   identifiers_file: /home/jic823/projects/def-jic823/pdfs_sask_test/identifiers.json
   delay: 0.05
-  download_all_pdfs: true
+  download_all_pdfs: false  # Only download the main PDF, not _text.pdf versions
   subcollection: saskatchewan_1808_1946
 
 # OCR phase settings
