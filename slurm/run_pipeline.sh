@@ -98,8 +98,9 @@ if [ "$NO_CLEANUP" = "true" ]; then
     CLEANUP_FLAG="--no-cleanup"
 fi
 
-python3 orchestration/pipeline_orchestrator.py run-batches \
+python3 orchestration/pipeline_orchestrator.py \
     --config "$CONFIG_FILE" \
+    run-batches \
     --total-items "$TOTAL_ITEMS" \
     --batch-size "$BATCH_SIZE" \
     --start-batch "$START_BATCH" \
