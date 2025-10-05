@@ -240,15 +240,15 @@ def _save_item_metadata(conn: sqlite3.Connection, identifier: str, metadata: dic
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     """, (
         identifier,
-        metadata.get('title'),
-        metadata.get('creator'),
-        metadata.get('publisher'),
-        metadata.get('date'),
+        _join_if_list(metadata.get('title')),
+        _join_if_list(metadata.get('creator')),
+        _join_if_list(metadata.get('publisher')),
+        _join_if_list(metadata.get('date')),
         year,
-        metadata.get('language'),
+        _join_if_list(metadata.get('language')),
         _join_if_list(metadata.get('subject')),
         _join_if_list(metadata.get('collection')),
-        metadata.get('description'),
+        _join_if_list(metadata.get('description')),
         f"https://archive.org/details/{identifier}",
         json.dumps(metadata)
     ))
