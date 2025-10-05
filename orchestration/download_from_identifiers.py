@@ -139,8 +139,8 @@ def download_pdfs_from_identifiers(
                     success = item.download(
                         files=[filename],
                         destdir=str(download_dir),
-                        silent=True,
-                        ignore_existing=True
+                        ignore_existing=True,
+                        verbose=False
                     )
 
                     if output_path.exists():
