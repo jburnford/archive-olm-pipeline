@@ -21,16 +21,11 @@ batching:
 
 # Download phase settings
 download:
+  # Path to pre-fetched identifiers file
+  identifiers_file: /home/jic823/projects/def-jic823/pdfs_sask_test/identifiers.json
   delay: 0.05
-  concurrent_downloads: 4
-  # Use custom search query for Saskatchewan items
-  search_query: "(Saskatchewan) AND date:[1808-01-01 TO 1946-01-01]"
-  sort_order: "date asc"  # Start with oldest items
   download_all_pdfs: true
-  # These will be ignored when search_query is set
-  subject: null
-  start_year: null
-  end_year: null
+  subcollection: saskatchewan_1808_1946
 
 # OCR phase settings
 ocr:

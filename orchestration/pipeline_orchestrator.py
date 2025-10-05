@@ -128,48 +128,49 @@ class PipelineOrchestrator:
         self.logger.info(f"PHASE 1: DOWNLOAD (Batch {batch_number or 'N/A'})")
         self.logger.info("=" * 70)
 
-        downloader_repo = Path(self.config["components"]["downloader_repo"])
-        downloader_script = downloader_repo / "archive_cluster_downloader.py"
+        # Use identifier-based downloader to avoid API pagination bugs
+        pipeline_dir = Path(__file__).parent.parent
+        downloader_script = pipeline_dir / "orchestration" / "download_from_identifiers.py"
 
         if not downloader_script.exists():
             self.logger.error(f"Downloader script not found: {downloader_script}")
             return False
 
-        # Build command using existing script
+        # Build command using identifier-based downloader
         pdf_dir = Path(self.config["directories"]["pdf_dir"])
         pdf_dir.mkdir(parents=True, exist_ok=True)
 
         db_path = self.config["directories"]["database"]
-
         download_cfg = self.config.get("download", {})
+
+        # Check for identifiers file
+        identifiers_file = download_cfg.get("identifiers_file")
+        if not identifiers_file:
+            self.logger.error("No identifiers_file specified in config download section")
+            self.logger.error("Run fetch_identifiers.py first and add path to config")
+            return False
+
+        identifiers_path = Path(identifiers_file)
+        if not identifiers_path.exists():
+            self.logger.error(f"Identifiers file not found: {identifiers_path}")
+            return False
 
         cmd = [
             "python3",
             str(downloader_script),
+            "--identifiers-file", str(identifiers_path),
+            "--start-from", str(start_from),
+            "--max-items", str(batch_size),
             "--download-dir", str(pdf_dir),
             "--db-path", str(db_path),
-            "--max-items", str(batch_size),  # Limit total items processed
-            "--start-from", str(start_from),  # Starting position in results
-            "--batch-size", "10",  # Internal API batch size
             "--delay", str(download_cfg.get("delay", 0.05)),
         ]
 
-        # Use search_query if provided, otherwise use subject/year
-        if download_cfg.get("search_query"):
-            cmd.extend(["--query", download_cfg["search_query"]])
-        else:
-            if download_cfg.get("subject"):
-                cmd.extend(["--subject", download_cfg["subject"]])
-            if download_cfg.get("start_year"):
-                cmd.extend(["--start-year", str(download_cfg["start_year"])])
-            if download_cfg.get("end_year"):
-                cmd.extend(["--end-year", str(download_cfg["end_year"])])
-
-        if download_cfg.get("sort_order"):
-            cmd.extend(["--sort", download_cfg["sort_order"]])
-
         if download_cfg.get("download_all_pdfs"):
             cmd.append("--download-all-pdfs")
+
+        if download_cfg.get("subcollection"):
+            cmd.extend(["--subcollection", download_cfg["subcollection"]])
 
         self.logger.info(f"Running: {' '.join(cmd)}")
 
