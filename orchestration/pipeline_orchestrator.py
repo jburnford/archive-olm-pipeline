@@ -147,7 +147,8 @@ class PipelineOrchestrator:
             str(downloader_script),
             "--download-dir", str(pdf_dir),
             "--db-path", str(db_path),
-            "--batch-size", str(batch_size),
+            "--max-items", str(batch_size),  # Limit total items processed
+            "--batch-size", "10",  # Internal API batch size
             "--delay", str(download_cfg.get("delay", 0.05)),
         ]
 
