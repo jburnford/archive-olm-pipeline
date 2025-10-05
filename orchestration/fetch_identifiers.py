@@ -9,15 +9,19 @@ with the Archive.org API.
 import argparse
 import json
 import sys
-import time
 from pathlib import Path
 
-import requests
+try:
+    from internetarchive import search_items
+except ImportError:
+    print("Error: internetarchive library not installed")
+    print("Install with: pip install internetarchive")
+    sys.exit(1)
 
 
 def fetch_all_identifiers(query: str, sort_order: str = None, max_items: int = None) -> list:
     """
-    Fetch all identifiers matching the query.
+    Fetch all identifiers matching the query using internetarchive library.
 
     Args:
         query: Archive.org search query
@@ -27,72 +31,40 @@ def fetch_all_identifiers(query: str, sort_order: str = None, max_items: int = N
     Returns:
         List of identifier strings
     """
-    url = "https://archive.org/advancedsearch.php"
-
-    # First, get the total count
-    params = {
-        "q": query,
-        "fl": "identifier",
-        "rows": 0,  # Just get count
-        "output": "json",
-    }
-    if sort_order:
-        params["sort"] = sort_order
-
     print(f"Query: {query}")
     if sort_order:
         print(f"Sort: {sort_order}")
 
-    response = requests.get(url, params=params, timeout=30)
-    response.raise_for_status()
-    data = response.json()
+    # Use internetarchive library to search
+    # This handles pagination automatically
+    search_params = {}
+    if sort_order:
+        # Convert "date asc" to ["date asc"]
+        search_params["sorts"] = [sort_order]
 
-    total_found = data["response"]["numFound"]
-    print(f"Total items found: {total_found:,}")
+    print("Searching Archive.org...", flush=True)
 
-    if max_items:
-        total_to_fetch = min(total_found, max_items)
-        print(f"Fetching: {total_to_fetch:,} (limited by --max-items)")
-    else:
-        total_to_fetch = total_found
-
-    # Fetch in batches of 1000 (API maximum)
     identifiers = []
-    batch_size = 1000
+    count = 0
 
-    for start in range(0, total_to_fetch, batch_size):
-        rows = min(batch_size, total_to_fetch - start)
+    try:
+        # search_items yields results one at a time, handling pagination internally
+        for item in search_items(query, params=search_params):
+            identifiers.append(item['identifier'])
+            count += 1
 
-        params = {
-            "q": query,
-            "fl": "identifier",
-            "rows": rows,
-            "start": start,
-            "output": "json",
-        }
-        if sort_order:
-            params["sort"] = sort_order
+            if count % 1000 == 0:
+                print(f"Fetched {count:,} identifiers...", flush=True)
 
-        print(f"Fetching batch {start}-{start + rows}...", end="", flush=True)
+            if max_items and count >= max_items:
+                print(f"Reached max_items limit: {max_items:,}")
+                break
 
-        try:
-            response = requests.get(url, params=params, timeout=30)
-            response.raise_for_status()
-            batch_data = response.json()
-
-            docs = batch_data["response"]["docs"]
-            batch_identifiers = [doc["identifier"] for doc in docs]
-            identifiers.extend(batch_identifiers)
-
-            print(f" got {len(batch_identifiers)} identifiers")
-
-            # Be nice to the API
-            time.sleep(0.5)
-
-        except Exception as e:
-            print(f" ERROR: {e}")
-            print(f"Failed to fetch batch starting at {start}")
-            break
+    except KeyboardInterrupt:
+        print(f"\nInterrupted by user after fetching {count:,} identifiers")
+    except Exception as e:
+        print(f"\nError during search: {e}")
+        print(f"Successfully fetched {count:,} identifiers before error")
 
     print(f"\nTotal identifiers fetched: {len(identifiers):,}")
     return identifiers
