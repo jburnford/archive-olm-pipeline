@@ -124,8 +124,8 @@ def download_pdfs_from_identifiers(
             # Download each PDF
             for pdf_file in files_to_download:
                 filename = pdf_file['name']
-                # internetarchive library creates subdirectory named after identifier
-                output_path = download_dir / identifier / filename
+                # Download directly to download_dir without subdirectory
+                output_path = download_dir / filename
 
                 # Check if already downloaded
                 if output_path.exists():
@@ -137,12 +137,13 @@ def download_pdfs_from_identifiers(
                 print(f"  ⬇ Downloading: {filename}", flush=True)
                 try:
                     # Use internetarchive library's download method
-                    # This creates a subdirectory named after the identifier
+                    # no_directory=True prevents creating identifier subdirectories
                     item.download(
                         files=[filename],
                         destdir=str(download_dir),
                         ignore_existing=True,
-                        verbose=False
+                        verbose=False,
+                        no_directory=True
                     )
 
                     # Check if file was downloaded successfully
