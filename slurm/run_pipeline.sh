@@ -13,8 +13,8 @@
 set -e
 
 # Load configuration
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-REPO_DIR="$(dirname "$SCRIPT_DIR")"
+# Use SLURM_SUBMIT_DIR (directory where sbatch was run) or hardcoded path
+REPO_DIR="${SLURM_SUBMIT_DIR:-/home/jic823/projects/def-jic823/archive-olm-pipeline}"
 
 echo "========================================="
 echo "Archive-OLM Pipeline"
