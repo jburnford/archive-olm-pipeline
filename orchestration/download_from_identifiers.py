@@ -84,8 +84,10 @@ def download_pdfs_from_identifiers(
     db_conn = None
     if db_path:
         db_conn = sqlite3.connect(db_path)
-        # Ensure tables exist
-        _ensure_db_tables(db_conn, subcollection)
+        # Return rows as dictionaries for easier column checks
+        db_conn.row_factory = sqlite3.Row
+        # Ensure tables/columns exist so downstream phases work
+        _ensure_db_tables(db_conn)
 
     # Download statistics
     stats = {
@@ -199,27 +201,59 @@ def download_pdfs_from_identifiers(
     print("=" * 70)
 
 
-def _ensure_db_tables(conn: sqlite3.Connection, subcollection: str = None):
-    """Ensure database tables exist - matches existing InternetArchive schema."""
+def _ensure_db_tables(conn: sqlite3.Connection):
+    """Ensure database tables/columns exist for downstream pipeline phases."""
     cursor = conn.cursor()
 
-    # Items table - use existing schema, don't recreate
-    # The table already exists with this schema:
-    # identifier, title, creator, publisher, date, year, language, subject,
-    # collection, description, item_url, download_date, metadata_json, notes
+    # Items table already managed by downloader repo. Do not recreate here.
 
-    # Files table - check if exists, create if needed
-    cursor.execute("""
-        CREATE TABLE IF NOT EXISTS files (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            identifier TEXT,
-            filename TEXT,
-            file_path TEXT,
-            file_size INTEGER,
-            download_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-            UNIQUE(identifier, filename)
+    # Ensure pdf_files table is available with the columns expected by ingest/cleanup.
+    cursor.execute(
+        """
+        SELECT name FROM sqlite_master
+        WHERE type='table' AND name='pdf_files'
+        """
+    )
+    if not cursor.fetchone():
+        cursor.execute(
+            """
+            CREATE TABLE IF NOT EXISTS pdf_files (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                identifier TEXT NOT NULL,
+                filename TEXT NOT NULL,
+                filepath TEXT,
+                filesize INTEGER,
+                download_status TEXT DEFAULT 'pending',
+                download_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                subcollection TEXT,
+                notes TEXT,
+                UNIQUE(identifier, filename)
+            )
+            """
         )
-    """)
+    else:
+        cursor.execute("PRAGMA table_info(pdf_files)")
+        existing_columns = {row[1] for row in cursor.fetchall()}
+        required_columns = {
+            "filepath": "TEXT",
+            "filesize": "INTEGER",
+            "download_status": "TEXT DEFAULT 'pending'",
+            "download_date": "TIMESTAMP",
+            "subcollection": "TEXT",
+            "notes": "TEXT",
+        }
+        for column, column_def in required_columns.items():
+            if column not in existing_columns:
+                cursor.execute(
+                    f"ALTER TABLE pdf_files ADD COLUMN {column} {column_def}"
+                )
+
+    cursor.execute(
+        """
+        CREATE INDEX IF NOT EXISTS idx_pdf_files_identifier_filename
+        ON pdf_files(identifier, filename)
+        """
+    )
 
     conn.commit()
 
@@ -264,16 +298,49 @@ def _save_file_download(
     filename: str,
     file_path: str,
     file_size: int,
-    subcollection: str = None
+    subcollection: str = None,
 ):
-    """Save file download record to database."""
+    """Save file download record to the pdf_files table."""
     cursor = conn.cursor()
 
-    cursor.execute("""
-        INSERT OR REPLACE INTO files
-        (identifier, filename, file_path, file_size)
-        VALUES (?, ?, ?, ?)
-    """, (identifier, filename, file_path, file_size))
+    cursor.execute(
+        """
+        SELECT id FROM pdf_files
+        WHERE identifier = ? AND filename = ?
+        """,
+        (identifier, filename),
+    )
+    row = cursor.fetchone()
+
+    if row:
+        cursor.execute(
+            """
+            UPDATE pdf_files
+            SET filepath = ?,
+                filesize = ?,
+                download_status = 'downloaded',
+                download_date = CURRENT_TIMESTAMP,
+                subcollection = COALESCE(?, subcollection)
+            WHERE id = ?
+            """,
+            (file_path, file_size, subcollection, row[0]),
+        )
+    else:
+        cursor.execute(
+            """
+            INSERT INTO pdf_files (
+                identifier,
+                filename,
+                filepath,
+                filesize,
+                download_status,
+                download_date,
+                subcollection
+            )
+            VALUES (?, ?, ?, ?, 'downloaded', CURRENT_TIMESTAMP, ?)
+            """,
+            (identifier, filename, file_path, file_size, subcollection),
+        )
 
 
 def _join_if_list(value):
