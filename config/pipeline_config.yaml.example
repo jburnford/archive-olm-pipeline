@@ -1,0 +1,89 @@
+# Archive-OLM Pipeline Configuration
+# Copy to pipeline_config.yaml and customize for your environment
+
+# Paths to existing component repositories (DO NOT MODIFY THE REPOS)
+components:
+  downloader_repo: /home/jic823/projects/def-jic823/InternetArchive
+  olmocr_repo: /home/jic823/projects/def-jic823/cluster/olmocr
+
+# Working directories
+directories:
+  # Where PDFs are temporarily stored during processing
+  pdf_dir: /home/jic823/projects/def-jic823/pdfs_pipeline
+  # Database location (can be in downloader repo or separate)
+  database: /home/jic823/projects/def-jic823/InternetArchive/archive_tracking.db
+
+# Batch processing settings
+batching:
+  # Number of items to process in each batch (download → OCR → ingest → cleanup)
+  batch_size: 1000
+  # Total items to process (0 = unlimited)
+  total_items: 100000
+  # Delay between batches (seconds)
+  batch_delay: 300  # 5 minutes
+
+# Download phase settings (passed to archive_cluster_downloader.py)
+download:
+  delay: 0.05
+  concurrent_downloads: 4
+  subject: "India -- Gazetteers"
+  start_year: 1815
+  end_year: 1960
+  sort_order: "date desc"
+  # Optional: specific collections to target
+  collections: []
+  download_all_pdfs: true
+
+# OCR phase settings (passed to olmocr scripts)
+ocr:
+  # Maximum pages per SLURM job chunk
+  max_pages_per_chunk: 1500
+  # Workers (auto = let olmOCR decide)
+  workers: auto
+  # Pages per group (auto = let olmOCR decide)
+  pages_per_group: auto
+  # Maximum time to wait for OCR jobs to complete (hours)
+  max_wait_hours: 24
+
+# Ingestion phase settings (passed to ingest_ocr_results.py)
+ingestion:
+  # Parse JSONL files to extract PDF filenames
+  parse_jsonl: true
+  # Verify OCR data integrity before marking as complete
+  verify_data: true
+
+# Cleanup phase settings
+cleanup:
+  # Automatically delete PDFs after successful ingestion
+  auto_delete: true
+  # Grace period: wait N days after OCR completion before deleting
+  grace_period_days: 7
+  # Require manual confirmation for deletion
+  require_confirmation: false
+  # Create backup manifest of deleted files
+  create_manifest: true
+
+# SLURM settings
+slurm:
+  email: jic823@usask.ca
+  account: def-jic823
+  # Job time limits
+  time_limits:
+    download: "24:00:00"
+    ocr: "48:00:00"
+    ingest: "04:00:00"
+    cleanup: "02:00:00"
+
+# Safety settings
+safety:
+  # Never delete PDFs without these verifications
+  require_ocr_completed: true
+  require_ocr_data_in_db: true
+  require_valid_json: true
+  # Maximum PDFs to delete in single operation (safety limit)
+  max_deletions_per_run: 2000
+
+# Logging
+logging:
+  level: INFO  # DEBUG, INFO, WARNING, ERROR
+  log_dir: /home/jic823/projects/def-jic823/archive-olm-pipeline/logs

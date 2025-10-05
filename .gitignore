@@ -1,0 +1,42 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+dist/
+build/
+venv/
+env/
+
+# Configuration (contains paths)
+config/pipeline_config.yaml
+
+# Database files
+*.db
+*.db-journal
+*.sqlite
+*.sqlite3
+
+# Logs
+*.log
+logs/
+
+# SLURM outputs
+*.out
+*.err
+slurm-*.out
+
+# Test data
+test_pdfs/
+test_results/
+
+# Temporary files
+*.tmp
+*.bak
+*.backup
+.DS_Store
+
+# Pipeline state
+.pipeline_state/

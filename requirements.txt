@@ -1,0 +1,12 @@
+# Archive-OLM Pipeline Dependencies
+
+# Core dependencies
+pyyaml>=6.0
+requests>=2.31.0
+
+# Note: The actual download and OCR components have their own dependencies
+# This file only lists dependencies for the orchestration layer itself
+#
+# For full system setup, also install dependencies from:
+# - IA_downloader_cluster/requirements.txt (download component)
+# - olmocr uses Apptainer container (no pip install needed)
