@@ -107,8 +107,8 @@ def download_pdfs_from_identifiers(
             if db_conn:
                 _save_item_metadata(db_conn, identifier, item.metadata, subcollection)
 
-            # Find PDF files
-            pdf_files = [f for f in item.files if f.get('format') == 'PDF']
+            # Find PDF files (format can be 'PDF', 'Text PDF', 'Image PDF', etc.)
+            pdf_files = [f for f in item.files if 'PDF' in f.get('format', '').upper() or f['name'].lower().endswith('.pdf')]
 
             if not pdf_files:
                 print(f"  ⚠ No PDF files found")
