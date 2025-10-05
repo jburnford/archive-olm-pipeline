@@ -195,8 +195,7 @@ class PDFCleanup:
                 """
                 UPDATE pdf_files
                 SET download_status = 'deleted',
-                    deleted_date = ?,
-                    filepath = NULL
+                    deleted_date = ?
                 WHERE id = ?
                 """,
                 (datetime.now(), pdf_id),
