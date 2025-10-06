@@ -41,9 +41,9 @@ ingestion:
 
 # Cleanup phase settings
 cleanup:
-  auto_delete: false  # Don't auto-delete during testing
-  grace_period_days: 1  # Shorter grace period for testing
-  require_confirmation: true  # Always confirm during testing
+  auto_delete: true  # Enable auto-delete to prevent disk full
+  grace_period_days: 0  # Delete immediately after OCR ingestion
+  require_confirmation: false  # No confirmation needed (automated)
   create_manifest: true
 
 # SLURM settings
@@ -61,7 +61,7 @@ safety:
   require_ocr_completed: true
   require_ocr_data_in_db: true
   require_valid_json: true
-  max_deletions_per_run: 20  # Low limit for testing
+  max_deletions_per_run: 2000  # Allow cleanup of full batches
 
 # Logging
 logging:
