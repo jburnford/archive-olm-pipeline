@@ -72,9 +72,13 @@ class PDFCleanup:
         filepath = pdf_record["filepath"]
         filename = pdf_record["filename"]
 
-        # Check 1: PDF must exist and be marked as downloaded
+        # Check 1: PDF must exist and be marked as downloaded (and not already deleted)
         if pdf_record["download_status"] != "downloaded":
             return False, f"Status is '{pdf_record['download_status']}', not 'downloaded'"
+
+        # Check if already deleted
+        if pdf_record.get("deleted_date"):
+            return False, "Already deleted (deleted_date is set)"
 
         if not filepath or filepath == "NULL":
             return False, "No filepath in database"
@@ -144,11 +148,12 @@ class PDFCleanup:
         """
         query = """
             SELECT p.id, p.identifier, p.filename, p.filepath,
-                   p.download_status, p.subcollection, p.download_date
+                   p.download_status, p.subcollection, p.download_date, p.deleted_date
             FROM pdf_files p
             WHERE p.download_status = 'downloaded'
               AND p.filepath IS NOT NULL
               AND p.filepath != 'NULL'
+              AND p.deleted_date IS NULL
             ORDER BY p.download_date
         """
 
@@ -190,12 +195,11 @@ class PDFCleanup:
             else:
                 self.logger.warning(f"File already missing: {filepath}")
 
-            # Update database
+            # Update database (set deleted_date but keep download_status as 'downloaded')
             self.db.conn.execute(
                 """
                 UPDATE pdf_files
-                SET download_status = 'deleted',
-                    deleted_date = ?
+                SET deleted_date = ?
                 WHERE id = ?
                 """,
                 (datetime.now(), pdf_id),
