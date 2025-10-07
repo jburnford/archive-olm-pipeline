@@ -372,7 +372,7 @@ class PipelineOrchestrator:
             str(ingest_script),
             str(pdf_dir),
             "--db-path", str(db_path),
-            "--ocr-results-dir", str(ocr_results_dir),
+            "--ocr-dir", str(ocr_results_dir),
         ]
 
         self.logger.info(f"Running: {' '.join(cmd)}")
