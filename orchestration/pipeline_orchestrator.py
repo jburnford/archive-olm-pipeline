@@ -176,7 +176,8 @@ class PipelineOrchestrator:
 
         try:
             # Don't capture output - let it stream to console to avoid buffer blocking
-            result = subprocess.run(cmd, check=True)
+            # Pass environment to subprocess to inherit venv activation
+            result = subprocess.run(cmd, check=True, env=os.environ.copy())
             self.logger.info("Download phase completed successfully")
             self._record_pipeline_run("download", "completed", batch_number, batch_size)
             return True
@@ -312,7 +313,7 @@ class PipelineOrchestrator:
         self.logger.info(f"Running: {' '.join(cmd)}")
 
         try:
-            result = subprocess.run(cmd, check=True, capture_output=True, text=True)
+            result = subprocess.run(cmd, check=True, capture_output=True, text=True, env=os.environ.copy())
             self.logger.info("Split JSONL phase completed successfully")
             self.logger.info(result.stdout)
             self._record_pipeline_run("split_jsonl", "completed", batch_number)
@@ -361,7 +362,7 @@ class PipelineOrchestrator:
         self.logger.info(f"Running: {' '.join(cmd)}")
 
         try:
-            result = subprocess.run(cmd, check=True, capture_output=True, text=True)
+            result = subprocess.run(cmd, check=True, capture_output=True, text=True, env=os.environ.copy())
             self.logger.info("Ingestion phase completed successfully")
             self.logger.info(result.stdout)
             self._record_pipeline_run("ingest", "completed", batch_number)
@@ -408,7 +409,7 @@ class PipelineOrchestrator:
         self.logger.info(f"Running: {' '.join(cmd)}")
 
         try:
-            result = subprocess.run(cmd, check=True, capture_output=True, text=True)
+            result = subprocess.run(cmd, check=True, capture_output=True, text=True, env=os.environ.copy())
             self.logger.info("Cleanup phase completed successfully")
             self.logger.info(result.stdout)
             self._record_pipeline_run("cleanup", "completed", batch_number)
