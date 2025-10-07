@@ -289,6 +289,42 @@ class PipelineOrchestrator:
         self.logger.error(f"Timeout waiting for olmOCR jobs ({max_wait_seconds}s)")
         raise TimeoutError("olmOCR jobs did not complete in time")
 
+    def run_split_jsonl_phase(self, batch_number: int = None) -> bool:
+        """
+        Split JSONL files into individual JSON files per PDF.
+
+        Returns:
+            True if successful
+        """
+        self.logger.info("=" * 70)
+        self.logger.info(f"PHASE 2.5: SPLIT JSONL TO JSON (Batch {batch_number or 'N/A'})")
+        self.logger.info("=" * 70)
+
+        split_script = SCRIPT_DIR / "split_jsonl_to_json.py"
+        pdf_dir = Path(self.config["directories"]["pdf_dir"])
+
+        cmd = [
+            "python3",
+            str(split_script),
+            str(pdf_dir),
+        ]
+
+        self.logger.info(f"Running: {' '.join(cmd)}")
+
+        try:
+            result = subprocess.run(cmd, check=True, capture_output=True, text=True)
+            self.logger.info("Split JSONL phase completed successfully")
+            self.logger.info(result.stdout)
+            self._record_pipeline_run("split_jsonl", "completed", batch_number)
+            return True
+        except subprocess.CalledProcessError as e:
+            self.logger.error(f"Split JSONL phase failed: {e}")
+            self.logger.error(f"STDOUT: {e.stdout}")
+            self.logger.error(f"STDERR: {e.stderr}")
+            self._record_pipeline_run("split_jsonl", "failed", batch_number,
+                                     error_message=str(e))
+            return False
+
     def run_ingest_phase(self, batch_number: int = None) -> bool:
         """
         Run ingestion phase using existing ingest_ocr_results.py.
@@ -310,13 +346,16 @@ class PipelineOrchestrator:
         pdf_dir = Path(self.config["directories"]["pdf_dir"])
         db_path = self.config["directories"]["database"]
 
+        # Use JSON files from results/json/ directory (split from JSONL)
+        ocr_results_dir = pdf_dir / "results" / "json"
+
         # Build command
         cmd = [
             "python3",
             str(ingest_script),
             str(pdf_dir),
             "--db-path", str(db_path),
-            "--parse-jsonl",
+            "--ocr-results-dir", str(ocr_results_dir),
         ]
 
         self.logger.info(f"Running: {' '.join(cmd)}")
@@ -409,6 +448,11 @@ class PipelineOrchestrator:
         # Phase 2: OCR
         if not self.run_ocr_phase(batch_number):
             self.logger.error(f"Batch {batch_number} failed at OCR phase")
+            return False
+
+        # Phase 2.5: Split JSONL into individual JSON files
+        if not self.run_split_jsonl_phase(batch_number):
+            self.logger.error(f"Batch {batch_number} failed at split JSONL phase")
             return False
 
         # Phase 3: Ingest
