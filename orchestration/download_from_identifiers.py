@@ -21,6 +21,21 @@ except ImportError:
     sys.exit(1)
 
 
+def _commit_with_retry(db_conn, max_retries=5, initial_wait=0.1):
+    """Commit database with retry logic for handling locks."""
+    for attempt in range(max_retries):
+        try:
+            db_conn.commit()
+            return
+        except sqlite3.OperationalError as e:
+            if 'database is locked' in str(e) and attempt < max_retries - 1:
+                wait_time = initial_wait * (2 ** attempt)  # Exponential backoff
+                print(f"  ⚠ Database locked, retrying in {wait_time:.1f}s...")
+                time.sleep(wait_time)
+            else:
+                raise
+
+
 def download_pdfs_from_identifiers(
     identifiers_file: Path,
     start_from: int,
@@ -83,7 +98,7 @@ def download_pdfs_from_identifiers(
     # Initialize database connection if provided
     db_conn = None
     if db_path:
-        db_conn = sqlite3.connect(db_path)
+        db_conn = sqlite3.connect(db_path, timeout=30.0)  # 30 second timeout for locks
         # Return rows as dictionaries for easier column checks
         db_conn.row_factory = sqlite3.Row
         # Ensure tables/columns exist so downstream phases work
@@ -194,11 +209,11 @@ def download_pdfs_from_identifiers(
 
         # Commit database changes periodically
         if db_conn and i % 10 == 0:
-            db_conn.commit()
+            _commit_with_retry(db_conn)
 
     # Final database commit
     if db_conn:
-        db_conn.commit()
+        _commit_with_retry(db_conn)
         db_conn.close()
 
     # Print summary
