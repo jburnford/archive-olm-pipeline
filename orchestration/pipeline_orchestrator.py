@@ -102,7 +102,7 @@ class PipelineOrchestrator:
         import sqlite3
 
         db_path = self._get_db_path()
-        conn = sqlite3.connect(db_path)
+        conn = sqlite3.connect(db_path, timeout=30.0)
 
         try:
             conn.execute("""
