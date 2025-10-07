@@ -125,7 +125,8 @@ for subcollection, pdf_dir in COLLECTIONS.items():
             "python3", str(ingest_script),
             str(pdf_dir),
             "--db-path", db_path,
-            "--ocr-results-dir", str(json_dir),
+            "--ocr-dir", str(json_dir),
+            "--no-parse-jsonl",  # Use filename-based matching (JSON files match PDF names)
         ], capture_output=True, text=True, check=True)
 
         # Parse output for summary
