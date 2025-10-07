@@ -73,6 +73,22 @@ class PipelineOrchestrator:
         )
         self.logger = logging.getLogger(__name__)
 
+    def _get_db_path(self) -> str:
+        """
+        Get database path, preferring environment variable for local copy strategy.
+
+        When running on SLURM, the wrapper script sets PIPELINE_DB_PATH to point
+        to a local copy in $SLURM_TMPDIR for better performance and reliability.
+        """
+        env_db_path = os.environ.get('PIPELINE_DB_PATH')
+        if env_db_path:
+            self.logger.info(f"Using database from environment: {env_db_path}")
+            return env_db_path
+
+        config_db_path = self.config["directories"]["database"]
+        self.logger.info(f"Using database from config: {config_db_path}")
+        return config_db_path
+
     def _record_pipeline_run(
         self,
         phase: str,
@@ -85,7 +101,7 @@ class PipelineOrchestrator:
         """Record pipeline run in database."""
         import sqlite3
 
-        db_path = self.config["directories"]["database"]
+        db_path = self._get_db_path()
         conn = sqlite3.connect(db_path)
 
         try:
@@ -140,7 +156,7 @@ class PipelineOrchestrator:
         pdf_dir = Path(self.config["directories"]["pdf_dir"])
         pdf_dir.mkdir(parents=True, exist_ok=True)
 
-        db_path = self.config["directories"]["database"]
+        db_path = self._get_db_path()
         download_cfg = self.config.get("download", {})
 
         # Check for identifiers file
@@ -345,7 +361,7 @@ class PipelineOrchestrator:
             return False
 
         pdf_dir = Path(self.config["directories"]["pdf_dir"])
-        db_path = self.config["directories"]["database"]
+        db_path = self._get_db_path()
 
         # Use JSON files from results/json/ directory (split from JSONL)
         ocr_results_dir = pdf_dir / "results" / "json"
@@ -387,7 +403,7 @@ class PipelineOrchestrator:
         self.logger.info("=" * 70)
 
         cleanup_script = SCRIPT_DIR / "cleanup_pdfs.py"
-        db_path = self.config["directories"]["database"]
+        db_path = self._get_db_path()
 
         cleanup_cfg = self.config.get("cleanup", {})
 

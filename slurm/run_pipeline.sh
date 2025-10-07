@@ -45,6 +45,76 @@ source "$VENV_DIR/bin/activate" || {
     exit 1
 }
 
+# Database copy strategy for NFS reliability
+# Copy database to local SLURM_TMPDIR (fast SSD) at start,
+# work on local copy, then copy back at end
+DB_ORIGINAL="${DB_PATH:-/home/jic823/projects/def-jic823/InternetArchive/archive_tracking.db}"
+DB_LOCAL="$SLURM_TMPDIR/archive_tracking.db"
+
+echo ""
+echo "========================================="
+echo "Database Setup (Local Copy Strategy)"
+echo "========================================="
+echo "Original DB: $DB_ORIGINAL"
+echo "Local DB: $DB_LOCAL"
+
+# Function to copy database back to NFS
+copy_db_back() {
+    local exit_code=$?
+    echo ""
+    echo "========================================="
+    echo "Copying database back to NFS storage..."
+    echo "========================================="
+    if [ -f "$DB_LOCAL" ]; then
+        # Get sizes for verification
+        LOCAL_SIZE=$(stat -f%z "$DB_LOCAL" 2>/dev/null || stat -c%s "$DB_LOCAL" 2>/dev/null)
+        echo "Local DB size: $(du -h "$DB_LOCAL" | cut -f1)"
+
+        # Copy back with verification
+        cp "$DB_LOCAL" "$DB_ORIGINAL.tmp" || {
+            echo "ERROR: Failed to copy database back to NFS"
+            return 1
+        }
+
+        # Verify copy
+        COPY_SIZE=$(stat -f%z "$DB_ORIGINAL.tmp" 2>/dev/null || stat -c%s "$DB_ORIGINAL.tmp" 2>/dev/null)
+        if [ "$LOCAL_SIZE" = "$COPY_SIZE" ]; then
+            mv "$DB_ORIGINAL.tmp" "$DB_ORIGINAL"
+            echo "✓ Database successfully copied back to NFS"
+        else
+            echo "ERROR: Database copy size mismatch!"
+            echo "  Local: $LOCAL_SIZE bytes"
+            echo "  Copy: $COPY_SIZE bytes"
+            return 1
+        fi
+    else
+        echo "WARNING: Local database not found at $DB_LOCAL"
+    fi
+    return $exit_code
+}
+
+# Register trap to copy database back on exit (success or failure)
+trap copy_db_back EXIT
+
+# Copy database to local storage
+if [ -f "$DB_ORIGINAL" ]; then
+    echo "Copying database to local storage..."
+    cp "$DB_ORIGINAL" "$DB_LOCAL" || {
+        echo "ERROR: Failed to copy database to local storage"
+        exit 1
+    }
+    echo "✓ Database copied to local storage"
+    echo "  Size: $(du -h "$DB_LOCAL" | cut -f1)"
+else
+    echo "WARNING: Original database not found, will create new local database"
+    touch "$DB_LOCAL"
+fi
+
+# Export local database path for pipeline to use
+export PIPELINE_DB_PATH="$DB_LOCAL"
+echo "✓ Pipeline will use local database"
+echo ""
+
 # Parse command line arguments
 CONFIG_FILE="${CONFIG_FILE:-config/pipeline_config.yaml}"
 TOTAL_ITEMS="${TOTAL_ITEMS:-100000}"
