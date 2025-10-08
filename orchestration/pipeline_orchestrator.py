@@ -12,6 +12,7 @@ Calls existing, working scripts - does not modify them.
 """
 
 import argparse
+import csv
 import json
 import logging
 import os
@@ -128,6 +129,65 @@ class PipelineOrchestrator:
         finally:
             conn.close()
 
+    def _ensure_identifiers_json(self, identifiers_path: Path) -> Path:
+        """
+        Ensure identifiers file is in JSON format.
+        If CSV is provided, convert it to JSON format automatically.
+
+        Args:
+            identifiers_path: Path to identifiers file (JSON or CSV)
+
+        Returns:
+            Path to identifiers.json file
+        """
+        # If already JSON, return as-is
+        if identifiers_path.suffix.lower() == '.json':
+            return identifiers_path
+
+        # If CSV, convert to JSON
+        if identifiers_path.suffix.lower() == '.csv':
+            self.logger.info(f"CSV file detected: {identifiers_path}")
+            self.logger.info("Converting to identifiers.json format...")
+
+            identifiers = []
+
+            with open(identifiers_path, 'r', encoding='utf-8') as f:
+                reader = csv.DictReader(f)
+
+                if 'identifier' not in reader.fieldnames:
+                    self.logger.error(f"CSV must have 'identifier' column")
+                    self.logger.error(f"Found columns: {reader.fieldnames}")
+                    raise ValueError("Invalid CSV format")
+
+                for row in reader:
+                    identifier = row['identifier'].strip()
+                    if identifier:
+                        identifiers.append(identifier)
+
+            if not identifiers:
+                raise ValueError("No identifiers found in CSV")
+
+            # Create JSON in same directory as CSV
+            json_path = identifiers_path.parent / "identifiers.json"
+
+            data = {
+                "query": f"CSV import from {identifiers_path.name}",
+                "sort_order": "CSV order",
+                "total_count": len(identifiers),
+                "identifiers": identifiers
+            }
+
+            with open(json_path, 'w', encoding='utf-8') as f:
+                json.dump(data, f, indent=2)
+
+            self.logger.info(f"✓ Converted {len(identifiers)} identifiers from CSV")
+            self.logger.info(f"  Output: {json_path}")
+
+            return json_path
+
+        # Unknown format
+        raise ValueError(f"Unsupported identifiers file format: {identifiers_path.suffix}")
+
     def run_download_phase(self, batch_size: int, batch_number: int = None, start_from: int = 0) -> bool:
         """
         Run download phase using existing archive_cluster_downloader.py.
@@ -169,6 +229,13 @@ class PipelineOrchestrator:
         identifiers_path = Path(identifiers_file)
         if not identifiers_path.exists():
             self.logger.error(f"Identifiers file not found: {identifiers_path}")
+            return False
+
+        # Convert CSV to JSON if needed
+        try:
+            identifiers_path = self._ensure_identifiers_json(identifiers_path)
+        except Exception as e:
+            self.logger.error(f"Failed to process identifiers file: {e}")
             return False
 
         cmd = [

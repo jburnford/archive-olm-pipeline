@@ -65,6 +65,42 @@ python3 orchestration/pipeline_orchestrator.py run-batches \
     --batch-size 1000
 ```
 
+## Input Formats
+
+The pipeline supports two input formats for specifying which items to process:
+
+### Option 1: identifiers.json (default)
+```json
+{
+  "query": "Saskatchewan AND date:[1808-01-01 TO 1946-01-01]",
+  "sort_order": "date asc",
+  "total_count": 16075,
+  "identifiers": ["id1", "id2", "id3", ...]
+}
+```
+
+### Option 2: CSV file (automatic conversion)
+You can directly use a CSV file with an `identifier` column. The pipeline will automatically convert it to JSON format.
+
+**CSV Requirements:**
+- Must have an `identifier` column
+- One row per item
+- Additional columns (title, date, etc.) are preserved in CSV but only identifier is used
+
+**Usage:**
+```yaml
+# In config file (e.g., config/caribbean.yaml)
+download:
+  identifiers_file: /path/to/search_results.csv  # Can be CSV or JSON
+```
+
+The pipeline automatically detects CSV format and converts it on first run. The converted `identifiers.json` is saved in the same directory for future use.
+
+**Manual conversion (optional):**
+```bash
+python3 orchestration/csv_to_identifiers.py input.csv -o output.json
+```
+
 ## Components
 
 - `orchestration/` - Python scripts for pipeline control

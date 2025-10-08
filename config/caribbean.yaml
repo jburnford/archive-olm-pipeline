@@ -1,0 +1,67 @@
+# Caribbean Collection Configuration
+# Processing documents from caribbean_search_results_main.csv
+
+# Paths to existing component repositories
+components:
+  downloader_repo: /home/jic823/projects/def-jic823/InternetArchive
+  olmocr_repo: /home/jic823/projects/def-jic823/cluster/olmocr
+
+# Working directories
+directories:
+  pdf_dir: /home/jic823/projects/def-jic823/pdfs_caribbean
+  database: /home/jic823/projects/def-jic823/InternetArchive/archive_tracking.db
+
+# Batch processing settings
+batching:
+  batch_size: 500  # Process 500 items per batch
+  total_items: 38683  # Total items in Caribbean collection
+  batch_delay: 60  # 1 minute between batches
+
+# Download phase settings
+download:
+  # CSV file with search results - will be automatically converted to JSON
+  identifiers_file: /home/jic823/archive-olm-pipeline/caribbean_search_results_main.csv
+  delay: 0.05
+  download_all_pdfs: false  # Only download the main PDF
+  subcollection: caribbean_collection
+
+# OCR phase settings
+ocr:
+  max_pages_per_chunk: 1500
+  workers: auto
+  pages_per_group: auto
+  max_wait_hours: 12
+
+# Ingestion phase settings
+ingestion:
+  parse_jsonl: true
+  verify_data: true
+
+# Cleanup phase settings
+cleanup:
+  auto_delete: true  # Enable auto-delete to save disk space
+  grace_period_days: 0  # Delete immediately after OCR ingestion
+  require_confirmation: false  # No confirmation needed (automated)
+  create_manifest: true
+
+# SLURM settings
+slurm:
+  email: jic823@usask.ca
+  account: def-jic823
+  time_limits:
+    download: "04:00:00"
+    ocr: "08:00:00"
+    ingest: "02:00:00"
+    cleanup: "01:00:00"
+
+# Safety settings
+safety:
+  require_ocr_completed: true
+  require_ocr_data_in_db: true
+  require_valid_json: true
+  max_deletions_per_run: 2000  # Allow cleanup of full batches
+
+# Logging
+logging:
+  level: INFO
+  log_dir: /home/jic823/projects/def-jic823/archive-olm-pipeline/logs
