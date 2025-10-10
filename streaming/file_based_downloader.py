@@ -187,6 +187,13 @@ class FileBasedDownloader:
                 existing = list(self.downloaded_dir.glob(f"{identifier}*.pdf"))
                 print(f"  ⏭ Already exists: {existing[0].name}")
                 self.stats['skipped'] += 1
+
+                # Create symlink if it doesn't exist
+                pending_link = self.ocr_pending_dir / existing[0].name
+                if not pending_link.exists():
+                    pending_link.symlink_to(existing[0])
+                    print(f"  🔗 Created symlink for existing PDF")
+
                 return True
 
             # Get item
