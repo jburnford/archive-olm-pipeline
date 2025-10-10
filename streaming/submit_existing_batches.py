@@ -58,6 +58,46 @@ def submit_batch(olmocr_script: Path, batch_dir: Path) -> str:
     return parse_job_id(output)
 
 
+def get_slurm_state(job_id: str) -> str:
+    """Return a coarse job state using sacct/squeue.
+
+    Returns one of: RUNNING, PENDING, COMPLETED, FAILED, UNKNOWN
+    """
+    try:
+        # sacct shows historical; use parsable to simplify
+        r = subprocess.run(
+            ["sacct", "-j", job_id, "--format=State", "--noheader", "--parsable2"],
+            capture_output=True,
+            text=True,
+            timeout=10,
+        )
+        if r.returncode == 0:
+            for line in (r.stdout or "").splitlines():
+                state = line.strip()
+                if not state:
+                    continue
+                if "COMPLETED" in state:
+                    return "COMPLETED"
+                if any(x in state for x in ("FAILED", "CANCELLED", "TIMEOUT")):
+                    return "FAILED"
+                if any(x in state for x in ("RUNNING", "PENDING")):
+                    return "RUNNING" if "RUNNING" in state else "PENDING"
+        # Fallback to squeue (active only)
+        r2 = subprocess.run(
+            ["squeue", "-j", job_id, "-h", "-o", "%T"],
+            capture_output=True,
+            text=True,
+            timeout=10,
+        )
+        if r2.returncode == 0:
+            s = (r2.stdout or "").strip().upper()
+            if s in {"RUNNING", "PENDING", "CONFIGURING", "COMPLETING"}:
+                return "RUNNING" if s == "RUNNING" else "PENDING"
+    except Exception:
+        pass
+    return "UNKNOWN"
+
+
 def main():
     parser = argparse.ArgumentParser(description="Submit existing OCR batches to OLMoCR")
     parser.add_argument("--config", required=True, type=Path, help="Path to file-based YAML config")
@@ -97,17 +137,28 @@ def main():
             # Create minimal meta if missing
             meta = {"batch_id": batch_dir.name, "status": "created"}
 
-        # Skip if already submitted or completed
-        if meta.get("status") in {"submitted", "completed"} or meta.get("slurm_job_id"):
-            print(f"  ↷ Skip {batch_dir.name}: status={meta.get('status')} job_id={meta.get('slurm_job_id')}")
-            skipped += 1
-            continue
+        job_id = str(meta.get("slurm_job_id") or "").strip()
 
-        # Skip if results already exist (means already processed)
+        # If results already exist, skip (already processed)
         if list((batch_dir / "results").glob("**/*.jsonl")):
             print(f"  ↷ Skip {batch_dir.name}: results already present")
             skipped += 1
             continue
+
+        # If we have a job id, verify with SLURM
+        if job_id:
+            state = get_slurm_state(job_id)
+            if state in {"RUNNING", "PENDING"}:
+                print(f"  ↷ Skip {batch_dir.name}: job {job_id} {state}")
+                skipped += 1
+                continue
+            else:
+                print(f"  → Resubmitting {batch_dir.name}: previous job {job_id} state={state}")
+
+        else:
+            # If meta says running but no job id, we should submit
+            if meta.get("status") == "running":
+                print(f"  → Submitting {batch_dir.name}: status=running but no job ID present")
 
         # Ensure there are PDFs to process
         pdfs = list(batch_dir.glob("*.pdf"))
@@ -153,4 +204,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
