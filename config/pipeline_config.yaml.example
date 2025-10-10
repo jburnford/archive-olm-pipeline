@@ -36,8 +36,10 @@ download:
 
 # OCR phase settings (passed to olmocr scripts)
 ocr:
-  # Maximum pages per SLURM job chunk
-  max_pages_per_chunk: 1500
+  # Maximum PDFs to bundle into a single SLURM job chunk
+  max_pdfs_per_chunk: 200
+  # Legacy fallback for page-count based chunking (ignored when max_pdfs_per_chunk is set)
+  # max_pages_per_chunk: 1500
   # Workers (auto = let olmOCR decide)
   workers: auto
   # Pages per group (auto = let olmOCR decide)

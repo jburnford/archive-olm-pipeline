@@ -27,7 +27,9 @@ download:
 
 # OCR phase settings
 ocr:
-  max_pages_per_chunk: 1500
+  max_pdfs_per_chunk: 200
+  # Legacy fallback for page-count based chunking
+  # max_pages_per_chunk: 1500
   workers: auto
   pages_per_group: auto
   max_wait_hours: 12
