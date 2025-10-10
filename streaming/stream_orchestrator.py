@@ -82,6 +82,7 @@ class StreamOrchestrator:
 
         cmd = [
             "python3",
+            "-u",  # Unbuffered output
             str(self.streaming_dir / "continuous_downloader.py"),
             "--identifiers-file", str(identifiers_file),
             "--start-from", str(start_from),
@@ -119,6 +120,7 @@ class StreamOrchestrator:
 
         cmd = [
             "python3",
+            "-u",  # Unbuffered output
             str(self.streaming_dir / "ocr_dispatcher.py"),
             "--download-queue", str(download_queue),
             "--ocr-processing", str(ocr_processing),
@@ -150,6 +152,7 @@ class StreamOrchestrator:
 
         cmd = [
             "python3",
+            "-u",  # Unbuffered output
             str(self.streaming_dir / "cleanup_worker.py"),
             "--ocr-processing", str(ocr_processing),
             "--ocr-completed", str(ocr_completed),
