@@ -96,7 +96,13 @@ class StreamOrchestrator:
             cmd.extend(["--subcollection", download_cfg["subcollection"]])
 
         self.logger.info(f"Launching downloader: {' '.join(cmd)}")
-        process = subprocess.Popen(cmd, env=os.environ.copy())
+        process = subprocess.Popen(
+            cmd,
+            env=os.environ.copy(),
+            stdout=sys.stdout,
+            stderr=sys.stderr,
+            bufsize=0  # Unbuffered
+        )
         return process
 
     def _launch_dispatcher(
@@ -122,7 +128,13 @@ class StreamOrchestrator:
         ]
 
         self.logger.info(f"Launching dispatcher: {' '.join(cmd)}")
-        process = subprocess.Popen(cmd, env=os.environ.copy())
+        process = subprocess.Popen(
+            cmd,
+            env=os.environ.copy(),
+            stdout=sys.stdout,
+            stderr=sys.stderr,
+            bufsize=0  # Unbuffered
+        )
         return process
 
     def _launch_cleanup_worker(
@@ -149,7 +161,13 @@ class StreamOrchestrator:
         ]
 
         self.logger.info(f"Launching cleanup worker: {' '.join(cmd)}")
-        process = subprocess.Popen(cmd, env=os.environ.copy())
+        process = subprocess.Popen(
+            cmd,
+            env=os.environ.copy(),
+            stdout=sys.stdout,
+            stderr=sys.stderr,
+            bufsize=0  # Unbuffered
+        )
         return process
 
     def _cleanup(self):
