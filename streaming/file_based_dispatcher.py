@@ -171,6 +171,8 @@ class FileBasedDispatcher:
                 job_id = line.split()[-1]
                 return job_id
 
+        # Log output for debugging
+        print(f"   ⚠ Script output:\n{output}")
         raise RuntimeError("Could not parse SLURM job ID from output")
 
     def _bundle_and_submit(self, pdfs: List[Path]):
@@ -258,10 +260,9 @@ class FileBasedDispatcher:
             print("Dispatcher Summary")
             print("=" * 70)
             print(f"  Total batches created: {len(self.batches)}")
-            total_pdfs = sum(b['total_pdfs'] for b in self.batches)
-            total_pages = sum(b['total_pages'] for b in self.batches)
-            print(f"  Total PDFs processed: {total_pdfs}")
-            print(f"  Total pages: {total_pages}")
+            if self.batches:
+                total_pdfs = sum(b['total_pdfs'] for b in self.batches)
+                print(f"  Total PDFs processed: {total_pdfs}")
             print("=" * 70)
 
 
