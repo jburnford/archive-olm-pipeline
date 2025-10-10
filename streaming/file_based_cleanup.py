@@ -17,7 +17,7 @@ import sys
 import time
 from datetime import datetime
 from pathlib import Path
-from typing import List, Dict
+from typing import Any, Dict, Iterable, List, Optional
 
 
 class FileBasedCleanup:
@@ -118,43 +118,90 @@ class FileBasedCleanup:
 
         print(f"  📄 Processing {len(jsonl_files)} JSONL files")
 
+        # Helpers for nested JSON extraction
+        PDF_SOURCE_KEYS = (
+            "Source-File",
+            "source_file",
+            "source",
+            "filename",
+            "file_name",
+            "path",
+            "filepath",
+            "pdf",
+            "pdf_name",
+            "document",
+            "document_name",
+        )
+
+        def _safe_parse_metadata(md: Any) -> Optional[Dict[str, Any]]:
+            if md is None:
+                return None
+            if isinstance(md, dict):
+                return md
+            if isinstance(md, str):
+                try:
+                    parsed = json.loads(md)
+                    return parsed if isinstance(parsed, dict) else None
+                except Exception:
+                    return None
+            return None
+
+        def _extract_source_file(obj: Dict[str, Any]) -> Optional[str]:
+            md = _safe_parse_metadata(obj.get("metadata")) or {}
+            for k in PDF_SOURCE_KEYS:
+                v = md.get(k)
+                if isinstance(v, str) and v:
+                    return v
+            for k in PDF_SOURCE_KEYS:
+                v = obj.get(k)
+                if isinstance(v, str) and v:
+                    return v
+            return None
+
+        def _iter_records(obj: Any, inherited_source: Optional[str] = None) -> Iterable[tuple[Dict[str, Any], str]]:
+            if isinstance(obj, dict):
+                current_source = _extract_source_file(obj) or inherited_source
+                is_record = current_source is not None and (
+                    any(k for k in obj.keys() if k != "metadata")
+                )
+                if is_record:
+                    yield obj, current_source
+                for v in obj.values():
+                    yield from _iter_records(v, current_source)
+            elif isinstance(obj, list):
+                for v in obj:
+                    yield from _iter_records(v, inherited_source)
+
         # Read all JSONL files and aggregate by identifier
-        identifier_data = {}
+        identifier_data: Dict[str, List[Dict[str, Any]]] = {}
 
         try:
             for jsonl_file in jsonl_files:
-                with open(jsonl_file, 'r') as f:
+                with open(jsonl_file, 'r', encoding='utf-8') as f:
                     for line in f:
                         if line.strip():
                             data = json.loads(line)
 
-                            # Extract identifier from metadata (same logic as split_jsonl_to_json.py)
-                            metadata_field = data.get('metadata', {})
-                            source_file = (
-                                metadata_field.get('Source-File') or
-                                metadata_field.get('source_file') or
-                                data.get('Source-File') or
-                                data.get('source_file') or
-                                data.get('source')
-                            )
-
-                            if not source_file:
-                                identifier = 'unknown'
-                            else:
-                                # Extract just the filename and remove .pdf extension to get Archive.org identifier
+                            any_found = False
+                            for record, source_file in _iter_records(data):
+                                any_found = True
                                 pdf_filename = Path(source_file).name
                                 identifier = pdf_filename.replace('.pdf', '')
 
-                            if identifier not in identifier_data:
-                                identifier_data[identifier] = []
+                                if identifier not in identifier_data:
+                                    identifier_data[identifier] = []
 
-                            identifier_data[identifier].append(data)
+                                identifier_data[identifier].append(record)
+                            if not any_found:
+                                # Keep track of unknowns for visibility
+                                identifier_data.setdefault('unknown', [])
+                                identifier_data['unknown'].append(data)
 
             # Write individual files to 04_ocr_completed/
             for identifier, pages in identifier_data.items():
                 output_file = self.completed_dir / f"{identifier}.ocr.jsonl"
 
-                with open(output_file, 'w') as f:
+                with open(output_file, 'w', encoding='utf-8') as f:
                     for page_data in pages:
                         f.write(json.dumps(page_data) + '\n')
 
