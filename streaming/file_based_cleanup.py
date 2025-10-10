@@ -127,7 +127,23 @@ class FileBasedCleanup:
                     for line in f:
                         if line.strip():
                             data = json.loads(line)
-                            identifier = data.get('identifier', 'unknown')
+
+                            # Extract identifier from metadata (same logic as split_jsonl_to_json.py)
+                            metadata_field = data.get('metadata', {})
+                            source_file = (
+                                metadata_field.get('Source-File') or
+                                metadata_field.get('source_file') or
+                                data.get('Source-File') or
+                                data.get('source_file') or
+                                data.get('source')
+                            )
+
+                            if not source_file:
+                                identifier = 'unknown'
+                            else:
+                                # Extract just the filename and remove .pdf extension to get Archive.org identifier
+                                pdf_filename = Path(source_file).name
+                                identifier = pdf_filename.replace('.pdf', '')
 
                             if identifier not in identifier_data:
                                 identifier_data[identifier] = []
