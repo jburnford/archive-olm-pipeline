@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --job-name=stream_pipeline
 #SBATCH --account=def-jic823
-#SBATCH --time=72:00:00
+#SBATCH --time=144:00:00
 #SBATCH --mem=16G
 #SBATCH --cpus-per-task=4
 #SBATCH --mail-type=END,FAIL
