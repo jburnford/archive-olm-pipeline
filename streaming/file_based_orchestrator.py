@@ -91,7 +91,7 @@ class FileBasedOrchestrator:
         olmocr_script = olmocr_repo / "smart_submit_pdf_jobs.sh"
 
         ocr_cfg = self.config.get("ocr", {})
-        pages_per_chunk = ocr_cfg.get("max_pages_per_chunk", 1500)
+        pdfs_per_batch = ocr_cfg.get("pdfs_per_batch", 200)
 
         cmd = [
             "python3",
@@ -99,7 +99,7 @@ class FileBasedOrchestrator:
             str(self.streaming_dir / "file_based_dispatcher.py"),
             "--base-dir", str(base_dir),
             "--olmocr-script", str(olmocr_script),
-            "--pages-per-chunk", str(pages_per_chunk),
+            "--pdfs-per-chunk", str(pdfs_per_batch),
             "--check-interval", "60"
         ]
 

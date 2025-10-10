@@ -1,0 +1,1265 @@
+id	filename	title	year	decade	doc_type
+0	cihm_38163.pdf	The British treaty [microform] : with an appendix 	1808	1800	other
+1	P000045.pdf	Travels and adventures in Canada and the Indian te	1809	1800	other
+2	cihm_18748.pdf	The idler [microform]	1810	1810	other
+3	cihm_18747.pdf	The idler [microform]	1810	1810	other
+4	cihm_60816.pdf	A view of the state of parties in the United State	1812	1810	other
+5	bp_2820.pdf	Map of the North-West Territory of the Province of	1814	1810	map
+6	cihm_21045.pdf	A brief description of Nova Scotia with plates of 	1818	1810	other
+7	cihm_38281.pdf	Historical sketches of the missions of the United 	1818	1810	other
+8	cihm_38167.pdf	Sketches of America [microform] : a narrative of a	1818	1810	other
+9	cihm_44290.pdf	The history, civil and commercial of the British W	1819	1810	other
+10	cihm_44287.pdf	The history, civil and commercial of the British W	1819	1810	other
+11	cihm_44288.pdf	The history, civil and commercial of the British W	1819	1810	other
+12	cihm_44289.pdf	The history, civil and commercial of the British W	1819	1810	other
+13	cihm_44291.pdf	The history, civil and commercial of the British W	1819	1810	other
+14	cihm_44292.pdf	The history, civil and commercial of the British W	1819	1810	other
+15	P000081.pdf	Relation d'un voyage à la côte du nord-ouest de l'	1820	1820	other
+16	P000151.pdf	Narrative of a journey to the shores of the polar 	1823	1820	other
+17	cihm_41974.pdf	Observations d'un catholique sur l'Histoire du Can	1827	1820	other
+18	cihm_52196.pdf	Remarques publiées dans le Québec Mercury nos. 2, 	1827	1820	government
+19	cihm_41970.pdf	Copy of a letter from James Stuart, Esq. to the Ri	1831	1830	other
+20	cihm_18733.pdf	Divers documens adressés à l'Honorable Louis Josep	1834	1830	other
+21	cihm_41964.pdf	Le Bougainville de la jeunesse ou Nouvel abrégé de	1839	1830	other
+22	cihm_18742.pdf	The letter-bag of the Great Western, or, Life in a	1840	1840	other
+23	cihm_41962.pdf	An exploring tour beyond the Rocky Mountains in No	1840	1840	other
+24	cihm_38161.pdf	A dictionary, geographical, statistical and histor	1841	1840	other
+25	cihm_41972.pdf	On the forthcoming union of the two Canadas [micro	1841	1840	other
+26	cihm_46695.pdf	The history of the navy of the United States of Am	1841	1840	other
+27	cihm_50569.pdf	Historical collections of the state of New York [m	1841	1840	other
+28	cihm_38162.pdf	A dictionary, geographical, statistical and histor	1842	1840	other
+29	attachorsamslic01haligoog.pdf	The Attaché; Or, Sam Slick in England.	1843	1840	other
+30	attachorsamslic02haligoog.pdf	The attaché, or, Sam Slick in England. Vol. I	1843	1840	other
+31	cihm_18756.pdf	The attaché, or, Sam Slick in England [microform]	1843	1840	other
+32	cihm_18757.pdf	The attaché, or, Sam Slick in England [microform]	1843	1840	other
+33	cihm_24494.pdf	Discovery of New-England by the Northmen five hund	1844	1840	other
+34	cihm_38170.pdf	Campaign against Quebec [microform] : being an acc	1844	1840	other
+35	cihm_41971.pdf	The travellers' hand book for the state of New-Yor	1844	1840	map
+36	cihm_34334.pdf	A system of the creation of our globe, of the plan	1845	1840	other
+37	cihm_47055.pdf	The history of Oregon and California and the other	1845	1840	map
+38	cihm_18736.pdf	The life and voyages of Americus Vespucius [microf	1846	1840	other
+39	cihm_47558.pdf	A journal of visitation to the western portion of 	1846	1840	other
+40	P000239.pdf	Sketches in North America and the Oregon Territory	1849	1840	other
+41	cihm_52193.pdf	Early moral and religious education [microform] : 	1849	1840	other
+42	cihm_38150.pdf	Salmagundi, or, The whim-whams and opinions of Lau	1850	1850	other
+43	cihm_38151.pdf	The sketch book [microform]	1850	1850	other
+44	cihm_38152.pdf	Bracebridge Hall, or, The humorists [microform] : 	1850	1850	other
+45	cihm_38153.pdf	The Alhambra [microform]	1850	1850	other
+46	cihm_38154.pdf	A chronicle of the conquest of Granada [microform]	1850	1850	other
+47	cihm_38155.pdf	The life and voyages of Christopher Columbus [micr	1850	1850	other
+48	cihm_38156.pdf	The life and voyages of Christopher Columbus [micr	1850	1850	other
+49	cihm_38157.pdf	Astoria, or, Anecdotes of an enterprise beyond the	1850	1850	other
+50	cihm_38158.pdf	Life of Mahomet [microform]	1850	1850	other
+51	cihm_38159.pdf	The adventures of Captain Bonneville, U.S.A. in th	1850	1850	other
+52	cihm_40063.pdf	Lives of Vice-Admiral Sir Charles Vinicombe Penros	1850	1850	other
+53	salmagundiorwhi09paulgoog.pdf	Salmagundi, or, The whim-whams and opinions of Lau	1850	1850	other
+54	salmagundiorwhi11paulgoog.pdf	Salmagundi, or, The whim-whams and opinions of Lau	1850	1850	other
+55	cihm_18744.pdf	Outlines of astronomy [microform]	1851	1850	other
+56	cihm_40780.pdf	Sir John Franklin and the Arctic regions [microfor	1851	1850	other
+57	cihm_42143.pdf	Guide de l'instituteur [microforme] : contenant un	1851	1850	other
+58	outlinesastrono00hersgoog.pdf	Outlines of astronomy	1851	1850	other
+59	outlinesastrono06hersgoog.pdf	Outlines of astronomy	1851	1850	other
+60	cihm_52191.pdf	The rise and progress of Trinity College, Toronto 	1852	1850	other
+61	cihm_18737.pdf	The origin of the North American Indians [microfor	1853	1850	other
+62	cihm_22408.pdf	Report of the directors and chief engineer of the 	1853	1850	annual_report
+63	cihm_47062.pdf	The forlorn hope [microform] : an appeal to the Ch	1853	1850	other
+64	cihm_14516.pdf	Our "constitutional rights" vindicated, or, An arg	1854	1850	other
+65	cihm_43250.pdf	A sermon [microform]	1854	1850	other
+66	cihm_43331.pdf	General by-laws, rules and regulations of the Broc	1854	1850	other
+67	cihm_47988.pdf	Communication from the Secretary of the Treasury [	1854	1850	annual_report
+68	cihm_47989.pdf	Communication from the Secretary of the Treasury [	1854	1850	annual_report
+69	cihm_52194.pdf	The ocean [microform]	1854	1850	other
+70	cihm_47059.pdf	A lecture delivered before the Brockville Library 	1855	1850	other
+71	P000325.pdf	Snowflakes and sunbeams, or, The young fur traders	1856	1850	other
+72	cihm_41963.pdf	Report of decisions of the commission of claims un	1856	1850	annual_report
+73	cihm_60815.pdf	Religious excitements tried by scripture and their	1856	1850	other
+74	P000357.pdf	Prières, cantiques, catéchisme, etc., en langue cr	1857	1850	other
+75	cihm_39262.pdf	Annals of the west [microform] : embracing a conci	1857	1850	other
+76	cihm_54106.pdf	Stories of the Canadian forest, or, Little Mary an	1857	1850	other
+77	1798858.pdf	Progress of the British North America Exploring Ex	1857	1850	other
+78	P000348.pdf	Rapport sur l'exploration de la contrée située ent	1858	1850	other
+79	P000349.pdf	Report on a topographical & geological exploration	1858	1850	other
+80	P000350.pdf	Report on the exploration of the country between L	1858	1850	other
+81	P000371.pdf	Report from a Select Committee of the House of Rep	1858	1850	other
+82	cihm_38282.pdf	Hudson's Bay Company [microform] : return to an ad	1858	1850	annual_report
+83	cihm_42411.pdf	Abrégé de l'histoire du Canada depuis sa découvert	1858	1850	other
+84	cihm_43253.pdf	Rival routes to the ocean from the west and docks 	1858	1850	other
+85	cihm_44218.pdf	Rapport sur l'exploration de la contrée située ent	1858	1850	other
+86	cihm_44219.pdf	Report on the exploration of the country between L	1858	1850	other
+87	P000342.pdf	Rapport sur l'exploration de la contrée entre le l	1859	1850	other
+88	P000367.pdf	North-West Territory: Reports of progress, togethe	1859	1850	other
+89	P000382.pdf	Territoire du Nord-Ouest: rapports de progrès: aus	1859	1850	other
+90	P000392.pdf	Exploration—British North America: Papers relative	1859	1850	other
+91	cihm_18729.pdf	An essay suggestive of a scheme of colonisation ad	1859	1850	other
+92	cihm_22784.pdf	Report on the exploration of the country between L	1859	1850	other
+93	cihm_39119.pdf	Papers relative to the exploration by Captain Pall	1859	1850	other
+94	cihm_41513.pdf	Reports of progress together with a preliminary an	1859	1850	other
+95	cihm_43334.pdf	The Church missionary atlas [microform] : containi	1859	1850	map
+96	cihm_44353.pdf	Rapport sur l'exploration de la contrée située ent	1859	1850	other
+97	northwestterrit00offigoog.pdf	North-west territory : reports of progress : toget	1859	1850	other
+98	northwestterrito00hind.pdf	North-west territory : reports of progress : toget	1859	1850	other
+99	papersrelativeto00grea_0.pdf	Papers relative to the exploration of the country 	1859	1850	other
+100	rapportsurlexplo00daws.pdf	Rapport sur l'exploration de la contrée située ent	1859	1850	other
+101	reportonexplora00offigoog.pdf	Report on the exploration of the country between L	1859	1850	other
+102	attachorsamslic02haligoog_text.pdf	The attaché, or, Sam Slick in England. Vol. I	1843	1840	other
+103	salmagundiorwhi09paulgoog_text.pdf	Salmagundi, or, The whim-whams and opinions of Lau	1850	1850	other
+104	salmagundiorwhi11paulgoog_text.pdf	Salmagundi, or, The whim-whams and opinions of Lau	1850	1850	other
+105	outlinesastrono00hersgoog_text.pdf	Outlines of astronomy	1851	1850	other
+106	outlinesastrono06hersgoog_text.pdf	Outlines of astronomy	1851	1850	other
+107	territoiredunord00hind.pdf	Territoire du Nord-Ouest : rapports de progrès : a	1859	1850	other
+108	P000365.pdf	British North America: Reports of progress, togeth	1860	1860	other
+109	P000404.pdf	Exploration—British North America: Further papers 	1860	1860	other
+110	P000412.pdf	Northwest British America and its relations to the	1860	1860	other
+111	cihm_18738.pdf	Father Laval, or, The Jesuit missionary [microform	1860	1860	other
+112	cihm_35698.pdf	Narrative of the Canadian Red River exploring expe	1860	1860	other
+113	cihm_35699.pdf	Narrative of the Canadian Red River exploring expe	1860	1860	other
+114	narrativecanadi00hindgoog.pdf	Narrative of the Canadian Red River Exploring Expe	1860	1860	other
+115	narrativecanadi00hindgoog_text.pdf	Narrative of the Canadian Red River Exploring Expe	1860	1860	other
+116	narrativeofcanad01hind.pdf	Narrative of the Canadian Red river exploring expe	1860	1860	other
+117	narrativeofcanad01hind_bw.pdf	Narrative of the Canadian Red river exploring expe	1860	1860	other
+118	narrativeofcanad01hind_0.pdf	Narrative of the Canadian Red River exploring expe	1860	1860	other
+119	narrativeofcanad01hind_1.pdf	Narrative of the Canadian Red River exploring expe	1860	1860	other
+120	narrativeofcanad02hind.pdf	Narrative of the Canadian Red river exploring expe	1860	1860	other
+121	narrativeofcanad02inhind.pdf	Narrative of the Canadian Red river exploring expe	1860	1860	other
+122	narrativeofcanad02inhind_bw.pdf	Narrative of the Canadian Red river exploring expe	1860	1860	other
+123	narrativeofcanad11860hind.pdf	Narrative of the Canadian Red River Exploring Expe	1860	1860	other
+124	narrativeofcanad11860hind_bw.pdf	Narrative of the Canadian Red River Exploring Expe	1860	1860	other
+125	narrativeofcanad21860hind.pdf	Narrative of the Canadian Red River Exploring Expe	1860	1860	other
+126	narrativeofcanad21860hind_bw.pdf	Narrative of the Canadian Red River Exploring Expe	1860	1860	other
+127	biostor-90664.pdf	Narrative of the Canadian Red River Exploring expe	1861	1860	other
+128	P000427.pdf	A sketch of an overland route to British Columbia	1862	1860	other
+129	P007451.pdf	Mgr Grandin à Mgr De Mazenod: Montréal, le 1er jui	1862	1860	other
+130	cihm_22975.pdf	Relations between the United States and Northwest 	1862	1860	other
+131	1799310.pdf	A Visit to Red River and the Saskatchewan	1862	1860	other
+132	P009550.pdf	Journal de Mgr Grandin: sur le lac du Boeuf, le 4 	1863	1860	other
+133	P007471.pdf	[Nouvelles du R.P. Vandenberghe]	1864	1860	other
+134	2338592.pdf	On the Commercial Progress and Resources of Centra	1864	1860	other
+135	palozoicfossils21bill.pdf	Palæozoic fossils.	1865	1860	other
+136	palozoicfossils21bill_bw.pdf	Palæozoic fossils.	1865	1860	other
+137	P001321.pdf	Reform, race, and revenge: The rise and progress o	1866	1860	other
+138	cihm_24828.pdf	A discussion of the general principles involved in	1867	1860	other
+139	cihm_25145.pdf	Census of the United States and territories and of	1867	1860	census
+140	cihm_25146.pdf	A charge delivered to the clergy of Newfoundland, 	1867	1860	other
+141	cihm_27156.pdf	Contre-poison [microforme] : la Confédération : c'	1867	1860	other
+142	P007494.pdf	Missions du vicariat de la Saskatchewan	1868	1860	other
+143	P009543.pdf	Lettre du R.P. Rémas au T. R. P. Général: Missions	1868	1860	other
+144	P009547.pdf	Lettre du R. P. Lacombe au T. R. P. Supérieur Géné	1868	1860	other
+145	P009549.pdf	Lettre du même au T. R. P. Supérieur Générale: Mis	1868	1860	other
+146	P009551.pdf	Mission de Saint-Jean-Baptiste: Lettre du R. P. Ca	1868	1860	other
+147	P000518.pdf	The pathway of safety: Translated by the Rev. John	1869	1860	other
+148	P007502.pdf	Mission de Saint-Jean-Baptiste: lettre du R.P. Cae	1869	1860	other
+149	P000558.pdf	Notes on the routes from Lake Superior to the Red 	1870	1870	other
+150	P000609.pdf	North-West Territories: Report of the very Reveren	1870	1870	annual_report
+151	P007516.pdf	Missions de la Siskatchewan [i.e. Saskatchewan]	1870	1870	other
+152	P009566.pdf	Journal de Monseigneur Grandin: missions de Saint-	1870	1870	other
+153	P009567.pdf	Lettre du R.-P. Lacombe, au T.-R. P. Supérieur Gén	1870	1870	other
+154	P009568.pdf	Extrait d'une lettre du R.P. Moulin, au T.-R. P. S	1870	1870	other
+155	cihm_15097.pdf	A Bill intituled An act to make further provision 	1870	1870	other
+156	cihm_17898.pdf	The origin of civilisation and the primitive origi	1870	1870	other
+157	cihm_23636.pdf	James McGill and the origin of his university [mic	1870	1870	other
+158	cihm_26558.pdf	The true date of the English discovery of the Amer	1870	1870	other
+159	cihm_27162.pdf	The doctrines and discipline of the Wesleyan Metho	1870	1870	other
+160	cihm_32393.pdf	Copy of any despatch or despatches from the Coloni	1870	1870	other
+161	P000644.pdf	[Lettre adressée à ses confrères par le Père Lacom	1872	1870	other
+162	P009606.pdf	Lettre du R.P Leduc au T.-R.P. Supérieur Général: 	1872	1870	other
+163	P009607.pdf	Missions de Saint-Albert: Lettre du R.P. Fourmond 	1872	1870	other
+164	cihm_25157.pdf	The Queen's Wharf depot lands [microform] : the Co	1872	1870	other
+165	cihm_30258.pdf	Report on Colonel Robertson-Ross, adjt.-general of	1872	1870	other
+166	cihm_30314.pdf	[Lettre adressée à ses confrères, par le Père Laco	1872	1870	other
+167	N018059.pdf	Report of the 19th Annual Session of the Right Wor	1873	1870	annual_report
+168	P000496.pdf	Reminiscences of the Red River Rebellion of 1869	1873	1870	other
+169	P007545.pdf	Rapport sur le Vicariat du diocèse de Saint-Albert	1873	1870	other
+170	P009611.pdf	Lettre de monseigneur Grandin, évêque de Saint-Alb	1873	1870	other
+171	cihm_16333.pdf	The fur country, or, Seventy degrees north latitud	1873	1870	other
+172	cihm_30478.pdf	Report on the condition and working of the Prince 	1873	1870	other
+173	cihm_32332.pdf	Education and life [microform] : an address delive	1873	1870	other
+174	reportonconditio00moor.pdf	Report on the condition and working of the Prince 	1873	1870	other
+175	MTM_1873083001.pdf	Le Métis (1873-08-30)	1873	1870	other
+176	MTM_1873091301.pdf	Le Métis (1873-09-13)	1873	1870	other
+177	rbsc_map_G3400-1874-F64.pdf	Maps and charts to accompany Report on the explora	1874	1870	map
+178	P000411.pdf	Saskatchewan and the Rocky Mountains: A diary and 	1874	1870	newspaper
+179	P000686.pdf	The Gospel in the regions beyond: A sermon preache	1874	1870	other
+180	P000703.pdf	Report of progress on the explorations and surveys	1874	1870	annual_report
+181	P000710.pdf	Preliminary investigation and trial of Ambroise D.	1874	1870	annual_report
+182	P000715.pdf	L'amnistie: mémoire sur les causes des troubles du	1874	1870	other
+183	P009714.pdf	Lettre du R. P. Leduc au R. P. Martinet, Secrétair	1874	1870	other
+184	cihm_10312.pdf	The gospel in the regions beyond [microform] : a s	1874	1870	other
+185	cihm_13607.pdf	The labor and money questions [microform] : a new 	1874	1870	other
+186	cihm_25144.pdf	Mr. Davin on "Fanning in church", and, Addison and	1874	1870	other
+187	cihm_25150.pdf	The island of fire, or, A thousand years of the ol	1874	1870	other
+188	GR_588.pdf	Saskatchewan and the Rocky mountains	1875	1870	other
+189	P007574.pdf	Mission de Saint-Albert: Île à la Crosse, le 17 ja	1875	1870	other
+190	cihm_12162.pdf	The Present condition and the growth of Presbyteri	1875	1870	annual_report
+191	cihm_24059.pdf	Honte et mépris au renégat [microforme] : la vie e	1875	1870	other
+192	isbn_9781120844491.pdf	saskatchewan and the rocky mountains	1875	1870	other
+193	saskatchewanrock00sout.pdf	Saskatchewan and the Rocky mountains : a diary and	1875	1870	other
+194	P000775.pdf	Memorial of Rev. George McDougall, Indian missiona	1876	1870	other
+195	P000789.pdf	Dictionnaire de la langue Dènè-Dindjié, dialectes 	1876	1870	other
+196	P007583.pdf	Île à la Crosse	1876	1870	other
+197	P007585.pdf	Saint-Albert: rapport du R.P. Gasté adressé au T.R	1876	1870	other
+198	P007586.pdf	Saint-Albert: le R.P. Bonnald écrit également de l	1876	1870	other
+199	cihm_33659.pdf	A Consolidation of the statutes relating to the No	1876	1870	other
+200	nikumoowemussin00hunt.pdf	Nikumoowe mussinàhikun : the book of Psalms	1876	1870	other
+201	nikumoowemussin00hunt_bw.pdf	Nikumoowe mussinàhikun : the book of Psalms	1876	1870	other
+202	P000813.pdf	Psalms and hymns in the language of the Cree India	1877	1870	other
+203	P000818.pdf	The Saskatchewan country of the north-west of the 	1877	1870	other
+204	P007598.pdf	[Le décès du chef Wikakokiseyien des Cris]	1877	1870	other
+205	cihm_05060.pdf	Physiological æsthetics [microform]	1877	1870	other
+206	cihm_08868.pdf	First French foot-prints beyond the lakes, or, Wha	1877	1870	other
+207	cihm_24180.pdf	The Saskatchewan country of the north-west of the 	1877	1870	other
+208	cihm_25149.pdf	Correspondence respecting disturbance on the line 	1877	1870	other
+209	cihm_25158.pdf	In a winter city [microform] : a sketch	1877	1870	other
+210	cihm_30394.pdf	Psalms and hymns in the language of the Cree India	1877	1870	other
+211	cihm_33572.pdf	The Saskatchewan country of the north-west of the 	1877	1870	other
+212	saskatchewancoun00spen.pdf	The Saskatchewan country of the North-West of the 	1877	1870	other
+213	P000833.pdf	Report of surveys made of Lakes Manitoba and Winni	1878	1870	annual_report
+214	P000836.pdf	Navigation of Hudson's Bay	1878	1870	other
+215	P000837.pdf	Navigation of Hudson's Bay: The practicability of 	1878	1870	other
+216	P007620.pdf	Lettres du R.P. Bonnald: Lac Caribou, 1er février 	1878	1870	other
+217	P007621.pdf	Extrait d'une lettre du R.P. Moulin: mission Saint	1878	1870	other
+218	P007626.pdf	Lettre du R.P. Leduc: Saint-Albert, le 28 juin 187	1878	1870	other
+219	P007627.pdf	Lettre du R.P. Bonnald: mission du Sacré-Coeur de 	1878	1870	other
+220	americanornitho01bonagoog.pdf	American ornithology, or, The natural history of t	1878	1870	other
+221	cihm_07383.pdf	Tecumseh and the Shawnee prophet [microform] : inc	1878	1870	other
+222	cihm_18759.pdf	American ornithology, or, The natural history of t	1878	1870	other
+223	cihm_18760.pdf	American ornithology, or, The natural history of t	1878	1870	other
+224	cihm_18761.pdf	American ornithology, or, The natural history of t	1878	1870	other
+225	cihm_25143.pdf	Letter to the Hon. John Quincey Adams, Jr., relati	1878	1870	other
+226	cihm_33243.pdf	Annuaire de Ville-Marie [microforme] : suivi de re	1878	1870	other
+227	P007632.pdf	Diocèse de Saint-Albert: Lettre du P. André au P. 	1879	1870	other
+228	P007633.pdf	Saint-Albert: Extraits des lettres adressées au T.	1879	1870	other
+229	P007634.pdf	Saint-Albert: Extraits des lettres adressées au T.	1879	1870	other
+230	c-7912.pdf	School Files Series - 1879-1953 (RG10) — c-7912	1879	1870	residential_school
+231	c-7912_text.pdf	School Files Series - 1879-1953 (RG10) — c-7912	1879	1870	residential_school
+232	c-7913.pdf	School Files Series - 1879-1953 (RG10) — c-7913	1879	1870	residential_school
+233	c-7913_text.pdf	School Files Series - 1879-1953 (RG10) — c-7913	1879	1870	residential_school
+234	c-7914.pdf	School Files Series - 1879-1953 (RG10) — c-7914	1879	1870	residential_school
+235	c-7914_text.pdf	School Files Series - 1879-1953 (RG10) — c-7914	1879	1870	residential_school
+236	c-7915.pdf	School Files Series - 1879-1953 (RG10) — c-7915	1879	1870	residential_school
+237	c-7915_text.pdf	School Files Series - 1879-1953 (RG10) — c-7915	1879	1870	residential_school
+238	c-7916.pdf	School Files Series - 1879-1953 (RG10) — c-7916	1879	1870	residential_school
+239	c-7916_text.pdf	School Files Series - 1879-1953 (RG10) — c-7916	1879	1870	residential_school
+240	c-7917.pdf	School Files Series - 1879-1953 (RG10) — c-7917	1879	1870	residential_school
+241	c-7917_text.pdf	School Files Series - 1879-1953 (RG10) — c-7917	1879	1870	residential_school
+242	c-7918.pdf	School Files Series - 1879-1953 (RG10) — c-7918	1879	1870	residential_school
+243	c-7918_text.pdf	School Files Series - 1879-1953 (RG10) — c-7918	1879	1870	residential_school
+244	c-7919.pdf	School Files Series - 1879-1953 (RG10) — c-7919	1879	1870	residential_school
+245	c-7919_text.pdf	School Files Series - 1879-1953 (RG10) — c-7919	1879	1870	residential_school
+246	c-7920.pdf	School Files Series - 1879-1953 (RG10) — c-7920	1879	1870	residential_school
+247	c-7920_text.pdf	School Files Series - 1879-1953 (RG10) — c-7920	1879	1870	residential_school
+248	c-7921.pdf	School Files Series - 1879-1953 (RG10) — c-7921	1879	1870	residential_school
+249	c-7921_text.pdf	School Files Series - 1879-1953 (RG10) — c-7921	1879	1870	residential_school
+250	c-7922.pdf	School Files Series - 1879-1953 (RG10) — c-7922	1879	1870	residential_school
+251	c-7922_text.pdf	School Files Series - 1879-1953 (RG10) — c-7922	1879	1870	residential_school
+252	c-7923.pdf	School Files Series - 1879-1953 (RG10) — c-7923	1879	1870	residential_school
+253	c-7923_text.pdf	School Files Series - 1879-1953 (RG10) — c-7923	1879	1870	residential_school
+254	c-7924.pdf	School Files Series - 1879-1953 (RG10) — c-7924	1879	1870	residential_school
+255	c-7924_text.pdf	School Files Series - 1879-1953 (RG10) — c-7924	1879	1870	residential_school
+256	c-7925.pdf	School Files Series - 1879-1953 (RG10) — c-7925	1879	1870	residential_school
+257	c-7925_text.pdf	School Files Series - 1879-1953 (RG10) — c-7925	1879	1870	residential_school
+258	c-7926.pdf	School Files Series - 1879-1953 (RG10) — c-7926	1879	1870	residential_school
+259	c-7926_text.pdf	School Files Series - 1879-1953 (RG10) — c-7926	1879	1870	residential_school
+260	c-7927.pdf	School Files Series - 1879-1953 (RG10) — c-7927	1879	1870	residential_school
+261	c-7927_text.pdf	School Files Series - 1879-1953 (RG10) — c-7927	1879	1870	residential_school
+262	c-7928.pdf	School Files Series - 1879-1953 (RG10) — c-7928	1879	1870	residential_school
+263	c-7928_text.pdf	School Files Series - 1879-1953 (RG10) — c-7928	1879	1870	residential_school
+264	c-7929.pdf	School Files Series - 1879-1953 (RG10) — c-7929	1879	1870	residential_school
+265	c-7929_text.pdf	School Files Series - 1879-1953 (RG10) — c-7929	1879	1870	residential_school
+266	c-7930.pdf	School Files Series - 1879-1953 (RG10) — c-7930	1879	1870	residential_school
+267	c-7930_text.pdf	School Files Series - 1879-1953 (RG10) — c-7930	1879	1870	residential_school
+268	c-7931.pdf	School Files Series - 1879-1953 (RG10) — c-7931	1879	1870	residential_school
+269	c-7931_text.pdf	School Files Series - 1879-1953 (RG10) — c-7931	1879	1870	residential_school
+270	c-7932.pdf	School Files Series - 1879-1953 (RG10) — c-7932	1879	1870	residential_school
+271	c-7932_text.pdf	School Files Series - 1879-1953 (RG10) — c-7932	1879	1870	residential_school
+272	c-7933.pdf	School Files Series - 1879-1953 (RG10) — c-7933	1879	1870	residential_school
+273	c-7933_text.pdf	School Files Series - 1879-1953 (RG10) — c-7933	1879	1870	residential_school
+274	c-7934.pdf	School Files Series - 1879-1953 (RG10) — c-7934	1879	1870	residential_school
+275	c-7934_text.pdf	School Files Series - 1879-1953 (RG10) — c-7934	1879	1870	residential_school
+276	c-7935.pdf	School Files Series - 1879-1953 (RG10) — c-7935	1879	1870	residential_school
+277	c-7935_text.pdf	School Files Series - 1879-1953 (RG10) — c-7935	1879	1870	residential_school
+278	c-7936.pdf	School Files Series - 1879-1953 (RG10) — c-7936	1879	1870	residential_school
+279	c-7936_text.pdf	School Files Series - 1879-1953 (RG10) — c-7936	1879	1870	residential_school
+280	c-7937.pdf	School Files Series - 1879-1953 (RG10) — c-7937	1879	1870	residential_school
+281	c-7937_text.pdf	School Files Series - 1879-1953 (RG10) — c-7937	1879	1870	residential_school
+282	c-7938.pdf	School Files Series - 1879-1953 (RG10) — c-7938	1879	1870	residential_school
+283	c-7938_text.pdf	School Files Series - 1879-1953 (RG10) — c-7938	1879	1870	residential_school
+284	c-7939.pdf	School Files Series - 1879-1953 (RG10) — c-7939	1879	1870	residential_school
+285	c-7939_text.pdf	School Files Series - 1879-1953 (RG10) — c-7939	1879	1870	residential_school
+286	c-7940.pdf	School Files Series - 1879-1953 (RG10) — c-7940	1879	1870	residential_school
+287	c-7940_text.pdf	School Files Series - 1879-1953 (RG10) — c-7940	1879	1870	residential_school
+288	c-7941.pdf	School Files Series - 1879-1953 (RG10) — c-7941	1879	1870	residential_school
+289	c-7941_text.pdf	School Files Series - 1879-1953 (RG10) — c-7941	1879	1870	residential_school
+290	c-7942.pdf	School Files Series - 1879-1953 (RG10) — c-7942	1879	1870	residential_school
+291	c-7943.pdf	School Files Series - 1879-1953 (RG10) — c-7943	1879	1870	residential_school
+292	c-7944.pdf	School Files Series - 1879-1953 (RG10) — c-7944	1879	1870	residential_school
+293	c-7945.pdf	School Files Series - 1879-1953 (RG10) — c-7945	1879	1870	residential_school
+294	c-7946.pdf	School Files Series - 1879-1953 (RG10) — c-7946	1879	1870	residential_school
+295	c-7947.pdf	School Files Series - 1879-1953 (RG10) — c-7947	1879	1870	residential_school
+296	c-7948.pdf	School Files Series - 1879-1953 (RG10) — c-7948	1879	1870	residential_school
+297	c-7949.pdf	School Files Series - 1879-1953 (RG10) — c-7949	1879	1870	residential_school
+298	c-7950.pdf	School Files Series - 1879-1953 (RG10) — c-7950	1879	1870	residential_school
+299	c-7951.pdf	School Files Series - 1879-1953 (RG10) — c-7951	1879	1870	residential_school
+300	c-7952.pdf	School Files Series - 1879-1953 (RG10) — c-7952	1879	1870	residential_school
+301	c-7953.pdf	School Files Series - 1879-1953 (RG10) — c-7953	1879	1870	residential_school
+302	c-7954.pdf	School Files Series - 1879-1953 (RG10) — c-7954	1879	1870	residential_school
+303	c-7955.pdf	School Files Series - 1879-1953 (RG10) — c-7955	1879	1870	residential_school
+304	c-7956.pdf	School Files Series - 1879-1953 (RG10) — c-7956	1879	1870	residential_school
+305	c-7957.pdf	School Files Series - 1879-1953 (RG10) — c-7957	1879	1870	residential_school
+306	c-7958.pdf	School Files Series - 1879-1953 (RG10) — c-7958	1879	1870	residential_school
+307	c-7959.pdf	School Files Series - 1879-1953 (RG10) — c-7959	1879	1870	residential_school
+308	c-7960.pdf	School Files Series - 1879-1953 (RG10) — c-7960	1879	1870	residential_school
+309	c-7961.pdf	School Files Series - 1879-1953 (RG10) — c-7961	1879	1870	residential_school
+310	c-7962.pdf	School Files Series - 1879-1953 (RG10) — c-7962	1879	1870	residential_school
+311	c-7963.pdf	School Files Series - 1879-1953 (RG10) — c-7963	1879	1870	residential_school
+312	c-8134.pdf	School Files Series - 1879-1953 (RG10) — c-8134	1879	1870	residential_school
+313	c-8135.pdf	School Files Series - 1879-1953 (RG10) — c-8135	1879	1870	residential_school
+314	c-8136.pdf	School Files Series - 1879-1953 (RG10) — c-8136	1879	1870	residential_school
+315	c-8137.pdf	School Files Series - 1879-1953 (RG10) — c-8137	1879	1870	residential_school
+316	c-8138.pdf	School Files Series - 1879-1953 (RG10) — c-8138	1879	1870	residential_school
+317	c-8139.pdf	School Files Series - 1879-1953 (RG10) — c-8139	1879	1870	residential_school
+318	c-8140.pdf	School Files Series - 1879-1953 (RG10) — c-8140	1879	1870	residential_school
+319	c-8141.pdf	School Files Series - 1879-1953 (RG10) — c-8141	1879	1870	residential_school
+320	c-8142.pdf	School Files Series - 1879-1953 (RG10) — c-8142	1879	1870	residential_school
+321	c-8143.pdf	School Files Series - 1879-1953 (RG10) — c-8143	1879	1870	residential_school
+322	c-8144.pdf	School Files Series - 1879-1953 (RG10) — c-8144	1879	1870	residential_school
+323	c-8145.pdf	School Files Series - 1879-1953 (RG10) — c-8145	1879	1870	residential_school
+324	c-8146.pdf	School Files Series - 1879-1953 (RG10) — c-8146	1879	1870	residential_school
+325	c-8147.pdf	School Files Series - 1879-1953 (RG10) — c-8147	1879	1870	residential_school
+326	c-8148.pdf	School Files Series - 1879-1953 (RG10) — c-8148	1879	1870	residential_school
+327	c-8149.pdf	School Files Series - 1879-1953 (RG10) — c-8149	1879	1870	residential_school
+328	c-8150.pdf	School Files Series - 1879-1953 (RG10) — c-8150	1879	1870	residential_school
+329	c-8151.pdf	School Files Series - 1879-1953 (RG10) — c-8151	1879	1870	residential_school
+330	c-8152.pdf	School Files Series - 1879-1953 (RG10) — c-8152	1879	1870	residential_school
+331	c-8153.pdf	School Files Series - 1879-1953 (RG10) — c-8153	1879	1870	residential_school
+332	c-8154.pdf	School Files Series - 1879-1953 (RG10) — c-8154	1879	1870	residential_school
+333	c-8155.pdf	School Files Series - 1879-1953 (RG10) — c-8155	1879	1870	residential_school
+334	c-8156.pdf	School Files Series - 1879-1953 (RG10) — c-8156	1879	1870	residential_school
+335	c-8157.pdf	School Files Series - 1879-1953 (RG10) — c-8157	1879	1870	residential_school
+336	c-8158.pdf	School Files Series - 1879-1953 (RG10) — c-8158	1879	1870	residential_school
+337	c-8159.pdf	School Files Series - 1879-1953 (RG10) — c-8159	1879	1870	residential_school
+338	c-8160.pdf	School Files Series - 1879-1953 (RG10) — c-8160	1879	1870	residential_school
+339	c-8161.pdf	School Files Series - 1879-1953 (RG10) — c-8161	1879	1870	residential_school
+340	c-8162.pdf	School Files Series - 1879-1953 (RG10) — c-8162	1879	1870	residential_school
+341	c-8163.pdf	School Files Series - 1879-1953 (RG10) — c-8163	1879	1870	residential_school
+342	c-8164.pdf	School Files Series - 1879-1953 (RG10) — c-8164	1879	1870	residential_school
+343	c-8165.pdf	School Files Series - 1879-1953 (RG10) — c-8165	1879	1870	residential_school
+344	c-8166.pdf	School Files Series - 1879-1953 (RG10) — c-8166	1879	1870	residential_school
+345	c-8167.pdf	School Files Series - 1879-1953 (RG10) — c-8167	1879	1870	residential_school
+346	c-8168.pdf	School Files Series - 1879-1953 (RG10) — c-8168	1879	1870	residential_school
+347	c-8169.pdf	School Files Series - 1879-1953 (RG10) — c-8169	1879	1870	residential_school
+348	c-8170.pdf	School Files Series - 1879-1953 (RG10) — c-8170	1879	1870	residential_school
+349	c-8171.pdf	School Files Series - 1879-1953 (RG10) — c-8171	1879	1870	residential_school
+350	c-8172.pdf	School Files Series - 1879-1953 (RG10) — c-8172	1879	1870	residential_school
+351	c-8173.pdf	School Files Series - 1879-1953 (RG10) — c-8173	1879	1870	residential_school
+352	c-8174.pdf	School Files Series - 1879-1953 (RG10) — c-8174	1879	1870	residential_school
+353	c-8175.pdf	School Files Series - 1879-1953 (RG10) — c-8175	1879	1870	residential_school
+354	c-8176.pdf	School Files Series - 1879-1953 (RG10) — c-8176	1879	1870	residential_school
+355	c-8177.pdf	School Files Series - 1879-1953 (RG10) — c-8177	1879	1870	residential_school
+356	c-8178.pdf	School Files Series - 1879-1953 (RG10) — c-8178	1879	1870	residential_school
+357	c-8179.pdf	School Files Series - 1879-1953 (RG10) — c-8179	1879	1870	residential_school
+358	c-8180.pdf	School Files Series - 1879-1953 (RG10) — c-8180	1879	1870	residential_school
+359	c-8181.pdf	School Files Series - 1879-1953 (RG10) — c-8181	1879	1870	residential_school
+360	c-8182.pdf	School Files Series - 1879-1953 (RG10) — c-8182	1879	1870	residential_school
+361	c-8183.pdf	School Files Series - 1879-1953 (RG10) — c-8183	1879	1870	residential_school
+362	c-8184.pdf	School Files Series - 1879-1953 (RG10) — c-8184	1879	1870	residential_school
+363	c-8185.pdf	School Files Series - 1879-1953 (RG10) — c-8185	1879	1870	residential_school
+364	c-8186.pdf	School Files Series - 1879-1953 (RG10) — c-8186	1879	1870	residential_school
+365	c-8187.pdf	School Files Series - 1879-1953 (RG10) — c-8187	1879	1870	residential_school
+366	c-8188.pdf	School Files Series - 1879-1953 (RG10) — c-8188	1879	1870	residential_school
+367	c-8189.pdf	School Files Series - 1879-1953 (RG10) — c-8189	1879	1870	residential_school
+368	c-8190.pdf	School Files Series - 1879-1953 (RG10) — c-8190	1879	1870	residential_school
+369	c-8191.pdf	School Files Series - 1879-1953 (RG10) — c-8191	1879	1870	residential_school
+370	c-8192.pdf	School Files Series - 1879-1953 (RG10) — c-8192	1879	1870	residential_school
+371	c-8193.pdf	School Files Series - 1879-1953 (RG10) — c-8193	1879	1870	residential_school
+372	c-8194.pdf	School Files Series - 1879-1953 (RG10) — c-8194	1879	1870	residential_school
+373	c-8195.pdf	School Files Series - 1879-1953 (RG10) — c-8195	1879	1870	residential_school
+374	c-8196.pdf	School Files Series - 1879-1953 (RG10) — c-8196	1879	1870	residential_school
+375	c-8197.pdf	School Files Series - 1879-1953 (RG10) — c-8197	1879	1870	residential_school
+376	c-8198.pdf	School Files Series - 1879-1953 (RG10) — c-8198	1879	1870	residential_school
+377	c-8199.pdf	School Files Series - 1879-1953 (RG10) — c-8199	1879	1870	residential_school
+378	c-8200.pdf	School Files Series - 1879-1953 (RG10) — c-8200	1879	1870	residential_school
+379	c-8201.pdf	School Files Series - 1879-1953 (RG10) — c-8201	1879	1870	residential_school
+380	c-8202.pdf	School Files Series - 1879-1953 (RG10) — c-8202	1879	1870	residential_school
+381	c-8203.pdf	School Files Series - 1879-1953 (RG10) — c-8203	1879	1870	residential_school
+382	c-8204.pdf	School Files Series - 1879-1953 (RG10) — c-8204	1879	1870	residential_school
+383	c-8206.pdf	School Files Series - 1879-1953 (RG10) — c-8206	1879	1870	residential_school
+384	c-8207.pdf	School Files Series - 1879-1953 (RG10) — c-8207	1879	1870	residential_school
+385	c-8208.pdf	School Files Series - 1879-1953 (RG10) — c-8208	1879	1870	residential_school
+386	c-8209.pdf	School Files Series - 1879-1953 (RG10) — c-8209	1879	1870	residential_school
+387	c-8210.pdf	School Files Series - 1879-1953 (RG10) — c-8210	1879	1870	residential_school
+388	c-8211.pdf	School Files Series - 1879-1953 (RG10) — c-8211	1879	1870	residential_school
+389	c-8212.pdf	School Files Series - 1879-1953 (RG10) — c-8212	1879	1870	residential_school
+390	c-8213.pdf	School Files Series - 1879-1953 (RG10) — c-8213	1879	1870	residential_school
+391	c-8214.pdf	School Files Series - 1879-1953 (RG10) — c-8214	1879	1870	residential_school
+392	c-8215.pdf	School Files Series - 1879-1953 (RG10) — c-8215	1879	1870	residential_school
+393	c-8216.pdf	School Files Series - 1879-1953 (RG10) — c-8216	1879	1870	residential_school
+394	c-8217.pdf	School Files Series - 1879-1953 (RG10) — c-8217	1879	1870	residential_school
+395	c-8218.pdf	School Files Series - 1879-1953 (RG10) — c-8218	1879	1870	residential_school
+396	c-8219.pdf	School Files Series - 1879-1953 (RG10) — c-8219	1879	1870	residential_school
+397	c-8639.pdf	School Files Series - 1879-1953 (RG10) — c-8639	1879	1870	residential_school
+398	c-8640.pdf	School Files Series - 1879-1953 (RG10) — c-8640	1879	1870	residential_school
+399	c-8641.pdf	School Files Series - 1879-1953 (RG10) — c-8641	1879	1870	residential_school
+400	c-8642.pdf	School Files Series - 1879-1953 (RG10) — c-8642	1879	1870	residential_school
+401	c-8643.pdf	School Files Series - 1879-1953 (RG10) — c-8643	1879	1870	residential_school
+402	c-8644.pdf	School Files Series - 1879-1953 (RG10) — c-8644	1879	1870	residential_school
+403	c-8645.pdf	School Files Series - 1879-1953 (RG10) — c-8645	1879	1870	residential_school
+404	c-8646.pdf	School Files Series - 1879-1953 (RG10) — c-8646	1879	1870	residential_school
+405	c-8647.pdf	School Files Series - 1879-1953 (RG10) — c-8647	1879	1870	residential_school
+406	c-8648.pdf	School Files Series - 1879-1953 (RG10) — c-8648	1879	1870	residential_school
+407	c-8649.pdf	School Files Series - 1879-1953 (RG10) — c-8649	1879	1870	residential_school
+408	c-8650.pdf	School Files Series - 1879-1953 (RG10) — c-8650	1879	1870	residential_school
+409	c-8651.pdf	School Files Series - 1879-1953 (RG10) — c-8651	1879	1870	residential_school
+410	c-8656.pdf	School Files Series - 1879-1953 (RG10) — c-8656	1879	1870	residential_school
+411	c-8657.pdf	School Files Series - 1879-1953 (RG10) — c-8657	1879	1870	residential_school
+412	c-8658.pdf	School Files Series - 1879-1953 (RG10) — c-8658	1879	1870	residential_school
+413	c-8659.pdf	School Files Series - 1879-1953 (RG10) — c-8659	1879	1870	residential_school
+414	c-8660.pdf	School Files Series - 1879-1953 (RG10) — c-8660	1879	1870	residential_school
+415	c-8661.pdf	School Files Series - 1879-1953 (RG10) — c-8661	1879	1870	residential_school
+416	c-8662.pdf	School Files Series - 1879-1953 (RG10) — c-8662	1879	1870	residential_school
+417	c-8663.pdf	School Files Series - 1879-1953 (RG10) — c-8663	1879	1870	residential_school
+418	c-8664.pdf	School Files Series - 1879-1953 (RG10) — c-8664	1879	1870	residential_school
+419	c-8665.pdf	School Files Series - 1879-1953 (RG10) — c-8665	1879	1870	residential_school
+420	c-8666.pdf	School Files Series - 1879-1953 (RG10) — c-8666	1879	1870	residential_school
+421	c-8667.pdf	School Files Series - 1879-1953 (RG10) — c-8667	1879	1870	residential_school
+422	c-8668.pdf	School Files Series - 1879-1953 (RG10) — c-8668	1879	1870	residential_school
+423	c-8669.pdf	School Files Series - 1879-1953 (RG10) — c-8669	1879	1870	residential_school
+424	c-8670.pdf	School Files Series - 1879-1953 (RG10) — c-8670	1879	1870	residential_school
+425	c-8671.pdf	School Files Series - 1879-1953 (RG10) — c-8671	1879	1870	residential_school
+426	c-8672.pdf	School Files Series - 1879-1953 (RG10) — c-8672	1879	1870	residential_school
+427	c-8673.pdf	School Files Series - 1879-1953 (RG10) — c-8673	1879	1870	residential_school
+428	c-8674.pdf	School Files Series - 1879-1953 (RG10) — c-8674	1879	1870	residential_school
+429	c-8675.pdf	School Files Series - 1879-1953 (RG10) — c-8675	1879	1870	residential_school
+430	c-8676.pdf	School Files Series - 1879-1953 (RG10) — c-8676	1879	1870	residential_school
+431	c-8677.pdf	School Files Series - 1879-1953 (RG10) — c-8677	1879	1870	residential_school
+432	c-8678.pdf	School Files Series - 1879-1953 (RG10) — c-8678	1879	1870	residential_school
+433	c-8679.pdf	School Files Series - 1879-1953 (RG10) — c-8679	1879	1870	residential_school
+434	c-8680.pdf	School Files Series - 1879-1953 (RG10) — c-8680	1879	1870	residential_school
+435	c-8681.pdf	School Files Series - 1879-1953 (RG10) — c-8681	1879	1870	residential_school
+436	c-8682.pdf	School Files Series - 1879-1953 (RG10) — c-8682	1879	1870	residential_school
+437	c-8683.pdf	School Files Series - 1879-1953 (RG10) — c-8683	1879	1870	residential_school
+438	c-8684.pdf	School Files Series - 1879-1953 (RG10) — c-8684	1879	1870	residential_school
+439	c-8685.pdf	School Files Series - 1879-1953 (RG10) — c-8685	1879	1870	residential_school
+440	c-8686.pdf	School Files Series - 1879-1953 (RG10) — c-8686	1879	1870	residential_school
+441	c-8687.pdf	School Files Series - 1879-1953 (RG10) — c-8687	1879	1870	residential_school
+442	c-8688.pdf	School Files Series - 1879-1953 (RG10) — c-8688	1879	1870	residential_school
+443	c-8689.pdf	School Files Series - 1879-1953 (RG10) — c-8689	1879	1870	residential_school
+444	c-8690.pdf	School Files Series - 1879-1953 (RG10) — c-8690	1879	1870	residential_school
+445	c-8691.pdf	School Files Series - 1879-1953 (RG10) — c-8691	1879	1870	residential_school
+446	c-8692.pdf	School Files Series - 1879-1953 (RG10) — c-8692	1879	1870	residential_school
+447	c-8693.pdf	School Files Series - 1879-1953 (RG10) — c-8693	1879	1870	residential_school
+448	c-8694.pdf	School Files Series - 1879-1953 (RG10) — c-8694	1879	1870	residential_school
+449	c-8695.pdf	School Files Series - 1879-1953 (RG10) — c-8695	1879	1870	residential_school
+450	c-8696.pdf	School Files Series - 1879-1953 (RG10) — c-8696	1879	1870	residential_school
+451	c-8697.pdf	School Files Series - 1879-1953 (RG10) — c-8697	1879	1870	residential_school
+452	c-8698.pdf	School Files Series - 1879-1953 (RG10) — c-8698	1879	1870	residential_school
+453	c-8699.pdf	School Files Series - 1879-1953 (RG10) — c-8699	1879	1870	residential_school
+454	c-8700.pdf	School Files Series - 1879-1953 (RG10) — c-8700	1879	1870	residential_school
+455	c-8701.pdf	School Files Series - 1879-1953 (RG10) — c-8701	1879	1870	residential_school
+456	c-8702.pdf	School Files Series - 1879-1953 (RG10) — c-8702	1879	1870	residential_school
+457	c-8703.pdf	School Files Series - 1879-1953 (RG10) — c-8703	1879	1870	residential_school
+458	c-8704.pdf	School Files Series - 1879-1953 (RG10) — c-8704	1879	1870	residential_school
+459	c-8705.pdf	School Files Series - 1879-1953 (RG10) — c-8705	1879	1870	residential_school
+460	c-8706.pdf	School Files Series - 1879-1953 (RG10) — c-8706	1879	1870	residential_school
+461	c-8707.pdf	School Files Series - 1879-1953 (RG10) — c-8707	1879	1870	residential_school
+462	c-8708.pdf	School Files Series - 1879-1953 (RG10) — c-8708	1879	1870	residential_school
+463	c-8709.pdf	School Files Series - 1879-1953 (RG10) — c-8709	1879	1870	residential_school
+464	c-8710.pdf	School Files Series - 1879-1953 (RG10) — c-8710	1879	1870	residential_school
+465	c-8711.pdf	School Files Series - 1879-1953 (RG10) — c-8711	1879	1870	residential_school
+466	c-8712.pdf	School Files Series - 1879-1953 (RG10) — c-8712	1879	1870	residential_school
+467	c-8713.pdf	School Files Series - 1879-1953 (RG10) — c-8713	1879	1870	residential_school
+468	c-8715.pdf	School Files Series - 1879-1953 (RG10) — c-8715	1879	1870	residential_school
+469	c-8716.pdf	School Files Series - 1879-1953 (RG10) — c-8716	1879	1870	residential_school
+470	c-8717.pdf	School Files Series - 1879-1953 (RG10) — c-8717	1879	1870	residential_school
+471	c-8718.pdf	School Files Series - 1879-1953 (RG10) — c-8718	1879	1870	residential_school
+472	c-8719.pdf	School Files Series - 1879-1953 (RG10) — c-8719	1879	1870	residential_school
+473	c-8720.pdf	School Files Series - 1879-1953 (RG10) — c-8720	1879	1870	residential_school
+474	c-8721.pdf	School Files Series - 1879-1953 (RG10) — c-8721	1879	1870	residential_school
+475	c-8722.pdf	School Files Series - 1879-1953 (RG10) — c-8722	1879	1870	residential_school
+476	c-8723.pdf	School Files Series - 1879-1953 (RG10) — c-8723	1879	1870	residential_school
+477	c-8724.pdf	School Files Series - 1879-1953 (RG10) — c-8724	1879	1870	residential_school
+478	c-8725.pdf	School Files Series - 1879-1953 (RG10) — c-8725	1879	1870	residential_school
+479	c-8726.pdf	School Files Series - 1879-1953 (RG10) — c-8726	1879	1870	residential_school
+480	c-8727.pdf	School Files Series - 1879-1953 (RG10) — c-8727	1879	1870	residential_school
+481	c-8728.pdf	School Files Series - 1879-1953 (RG10) — c-8728	1879	1870	residential_school
+482	c-8729.pdf	School Files Series - 1879-1953 (RG10) — c-8729	1879	1870	residential_school
+483	c-8730.pdf	School Files Series - 1879-1953 (RG10) — c-8730	1879	1870	residential_school
+484	cihm_45444.pdf	Territoire du Nord-Ouest [microforme] : rapports d	1859	1850	other
+485	cihm_54655.pdf	Sketch of the civil engineering of North America [	1859	1850	other
+486	cihm_61411.pdf	Ethan Allen and the Green-Mountain heroes of '76 [	1859	1850	other
+487	cihm_88996.pdf	Papers relative to the exploration of the country 	1859	1850	other
+488	explorationbriti00pall.pdf	Exploration - British North America. : papers rela	1859	1850	other
+489	cihm_35700.pdf	Narrative of the Canadian Red River exploring expe	1860	1860	other
+490	cihm_39118.pdf	Further papers relative to the exploration by the 	1860	1860	other
+491	narrativeofcanad02hind_0.pdf	Narrative of the Canadian Red River exploring expe	1860	1860	other
+492	narrativeofcanad02hind_1.pdf	Narrative of the Canadian Red River exploring expe	1860	1860	other
+493	cihm_46825.pdf	Narrative of the Canadian Red River exploring expe	1861	1860	other
+494	cihm_47057.pdf	Report of Samuel Keefer, Esq., inspector of railwa	1861	1860	annual_report
+495	cihm_50419.pdf	"The Barrie switch" [microform] : reply by the dir	1862	1860	other
+496	cihm_37432.pdf	The life and times of Wm. Lyon Mackenzie [microfor	1863	1860	other
+497	cihm_37433.pdf	The life and times of Wm. Lyon Mackenzie [microfor	1863	1860	other
+498	cihm_43252.pdf	Canada 1863 [microform] : for the information of i	1863	1860	other
+499	cihm_38173.pdf	Sketches of celebrated Canadians and persons conne	1865	1860	other
+500	cihm_41966.pdf	England and America [microform] : a lecture read b	1865	1860	other
+501	cihm_48336.pdf	An autobiographical sketch of the services of the 	1865	1860	other
+502	cu31924003872862.pdf	Palæozoic fossils	1865	1860	other
+503	cu31924003872862_bw.pdf	Palæozoic fossils	1865	1860	other
+504	cu31924003872888.pdf	Palæozoic fossils	1865	1860	other
+505	dictionaryofcree00watk.pdf	A dictionary of the Cree language : as spoken by t	1865	1860	other
+506	cihm_39822.pdf	Recueil de prières, catéchisme et cantiques [micro	1866	1860	other
+507	cihm_54656.pdf	A charge delivered to the Synod of the Diocese of 	1866	1860	other
+508	cihm_63690.pdf	A Bill for the admission of the states of Nova Sco	1866	1860	other
+509	cihm_44503.pdf	Reports of progress together with a preliminary an	1869	1860	other
+510	cihm_38279.pdf	Copy of a despatch from the Earl Granville, K.G., 	1870	1870	other
+511	cihm_38288.pdf	A tramp abroad [microform]	None	None	other
+512	cihm_38291.pdf	Which? England or Rome? [microform] : a review of 	1871	1870	other
+513	cihm_38280.pdf	Further correspondence with the government of Cana	1872	1870	other
+514	cihm_43075.pdf	Saskatchewan and the Rocky Mountains [microform] :	1875	1870	other
+515	cu31924028902884.pdf	Saskatchewan and the Rocky Mountains; a diary and 	1875	1870	other
+516	cihm_47058.pdf	Memorandum on cholera [microform] : adopted at a m	1878	1870	other
+517	c-8205.pdf	School Files Series - 1879-1953 (RG10) — c-8205	1879	1870	residential_school
+518	c-8652.pdf	School Files Series - 1879-1953 (RG10) — c-8652	1879	1870	residential_school
+519	c-8653.pdf	School Files Series - 1879-1953 (RG10) — c-8653	1879	1870	residential_school
+520	c-8654.pdf	School Files Series - 1879-1953 (RG10) — c-8654	1879	1870	residential_school
+521	c-8655.pdf	School Files Series - 1879-1953 (RG10) — c-8655	1879	1870	residential_school
+522	c-8714.pdf	School Files Series - 1879-1953 (RG10) — c-8714	1879	1870	residential_school
+523	c-8731.pdf	School Files Series - 1879-1953 (RG10) — c-8731	1879	1870	residential_school
+524	c-8732.pdf	School Files Series - 1879-1953 (RG10) — c-8732	1879	1870	residential_school
+525	c-8733.pdf	School Files Series - 1879-1953 (RG10) — c-8733	1879	1870	residential_school
+526	c-8734.pdf	School Files Series - 1879-1953 (RG10) — c-8734	1879	1870	residential_school
+527	c-8735.pdf	School Files Series - 1879-1953 (RG10) — c-8735	1879	1870	residential_school
+528	c-8736.pdf	School Files Series - 1879-1953 (RG10) — c-8736	1879	1870	residential_school
+529	c-8737.pdf	School Files Series - 1879-1953 (RG10) — c-8737	1879	1870	residential_school
+530	c-8738.pdf	School Files Series - 1879-1953 (RG10) — c-8738	1879	1870	residential_school
+531	c-8739.pdf	School Files Series - 1879-1953 (RG10) — c-8739	1879	1870	residential_school
+532	c-8740.pdf	School Files Series - 1879-1953 (RG10) — c-8740	1879	1870	residential_school
+533	c-8741.pdf	School Files Series - 1879-1953 (RG10) — c-8741	1879	1870	residential_school
+534	c-8742.pdf	School Files Series - 1879-1953 (RG10) — c-8742	1879	1870	residential_school
+535	c-8743.pdf	School Files Series - 1879-1953 (RG10) — c-8743	1879	1870	residential_school
+536	c-8744.pdf	School Files Series - 1879-1953 (RG10) — c-8744	1879	1870	residential_school
+537	c-8745.pdf	School Files Series - 1879-1953 (RG10) — c-8745	1879	1870	residential_school
+538	c-8746.pdf	School Files Series - 1879-1953 (RG10) — c-8746	1879	1870	residential_school
+539	c-8747.pdf	School Files Series - 1879-1953 (RG10) — c-8747	1879	1870	residential_school
+540	c-8748.pdf	School Files Series - 1879-1953 (RG10) — c-8748	1879	1870	residential_school
+541	c-8749.pdf	School Files Series - 1879-1953 (RG10) — c-8749	1879	1870	residential_school
+542	c-8750.pdf	School Files Series - 1879-1953 (RG10) — c-8750	1879	1870	residential_school
+543	c-8751.pdf	School Files Series - 1879-1953 (RG10) — c-8751	1879	1870	residential_school
+544	c-8752.pdf	School Files Series - 1879-1953 (RG10) — c-8752	1879	1870	residential_school
+545	c-8753.pdf	School Files Series - 1879-1953 (RG10) — c-8753	1879	1870	residential_school
+546	c-8754.pdf	School Files Series - 1879-1953 (RG10) — c-8754	1879	1870	residential_school
+547	c-8755.pdf	School Files Series - 1879-1953 (RG10) — c-8755	1879	1870	residential_school
+548	c-8756.pdf	School Files Series - 1879-1953 (RG10) — c-8756	1879	1870	residential_school
+549	c-8757.pdf	School Files Series - 1879-1953 (RG10) — c-8757	1879	1870	residential_school
+550	c-8758.pdf	School Files Series - 1879-1953 (RG10) — c-8758	1879	1870	residential_school
+551	c-8759.pdf	School Files Series - 1879-1953 (RG10) — c-8759	1879	1870	residential_school
+552	c-8760.pdf	School Files Series - 1879-1953 (RG10) — c-8760	1879	1870	residential_school
+553	c-8761.pdf	School Files Series - 1879-1953 (RG10) — c-8761	1879	1870	residential_school
+554	c-8762.pdf	School Files Series - 1879-1953 (RG10) — c-8762	1879	1870	residential_school
+555	c-8763.pdf	School Files Series - 1879-1953 (RG10) — c-8763	1879	1870	residential_school
+556	c-8764.pdf	School Files Series - 1879-1953 (RG10) — c-8764	1879	1870	residential_school
+557	c-8765.pdf	School Files Series - 1879-1953 (RG10) — c-8765	1879	1870	residential_school
+558	c-8766.pdf	School Files Series - 1879-1953 (RG10) — c-8766	1879	1870	residential_school
+559	c-8767.pdf	School Files Series - 1879-1953 (RG10) — c-8767	1879	1870	residential_school
+560	c-8768.pdf	School Files Series - 1879-1953 (RG10) — c-8768	1879	1870	residential_school
+561	c-8769.pdf	School Files Series - 1879-1953 (RG10) — c-8769	1879	1870	residential_school
+562	c-8770.pdf	School Files Series - 1879-1953 (RG10) — c-8770	1879	1870	residential_school
+563	c-8771.pdf	School Files Series - 1879-1953 (RG10) — c-8771	1879	1870	residential_school
+564	c-8772.pdf	School Files Series - 1879-1953 (RG10) — c-8772	1879	1870	residential_school
+565	c-8773.pdf	School Files Series - 1879-1953 (RG10) — c-8773	1879	1870	residential_school
+566	c-8774.pdf	School Files Series - 1879-1953 (RG10) — c-8774	1879	1870	residential_school
+567	c-8775.pdf	School Files Series - 1879-1953 (RG10) — c-8775	1879	1870	residential_school
+568	c-8776.pdf	School Files Series - 1879-1953 (RG10) — c-8776	1879	1870	residential_school
+569	c-8777.pdf	School Files Series - 1879-1953 (RG10) — c-8777	1879	1870	residential_school
+570	c-8778.pdf	School Files Series - 1879-1953 (RG10) — c-8778	1879	1870	residential_school
+571	c-8779.pdf	School Files Series - 1879-1953 (RG10) — c-8779	1879	1870	residential_school
+572	c-8780.pdf	School Files Series - 1879-1953 (RG10) — c-8780	1879	1870	residential_school
+573	c-8781.pdf	School Files Series - 1879-1953 (RG10) — c-8781	1879	1870	residential_school
+574	c-8782.pdf	School Files Series - 1879-1953 (RG10) — c-8782	1879	1870	residential_school
+575	c-8783.pdf	School Files Series - 1879-1953 (RG10) — c-8783	1879	1870	residential_school
+576	c-8784.pdf	School Files Series - 1879-1953 (RG10) — c-8784	1879	1870	residential_school
+577	c-8785.pdf	School Files Series - 1879-1953 (RG10) — c-8785	1879	1870	residential_school
+578	c-8786.pdf	School Files Series - 1879-1953 (RG10) — c-8786	1879	1870	residential_school
+579	c-8787.pdf	School Files Series - 1879-1953 (RG10) — c-8787	1879	1870	residential_school
+580	c-8788.pdf	School Files Series - 1879-1953 (RG10) — c-8788	1879	1870	residential_school
+581	c-8789.pdf	School Files Series - 1879-1953 (RG10) — c-8789	1879	1870	residential_school
+582	c-8790.pdf	School Files Series - 1879-1953 (RG10) — c-8790	1879	1870	residential_school
+583	c-8791.pdf	School Files Series - 1879-1953 (RG10) — c-8791	1879	1870	residential_school
+584	c-8792.pdf	School Files Series - 1879-1953 (RG10) — c-8792	1879	1870	residential_school
+585	c-8793.pdf	School Files Series - 1879-1953 (RG10) — c-8793	1879	1870	residential_school
+586	c-8794.pdf	School Files Series - 1879-1953 (RG10) — c-8794	1879	1870	residential_school
+587	c-8795.pdf	School Files Series - 1879-1953 (RG10) — c-8795	1879	1870	residential_school
+588	c-8796.pdf	School Files Series - 1879-1953 (RG10) — c-8796	1879	1870	residential_school
+589	c-8797.pdf	School Files Series - 1879-1953 (RG10) — c-8797	1879	1870	residential_school
+590	c-8798.pdf	School Files Series - 1879-1953 (RG10) — c-8798	1879	1870	residential_school
+591	c-8799.pdf	School Files Series - 1879-1953 (RG10) — c-8799	1879	1870	residential_school
+592	c-8800.pdf	School Files Series - 1879-1953 (RG10) — c-8800	1879	1870	residential_school
+593	c-8801.pdf	School Files Series - 1879-1953 (RG10) — c-8801	1879	1870	residential_school
+594	c-8802.pdf	School Files Series - 1879-1953 (RG10) — c-8802	1879	1870	residential_school
+595	c-8803.pdf	School Files Series - 1879-1953 (RG10) — c-8803	1879	1870	residential_school
+596	c-9801.pdf	School Files Series - 1879-1953 (RG10) — c-9801	1879	1870	residential_school
+597	c-9802.pdf	School Files Series - 1879-1953 (RG10) — c-9802	1879	1870	residential_school
+598	c-9803.pdf	School Files Series - 1879-1953 (RG10) — c-9803	1879	1870	residential_school
+599	c-9804.pdf	School Files Series - 1879-1953 (RG10) — c-9804	1879	1870	residential_school
+600	c-9805.pdf	School Files Series - 1879-1953 (RG10) — c-9805	1879	1870	residential_school
+601	c-9806.pdf	School Files Series - 1879-1953 (RG10) — c-9806	1879	1870	residential_school
+602	c-9807.pdf	School Files Series - 1879-1953 (RG10) — c-9807	1879	1870	residential_school
+603	c-9808.pdf	School Files Series - 1879-1953 (RG10) — c-9808	1879	1870	residential_school
+604	c-9809.pdf	School Files Series - 1879-1953 (RG10) — c-9809	1879	1870	residential_school
+605	c-9810.pdf	School Files Series - 1879-1953 (RG10) — c-9810	1879	1870	residential_school
+606	c-9811.pdf	School Files Series - 1879-1953 (RG10) — c-9811	1879	1870	residential_school
+607	c-7909.pdf	School Files Series - 1879-1953 (RG10) — c-7909	1879	1870	residential_school
+608	c-7910.pdf	School Files Series - 1879-1953 (RG10) — c-7910	1879	1870	residential_school
+609	c-7911.pdf	School Files Series - 1879-1953 (RG10) — c-7911	1879	1870	residential_school
+610	cihm_06465.pdf	Sketches of the life of Mgr. de Mazenod, Bishop of	1879	1870	other
+611	cihm_25142.pdf	Le Conseil législatif et les subsides [microforme]	1879	1870	other
+612	Ayer_168_8_M22_M8_1880.pdf	The treaties of Canada. With the Indians of Manito	1880	1880	other
+613	P000940.pdf	The treaties of Canada with the Indians of Manitob	1880	1880	other
+614	P007647.pdf	Vicariat de Saint-Albert: rapport du R.P. Grouard:	1880	1880	other
+615	P007648.pdf	Vicariat de Saint-Albert: [Lettre du R.P Doucet, R	1880	1880	other
+616	P007649.pdf	Vicariat de Saint-Albert: Condamnation, conversion	1880	1880	other
+617	P007653.pdf	Vicariat de Saint-Albert: lettre de Mgr Grandin à 	1880	1880	other
+618	P007656.pdf	[Lettre du R.P. Petitot adressée à M. de Semallé, 	1880	1880	other
+619	albertatest_01215.pdf	Chemical contributions to the geology of Canada fr	1880	1880	other
+620	cihm_01215.pdf	Chemical contributions to the geology of Canada fr	1880	1880	other
+621	cihm_12176.pdf	Les chemins de fer en Amérique [microforme]	1880	1880	other
+622	cihm_30694.pdf	[Letter] [microform] : to the deputy of the minist	1880	1880	other
+623	cihm_38287.pdf	Le Nord-ouest [microforme] : la province de Manito	1880	1880	other
+624	P000992.pdf	Family prayers for the use of the Cree Indians: Co	1881	1880	other
+625	P001004.pdf	Soir d'automne	1881	1880	other
+626	P007661.pdf	Saint-Albert: journal de voyage de Mgr Grandin: à 	1881	1880	other
+627	P007664.pdf	Saint-Albert: Journal de voyage de Mgr Grandin (Su	1881	1880	other
+628	cihm_03655.pdf	Report on an exploration from Port Simpson on the 	1881	1880	other
+629	cihm_08869.pdf	Young Men's Reform Club [microform] : banquet in h	1881	1880	other
+630	cihm_13610.pdf	From Emory's Bar at the west end of contract 60 to	1881	1880	other
+631	cihm_25156.pdf	Copies of petitions presented to His Excellency th	1881	1880	other
+632	cihm_54654.pdf	English grammar [microform] : including grammatica	1881	1880	other
+633	mackay1881.pdf	Family Prayers for the Use of the Cree Indians	1881	1880	other
+634	P000900.pdf	Six years in the Canadian North-West	1882	1880	other
+635	P001039.pdf	Return of all papers concerning the granting of a 	1882	1880	other
+636	P001057.pdf	The three trappers: A story of adventure in the wi	1882	1880	other
+637	P001064.pdf	Important information for intending settlers in Ma	1882	1880	other
+638	P001101.pdf	North-west Canada	1882	1880	other
+639	cihm_25154.pdf	An Account of vessels arrived at Quebec in the yea	1882	1880	newspaper
+640	cihm_30347.pdf	Important information for intending settlers in Ma	1882	1880	other
+641	cihm_30560.pdf	North-West Canada [microform]	1882	1880	other
+642	cihm_30695.pdf	Charter and by-laws of the Temperance Colonization	1882	1880	other
+643	cihm_94578.pdf	Emigration, land and railway frauds [microform] : 	1882	1880	other
+644	PTR_1882110101.pdf	Prince Albert times and Saskatchewan review (1882-	1882	1880	newspaper
+645	PTR_1882110801.pdf	Prince Albert times and Saskatchewan review (1882-	1882	1880	newspaper
+646	PTR_1882111501.pdf	Prince Albert times and Saskatchewan review (1882-	1882	1880	newspaper
+647	PTR_1882112201.pdf	Prince Albert times and Saskatchewan review (1882-	1882	1880	newspaper
+648	PTR_1882112901.pdf	Prince Albert times and Saskatchewan review (1882-	1882	1880	newspaper
+649	PTR_1882120601.pdf	Prince Albert times and Saskatchewan review (1882-	1882	1880	newspaper
+650	PTR_1882121301.pdf	Prince Albert times and Saskatchewan review (1882-	1882	1880	newspaper
+651	PTR_1882122001.pdf	Prince Albert times and Saskatchewan review (1882-	1882	1880	newspaper
+652	PTR_1882122701.pdf	Prince Albert times and Saskatchewan review (1882-	1882	1880	newspaper
+653	P001119.pdf	Navigation of Hudson Bay and Straits: A paper read	1883	1880	other
+654	P001161.pdf	The principles of church action: A sermon preached	1883	1880	other
+655	P001172.pdf	Prince Albert Young Men's Literary and Athletic Cl	1883	1880	other
+656	P001174.pdf	The memorial of settlers in the tract granted to t	1883	1880	other
+657	P001180.pdf	Particulars of farms to be let or sold on the Edge	1883	1880	other
+658	cihm_25860.pdf	The equity decisions of the Hon. John W. Ritchie, 	1883	1880	other
+659	cihm_26803.pdf	A great treason [microform] : a story of the War o	1883	1880	other
+660	cihm_26804.pdf	A great treason [microform] : a story of the War o	1883	1880	other
+661	cihm_30234.pdf	Winnipeg country [microform] : its discovery and t	1883	1880	other
+662	cihm_30280.pdf	Manitoba and the North-West frauds [microform] : c	1883	1880	other
+663	cihm_30315.pdf	The Battle River Valley [microform] : a pamphlet d	1883	1880	other
+664	cihm_30532.pdf	The Memorial of settlers in the tract granted to t	1883	1880	other
+665	cihm_30696.pdf	The agricultural depression at home, and the resou	1883	1880	other
+666	cihm_30697.pdf	Lettres d'un émigrant ou Voyage au Canada [microfo	1883	1880	other
+667	equitydecisions00courgoog.pdf	The equity decisions of the Hon. John W. Ritchie, 	1883	1880	other
+668	equitydecisions01courgoog.pdf	The equity decisions of the Hon. John W. Ritchie, 	1883	1880	other
+669	manitobaandnort00goog.pdf	Manitoba and the North-West Frauds: Correspondence	1883	1880	other
+670	officialguideboo00cana.pdf	Official guide book to the Canadian Pacific Railwa	1883	1880	other
+671	PTR_1883010301.pdf	Prince Albert times and Saskatchewan review (1883-	1883	1880	newspaper
+672	PTR_1883011001.pdf	Prince Albert times and Saskatchewan review (1883-	1883	1880	newspaper
+673	PTR_1883011701.pdf	Prince Albert times and Saskatchewan review (1883-	1883	1880	newspaper
+674	PTR_1883012401.pdf	Prince Albert times and Saskatchewan review (1883-	1883	1880	newspaper
+675	PTR_1883013101.pdf	Prince Albert times and Saskatchewan review (1883-	1883	1880	newspaper
+676	PTR_1883020701.pdf	Prince Albert times and Saskatchewan review (1883-	1883	1880	newspaper
+677	PTR_1883021401.pdf	Prince Albert times and Saskatchewan review (1883-	1883	1880	newspaper
+678	PTR_1883022101.pdf	Prince Albert times and Saskatchewan review (1883-	1883	1880	newspaper
+679	PTR_1883022801.pdf	Prince Albert times and Saskatchewan review (1883-	1883	1880	newspaper
+680	PTR_1883030701.pdf	Prince Albert times and Saskatchewan review (1883-	1883	1880	newspaper
+681	PTR_1883031401.pdf	Prince Albert times and Saskatchewan review (1883-	1883	1880	newspaper
+682	PTR_1883032101.pdf	Prince Albert times and Saskatchewan review (1883-	1883	1880	newspaper
+683	PTR_1883032801.pdf	Prince Albert times and Saskatchewan review (1883-	1883	1880	newspaper
+684	PTR_1883040401.pdf	Prince Albert times and Saskatchewan review (1883-	1883	1880	newspaper
+685	PTR_1883041101.pdf	Prince Albert times and Saskatchewan review (1883-	1883	1880	newspaper
+686	PTR_1883041801.pdf	Prince Albert times and Saskatchewan review (1883-	1883	1880	newspaper
+687	PTR_1883042501.pdf	Prince Albert times and Saskatchewan review (1883-	1883	1880	newspaper
+688	BDM_1883042601.pdf	Daily mail (1883-04-26)	1883	1880	other
+689	PTR_1883050201.pdf	Prince Albert times and Saskatchewan review (1883-	1883	1880	newspaper
+690	PTR_1883050901.pdf	Prince Albert times and Saskatchewan review (1883-	1883	1880	newspaper
+691	PTR_1883051601.pdf	Prince Albert times and Saskatchewan review (1883-	1883	1880	newspaper
+692	PTR_1883052301.pdf	Prince Albert times and Saskatchewan review (1883-	1883	1880	newspaper
+693	PTR_1883053001.pdf	Prince Albert times and Saskatchewan review (1883-	1883	1880	newspaper
+694	PTR_1883060601.pdf	Prince Albert times and Saskatchewan review (1883-	1883	1880	newspaper
+695	PTR_1883061301.pdf	Prince Albert times and Saskatchewan review (1883-	1883	1880	newspaper
+696	PTR_1883062001.pdf	Prince Albert times and Saskatchewan review (1883-	1883	1880	newspaper
+697	PTR_1883062701.pdf	Prince Albert times and Saskatchewan review (1883-	1883	1880	newspaper
+698	PTR_1883070401.pdf	Prince Albert times and Saskatchewan review (1883-	1883	1880	newspaper
+699	PTR_1883071101.pdf	Prince Albert times and Saskatchewan review (1883-	1883	1880	newspaper
+700	PTR_1883071801.pdf	Prince Albert times and Saskatchewan review (1883-	1883	1880	newspaper
+701	PTR_1883072501.pdf	Prince Albert times and Saskatchewan review (1883-	1883	1880	newspaper
+702	PTR_1883080101.pdf	Prince Albert times and Saskatchewan review (1883-	1883	1880	newspaper
+703	PTR_1883080801.pdf	Prince Albert times and Saskatchewan review (1883-	1883	1880	newspaper
+704	PTR_1883081501.pdf	Prince Albert times and Saskatchewan review (1883-	1883	1880	newspaper
+705	PTR_1883082201.pdf	Prince Albert times and Saskatchewan review (1883-	1883	1880	newspaper
+706	PTR_1883082901.pdf	Prince Albert times and Saskatchewan review (1883-	1883	1880	newspaper
+707	PTR_1883090501.pdf	Prince Albert times and Saskatchewan review (1883-	1883	1880	newspaper
+708	PTR_1883091201.pdf	Prince Albert times and Saskatchewan review (1883-	1883	1880	newspaper
+709	PTR_1883091901.pdf	Prince Albert times and Saskatchewan review (1883-	1883	1880	newspaper
+710	PTR_1883092601.pdf	Prince Albert times and Saskatchewan review (1883-	1883	1880	newspaper
+711	PTR_1883100301.pdf	Prince Albert times and Saskatchewan review (1883-	1883	1880	newspaper
+712	PTR_1883101001.pdf	Prince Albert times and Saskatchewan review (1883-	1883	1880	newspaper
+713	PTR_1883101701.pdf	Prince Albert times and Saskatchewan review (1883-	1883	1880	newspaper
+714	PTR_1883102401.pdf	Prince Albert times and Saskatchewan review (1883-	1883	1880	newspaper
+715	PTR_1883103101.pdf	Prince Albert times and Saskatchewan review (1883-	1883	1880	newspaper
+716	PTR_1883111601.pdf	Prince Albert times and Saskatchewan review (1883-	1883	1880	newspaper
+717	PTR_1883112301.pdf	Prince Albert times and Saskatchewan review (1883-	1883	1880	newspaper
+718	PTR_1883113001.pdf	Prince Albert times and Saskatchewan review (1883-	1883	1880	newspaper
+719	PTR_1883120701.pdf	Prince Albert times and Saskatchewan review (1883-	1883	1880	newspaper
+720	PTR_1883121401.pdf	Prince Albert times and Saskatchewan review (1883-	1883	1880	newspaper
+721	PTR_1883122101.pdf	Prince Albert times and Saskatchewan review (1883-	1883	1880	newspaper
+722	PTR_1883122801.pdf	Prince Albert times and Saskatchewan review (1883-	1883	1880	newspaper
+723	P000848-10.pdf	Henderson's Manitoba and Northwest Territories Gaz	1884	1880	government
+724	P001134.pdf	Report on Manitoba products exhibited at St. John,	1884	1880	other
+725	P001192.pdf	The Saskatchewan Fife wheat: A history of this rem	1884	1880	other
+726	P001200.pdf	Our northern waters: A report presented to the Win	1884	1880	other
+727	P001265.pdf	The settlers' guide to homesteads in the Canadian 	1884	1880	other
+728	P001287.pdf	Statement in support of a general railway act for 	1884	1880	other
+729	P001292.pdf	Lays from the West	1884	1880	other
+730	P001308.pdf	York Farmers Colonization Company guide and record	1884	1880	other
+731	P007702.pdf	Manitoba	1884	1880	other
+732	P009626.pdf	Lettre du R. P. Fourmond: Saint-Laurent, Saskatche	1884	1880	other
+733	P009628.pdf	Vicariat de Saint-Albert: Lettre du P. Claude au R	1884	1880	other
+734	P009633.pdf	[Calgary]	1884	1880	other
+735	cihm_09065.pdf	Montreal winter carnival, February 4th to 9th, 188	1884	1880	other
+736	cihm_13609.pdf	Correspondence relating to the eastern boundary of	1884	1880	other
+737	cihm_25140.pdf	Old caravan days [microform]	1884	1880	other
+738	cihm_25858.pdf	Report of the visit of the British Association to 	1884	1880	annual_report
+739	cihm_30380.pdf	The settlers' guide to homesteads in the Canadian 	1884	1880	other
+740	cihm_49608.pdf	Histoire de Montferrand, l'athlète canadien [micro	1884	1880	other
+741	settlersguidetoh00moor.pdf	The settlers' guide to homesteads in the Canadian 	1884	1880	other
+742	PTR_1884010401.pdf	Prince Albert times and Saskatchewan review (1884-	1884	1880	newspaper
+743	PTR_1884011101.pdf	Prince Albert times and Saskatchewan review (1884-	1884	1880	newspaper
+744	PTR_1884011801.pdf	Prince Albert times and Saskatchewan review (1884-	1884	1880	newspaper
+745	PTR_1884012501.pdf	Prince Albert times and Saskatchewan review (1884-	1884	1880	newspaper
+746	PTR_1884020101.pdf	Prince Albert times and Saskatchewan review (1884-	1884	1880	newspaper
+747	PTR_1884020801.pdf	Prince Albert times and Saskatchewan review (1884-	1884	1880	newspaper
+748	PTR_1884021501.pdf	Prince Albert times and Saskatchewan review (1884-	1884	1880	newspaper
+749	PTR_1884022201.pdf	Prince Albert times and Saskatchewan review (1884-	1884	1880	newspaper
+750	PTR_1884022901.pdf	Prince Albert times and Saskatchewan review (1884-	1884	1880	newspaper
+751	PTR_1884030701.pdf	Prince Albert times and Saskatchewan review (1884-	1884	1880	newspaper
+752	BRM_1884031301.pdf	The Brandon mail (1884-03-13)	1884	1880	other
+753	PTR_1884031401.pdf	Prince Albert times and Saskatchewan review (1884-	1884	1880	newspaper
+754	PTR_1884032101.pdf	Prince Albert times and Saskatchewan review (1884-	1884	1880	newspaper
+755	PTR_1884032801.pdf	Prince Albert times and Saskatchewan review (1884-	1884	1880	newspaper
+756	PTR_1884040401.pdf	Prince Albert times and Saskatchewan review (1884-	1884	1880	newspaper
+757	PTR_1884041101.pdf	Prince Albert times and Saskatchewan review (1884-	1884	1880	newspaper
+758	PTR_1884041801.pdf	Prince Albert times and Saskatchewan review (1884-	1884	1880	newspaper
+759	PTR_1884042501.pdf	Prince Albert times and Saskatchewan review (1884-	1884	1880	newspaper
+760	PTR_1884050201.pdf	Prince Albert times and Saskatchewan review (1884-	1884	1880	newspaper
+761	BRM_1884050801.pdf	The Brandon mail (1884-05-08)	1884	1880	other
+762	PTR_1884050901.pdf	Prince Albert times and Saskatchewan review (1884-	1884	1880	newspaper
+763	PTR_1884051601.pdf	Prince Albert times and Saskatchewan review (1884-	1884	1880	newspaper
+764	PTR_1884052301.pdf	Prince Albert times and Saskatchewan review (1884-	1884	1880	newspaper
+765	PTR_1884053001.pdf	Prince Albert times and Saskatchewan review (1884-	1884	1880	newspaper
+766	PTR_1884060601.pdf	Prince Albert times and Saskatchewan review (1884-	1884	1880	newspaper
+767	PTR_1884061301.pdf	Prince Albert times and Saskatchewan review (1884-	1884	1880	newspaper
+768	PTR_1884062001.pdf	Prince Albert times and Saskatchewan review (1884-	1884	1880	newspaper
+769	PTR_1884062701.pdf	Prince Albert times and Saskatchewan review (1884-	1884	1880	newspaper
+770	PTR_1884070401.pdf	Prince Albert times and Saskatchewan review (1884-	1884	1880	newspaper
+771	PTR_1884071101.pdf	Prince Albert times and Saskatchewan review (1884-	1884	1880	newspaper
+772	PTR_1884071801.pdf	Prince Albert times and Saskatchewan review (1884-	1884	1880	newspaper
+773	PTR_1884072501.pdf	Prince Albert times and Saskatchewan review (1884-	1884	1880	newspaper
+774	PTR_1884080101.pdf	Prince Albert times and Saskatchewan review (1884-	1884	1880	newspaper
+775	PTR_1884080801.pdf	Prince Albert times and Saskatchewan review (1884-	1884	1880	newspaper
+776	PTR_1884081501.pdf	Prince Albert times and Saskatchewan review (1884-	1884	1880	newspaper
+777	PTR_1884082201.pdf	Prince Albert times and Saskatchewan review (1884-	1884	1880	newspaper
+778	PTR_1884082901.pdf	Prince Albert times and Saskatchewan review (1884-	1884	1880	newspaper
+779	PTR_1884090501.pdf	Prince Albert times and Saskatchewan review (1884-	1884	1880	newspaper
+780	PTR_1884091201.pdf	Prince Albert times and Saskatchewan review (1884-	1884	1880	newspaper
+781	PTR_1884091901.pdf	Prince Albert times and Saskatchewan review (1884-	1884	1880	newspaper
+782	PTR_1884092601.pdf	Prince Albert times and Saskatchewan review (1884-	1884	1880	newspaper
+783	PTR_1884100301.pdf	Prince Albert times and Saskatchewan review (1884-	1884	1880	newspaper
+784	PTR_1884101001.pdf	Prince Albert times and Saskatchewan review (1884-	1884	1880	newspaper
+785	PTR_1884101701.pdf	Prince Albert times and Saskatchewan review (1884-	1884	1880	newspaper
+786	PTR_1884102401.pdf	Prince Albert times and Saskatchewan review (1884-	1884	1880	newspaper
+787	PTR_1884103101.pdf	Prince Albert times and Saskatchewan review (1884-	1884	1880	newspaper
+788	PTR_1884110701.pdf	Prince Albert times and Saskatchewan review (1884-	1884	1880	newspaper
+789	PTR_1884111401.pdf	Prince Albert times and Saskatchewan review (1884-	1884	1880	newspaper
+790	PTR_1884112101.pdf	Prince Albert times and Saskatchewan review (1884-	1884	1880	newspaper
+791	PTR_1884112801.pdf	Prince Albert times and Saskatchewan review (1884-	1884	1880	newspaper
+792	BRM_1884120401.pdf	The Brandon mail (1884-12-04)	1884	1880	other
+793	PTR_1884120501.pdf	Prince Albert times and Saskatchewan review (1884-	1884	1880	newspaper
+794	BRM_1884121101.pdf	The Brandon mail (1884-12-11)	1884	1880	other
+795	PTR_1884121201.pdf	Prince Albert times and Saskatchewan review (1884-	1884	1880	newspaper
+796	PTR_1884122601.pdf	Prince Albert times and Saskatchewan review (1884-	1884	1880	newspaper
+797	P001310.pdf	À la mémoire de Louis Riel: la marseillaise canadi	1885	1880	other
+798	P001324.pdf	Winnipeg war sketches	1885	1880	other
+799	P001325.pdf	The Canadian North-West: Its history and its troub	1885	1880	other
+800	P001326.pdf	Volunteer land grants, scrip, and pensions: With s	1885	1880	other
+801	P001334.pdf	Some historical names and places of the Canadian N	1885	1880	other
+802	P001335.pdf	Assemblée à Saint-Hyacinthe le 8 décembre 1885 pou	1885	1880	other
+803	P001339.pdf	Speech of Hon. E. Blake, M.P., on the disturbance 	1885	1880	other
+804	P001351.pdf	The 90th on active service, or, Campaigning in the	1885	1880	other
+805	P001361.pdf	In the case of Louis Riel, convicted of treason an	1885	1880	other
+806	P001369.pdf	Copies of all reports, correspondence, and surveys	1885	1880	other
+807	P001370.pdf	Papers and correspondence up to the present time: 	1885	1880	other
+808	P001415.pdf	La mort de Riel et la voix du sang	1885	1880	other
+809	P001422.pdf	A cry from the Saskatchewan	1885	1880	other
+810	P001429.pdf	Riel: patriotisme vs. loyauté	1885	1880	other
+811	P001434.pdf	Our volunteers in the North-West: A ready referenc	1885	1880	other
+812	P001454.pdf	Louis Riel: assemblée de Lachine, 10 août 1885: di	1885	1880	other
+813	P001456.pdf	Speech of Mr. Girouard, M.P., on the disturbance i	1885	1880	other
+814	P001457.pdf	Two months in the camp of Big Bear: The life and a	1885	1880	other
+815	P001461.pdf	A history of Riel's second rebellion and how it wa	1885	1880	other
+816	P001467.pdf	Copy of official diary of Lieut.-Col. Irvine	1885	1880	newspaper
+817	P001477.pdf	From the St. Lawrence to the North Saskatchewan: B	1885	1880	other
+818	P001505.pdf	L'insurrection du nord-ouest, 1885	1885	1880	other
+819	P001508.pdf	The history of the North-West Rebellion of 1885: C	1885	1880	other
+820	P001511.pdf	Official guide book to the lands of the Netherland	1885	1880	other
+821	P001521.pdf	Sketches: Dedicated to the veterans of '85	1885	1880	other
+822	P001526.pdf	Louis Riel, martyr du nord-ouest: sa vie, son proc	1885	1880	other
+823	P001530.pdf	Regina directory for 1885	1885	1880	other
+824	P001541.pdf	Experiences of the Halifax Battalion in the North 	1885	1880	other
+825	P001546.pdf	La situation	1885	1880	other
+826	P001549.pdf	Interim report of the management of the Temperance	1885	1880	annual_report
+827	P001555.pdf	Riel: réponse à Monsieur J.A. Chapleau	1885	1880	other
+828	P001561.pdf	North West administration: Speech by Hon. Thomas W	1885	1880	other
+829	P001564.pdf	The Riel Rebellion, 1885	1885	1880	other
+830	P007718.pdf	Mission de Sainte-Pierre du lac Caribou	1885	1880	other
+831	P007721.pdf	Vicariat de Saint-Albert	1885	1880	other
+832	P007722.pdf	Mission de Prince-Albert: extraits du journal du R	1885	1880	other
+833	P007724.pdf	Deuxième lettre du R. P. Fourmond au T. R. P. Supé	1885	1880	other
+834	P007725.pdf	Lettre du R. P. Provost au T. R. P. Supérieur Géné	1885	1880	other
+835	P007726.pdf	Fort-Qu'Appelle, Assiniboia, 24 juin	1885	1880	other
+836	P007727.pdf	Extrait d'une lettre de Mgr. Faraud au T. P. Supér	1885	1880	other
+837	P007728.pdf	Lettre du R. P. Cochin: Sainte-Angèle, le 28 avril	1885	1880	other
+838	P007729.pdf	Extrait d'une lettre du R. P. Bigonesse	1885	1880	other
+839	P007731.pdf	Vicariat de Saint-Albert: les martyrs du Nord-Oues	1885	1880	other
+840	P007732.pdf	[Lettre du R. P. Rémas à Mgr. Grandin]: Evêché de 	1885	1880	other
+841	P007733.pdf	[Protestation du R. P. Leduc]	1885	1880	other
+842	P007734.pdf	Service funèbre célébré à Châteaugiron, le 11 août	1885	1880	other
+843	P007735.pdf	[La mort du R. P. Marchand: addendum]	1885	1880	other
+844	cihm_30166.pdf	Speech of Hon. E. Blake, M.P., on the disturbance 	1885	1880	other
+845	cihm_30167.pdf	Manitoba wheat [microform] : its territorial area 	1885	1880	other
+846	cihm_30206.pdf	Some historical names and places of the Canadian N	1885	1880	other
+847	cihm_30312.pdf	A cry from the Saskatchewan [microform]	1885	1880	other
+848	cihm_30615.pdf	The old settlers of Red River [microform] / George	1885	1880	other
+849	cihm_58987.pdf	History of the United States of America [microform	1885	1880	other
+850	cihm_58988.pdf	History of the United States of America [microform	1885	1880	other
+851	cihm_58989.pdf	History of the United States of America [microform	1885	1880	other
+852	cihm_58990.pdf	History of the United States of America [microform	1885	1880	other
+853	cihm_58991.pdf	History of the United States of America [microform	1885	1880	other
+854	cihm_58992.pdf	History of the United States of America [microform	1885	1880	other
+855	cihm_92684.pdf	From the St. Lawrence to the North Saskatchewan [m	1885	1880	other
+856	cu31924003872409.pdf	Contributions to Canadian palæontology	1885	1880	other
+857	cu31924057833224.pdf	Contributions to Canadian palæontology	1885	1880	other
+858	cu31924057833232.pdf	Contributions to Canadian palæontology	1885	1880	other
+859	cu31924057833257.pdf	Contributions to Canadian palæontology	1885	1880	other
+860	PTR_1885010201.pdf	Prince Albert times and Saskatchewan review (1885-	1885	1880	newspaper
+861	PTR_1885010901.pdf	Prince Albert times and Saskatchewan review (1885-	1885	1880	newspaper
+862	PTR_1885011601.pdf	Prince Albert times and Saskatchewan review (1885-	1885	1880	newspaper
+863	PTR_1885012301.pdf	Prince Albert times and Saskatchewan review (1885-	1885	1880	newspaper
+864	PTR_1885013001.pdf	Prince Albert times and Saskatchewan review (1885-	1885	1880	newspaper
+865	PTR_1885020601.pdf	Prince Albert times and Saskatchewan review (1885-	1885	1880	newspaper
+866	PTR_1885021301.pdf	Prince Albert times and Saskatchewan review (1885-	1885	1880	newspaper
+867	PTR_1885022001.pdf	Prince Albert times and Saskatchewan review (1885-	1885	1880	newspaper
+868	PTR_1885022701.pdf	Prince Albert times and Saskatchewan review (1885-	1885	1880	newspaper
+869	PTR_1885030601.pdf	Prince Albert times and Saskatchewan review (1885-	1885	1880	newspaper
+870	PTR_1885031301.pdf	Prince Albert times and Saskatchewan review (1885-	1885	1880	newspaper
+871	1761314.pdf	The Saskatchewan Country	1885	1880	other
+872	BRM_1885052801.pdf	The Brandon mail (1885-05-28)	1885	1880	other
+873	PTR_1885060501.pdf	Prince Albert times and Saskatchewan review (1885-	1885	1880	newspaper
+874	PTR_1885061201.pdf	Prince Albert times and Saskatchewan review (1885-	1885	1880	newspaper
+875	PTR_1885061901.pdf	Prince Albert times and Saskatchewan review (1885-	1885	1880	newspaper
+876	PTR_1885062601.pdf	Prince Albert times and Saskatchewan review (1885-	1885	1880	newspaper
+877	PTR_1885070301.pdf	Prince Albert times and Saskatchewan review (1885-	1885	1880	newspaper
+878	PTR_1885071001.pdf	Prince Albert times and Saskatchewan review (1885-	1885	1880	newspaper
+879	PTR_1885071701.pdf	Prince Albert times and Saskatchewan review (1885-	1885	1880	newspaper
+880	PTR_1885072401.pdf	Prince Albert times and Saskatchewan review (1885-	1885	1880	newspaper
+881	PTR_1885073101.pdf	Prince Albert times and Saskatchewan review (1885-	1885	1880	newspaper
+882	PTR_1885080701.pdf	Prince Albert times and Saskatchewan review (1885-	1885	1880	newspaper
+883	PTR_1885081401.pdf	Prince Albert times and Saskatchewan review (1885-	1885	1880	newspaper
+884	PTR_1885082101.pdf	Prince Albert times and Saskatchewan review (1885-	1885	1880	newspaper
+885	PTR_1885082801.pdf	Prince Albert times and Saskatchewan review (1885-	1885	1880	newspaper
+886	PTR_1885090401.pdf	Prince Albert times and Saskatchewan review (1885-	1885	1880	newspaper
+887	PTR_1885091101.pdf	Prince Albert times and Saskatchewan review (1885-	1885	1880	newspaper
+888	PTR_1885091801.pdf	Prince Albert times and Saskatchewan review (1885-	1885	1880	newspaper
+889	PTR_1885092501.pdf	Prince Albert times and Saskatchewan review (1885-	1885	1880	newspaper
+890	PTR_1885100201.pdf	Prince Albert times and Saskatchewan review (1885-	1885	1880	newspaper
+891	PTR_1885100901.pdf	Prince Albert times and Saskatchewan review (1885-	1885	1880	newspaper
+892	PTR_1885102301.pdf	Prince Albert times and Saskatchewan review (1885-	1885	1880	newspaper
+893	PTR_1885103001.pdf	Prince Albert times and Saskatchewan review (1885-	1885	1880	newspaper
+894	QPP_1885111301.pdf	Qu'Appelle progress (1885-11-13)	1885	1880	other
+895	QPP_1885112001.pdf	Qu'Appelle progress (1885-11-20)	1885	1880	other
+896	PTR_1885112701.pdf	Prince Albert times and Saskatchewan review (1885-	1885	1880	newspaper
+897	QPP_1885112701.pdf	Qu'Appelle progress (1885-11-27)	1885	1880	other
+898	PTR_1885120401.pdf	Prince Albert times and Saskatchewan review (1885-	1885	1880	newspaper
+899	QPP_1885120401.pdf	Qu'Appelle progress (1885-12-04)	1885	1880	other
+900	QPP_1885121101.pdf	Qu'Appelle progress (1885-12-11)	1885	1880	other
+901	PTR_1885121801.pdf	Prince Albert times and Saskatchewan review (1885-	1885	1880	newspaper
+902	QPP_1885121801.pdf	Qu'Appelle progress (1885-12-18)	1885	1880	other
+903	PTR_1885122501.pdf	Prince Albert times and Saskatchewan review (1885-	1885	1880	newspaper
+904	QPP_1885122501.pdf	Qu'Appelle progress (1885-12-25)	1885	1880	other
+905	StatisticsCanada1885981885F1886engfra.pdf	Census of the three provisional districts of the N	1886	1880	census
+906	P001092.pdf	Traditions indiennes du Canada nord-ouest	1886	1880	other
+907	P001311.pdf	L'Histoire d'un crime	1886	1880	other
+908	P001319.pdf	La question Riel	1886	1880	other
+909	P001320.pdf	La question Riel: les griefs des métis	1886	1880	other
+910	P001323.pdf	The true inwardness of the Canadian Northwest Rebe	1886	1880	other
+911	P001332.pdf	Le 9me bataillon au nord-ouest: journal d'un milit	1886	1880	newspaper
+912	P001345.pdf	Speech of the Hon. E. Blake, M.P., on the executio	1886	1880	other
+913	P001346.pdf	Speeches of Hon. E. Blake, M.P., on the North-West	1886	1880	other
+914	P001347.pdf	Reminiscences of the North-West Rebellions: With a	1886	1880	other
+915	P001367.pdf	The medical and surgical history of the Canadian N	1886	1880	other
+916	P001371.pdf	Copies of instructions to Major Bell, Major-Genera	1886	1880	other
+917	P001372.pdf	Epitome of parliamentary documents in connection w	1886	1880	other
+918	P001373.pdf	Return (in part) to an address of the House of Com	1886	1880	other
+919	P001374.pdf	Return to an address of the House of Commons, date	1886	1880	other
+920	P001376.pdf	Return to an address of the Senate dated 7th April	1886	1880	other
+921	P001379.pdf	Documents officiels constatant les nombreuses plai	1886	1880	other
+922	P001382.pdf	Copy of a report of the Honorable the Privy Counci	1886	1880	annual_report
+923	P001393.pdf	Discours de Sir Adolphe Caron sur l'exécution de L	1886	1880	other
+924	P001394.pdf	Discours sur la question Riel prononcé le 17 mars 	1886	1880	other
+925	P001396.pdf	Report upon the suppression of the rebellion in th	1886	1880	other
+926	P001402.pdf	Réponse à une adresse de la Chambre des Communes, 	1886	1880	other
+927	P001420.pdf	Debate on Louis Reil [sic]: Speech by Mr. J.J. Cur	1886	1880	other
+928	P001423.pdf	Cent-vingt jours de service actif: récit historiqu	1886	1880	other
+929	P001430.pdf	L'absolution avant la bataille: dédié aux braves d	1886	1880	other
+930	P001432.pdf	Halifax to the Saskatchewan: "Our boys" in the Rie	1886	1880	other
+931	P001437.pdf	The Soudan campaign	1886	1880	other
+932	P001439.pdf	Assemblée législative: le chemin de fer projeté de	1886	1880	other
+933	P001443.pdf	Affaire Riel: discours de l'Honorable E.J. Flynn, 	1886	1880	other
+934	P001453.pdf	Discours de M. Girouard, M.P., sur l'exécution de 	1886	1880	other
+935	P001468.pdf	The views of a leading Conservative in the North-W	1886	1880	other
+936	P001474.pdf	La croisade anti-française et anti-catholique diri	1886	1880	other
+937	P001475.pdf	Le peuple vs. Sir John!	1886	1880	other
+938	P001476.pdf	Polémiques et documents touchant le nord-ouest et 	1886	1880	other
+939	P001480.pdf	Speech of Mr. Wilfred [sic] Laurier, M.P., on the 	1886	1880	other
+940	P001485.pdf	Discours prononcé par Monsieur F.-X. Lemieux, M.P.	1886	1880	other
+941	P001500.pdf	Discours prononcé par l'Honorable M. Mercier, dépu	1886	1880	other
+942	P001504.pdf	Au Canada et aux Montagnes Rocheuses, en Russie, e	1886	1880	other
+943	P001515.pdf	The gibbet of Regina: The truth about Riel: Sir Jo	1886	1880	other
+944	P001520.pdf	Riel: tragédie en quatre actes	1886	1880	other
+945	P001528.pdf	To the Honourable Thomas White, Minister of the In	1886	1880	other
+946	P001532.pdf	Poésies religieuses et politiques	1886	1880	other
+947	P001533.pdf	The Queen vs. Louis Riel: Accused and convicted of	1886	1880	annual_report
+948	P001534.pdf	La reine vs. Louis Riel, accusé et convaincu du cr	1886	1880	other
+949	P001537.pdf	Speech of Mr. J. Royal, M.P., on the execution of 	1886	1880	other
+950	P001548.pdf	La question Riel: discours de M. Tassé, M.P., pron	1886	1880	other
+951	P001550.pdf	Discours sur la question Riel: prononcé devant le 	1886	1880	other
+952	P001551.pdf	Discours sur la question Riel, prononcé le 22 mars	1886	1880	other
+953	P001552.pdf	The execution of Louis Riel: Speech of the Hon. Jo	1886	1880	other
+954	P001562.pdf	Two great speeches: Hon. Thos. White on the allege	1886	1880	other
+955	P001565.pdf	The Albany settlement, Qu'Appelle Valley, Canada, 	1886	1880	other
+956	P001571.pdf	Riel: drame historique en quatre actes et un prolo	1886	1880	other
+957	P001574.pdf	Dominion election, campaign of 1886. Hon. Edward B	1886	1880	other
+958	P001575.pdf	General review-Riel (London banquet, Jan. 14th, 86	1886	1880	other
+959	P001576.pdf	Ministers on trial: Was the execution of Riel nece	1886	1880	other
+960	P001588.pdf	Return (in part) to an address of the House of Com	1886	1880	other
+961	P001589.pdf	Expenditure under appropriation of $2,300,000 to d	1886	1880	other
+962	P001603.pdf	The Canadian North-West	1886	1880	other
+963	P001624.pdf	Prières, cantiques, catéchisme, etc., en langue cr	1886	1880	other
+964	P001625.pdf	Esquisse générale du nord-ouest du Canada, ou, éte	1886	1880	other
+965	P001635.pdf	Detailed report upon all claims to land and right 	1886	1880	other
+966	P001642.pdf	Skandinaverna i Manitoba och Nord Westra Canada	1886	1880	other
+967	P001651.pdf	Northwest administration: Speech by the Hon. Thos.	1886	1880	other
+968	QPP_1886010101.pdf	Qu'Appelle progress (1886-01-01)	1886	1880	other
+969	cihm_30194.pdf	Affaire Riel [microforme] : discours de l'Honorabl	1886	1880	other
+970	cihm_30229.pdf	Halifax to the Saskatchewan [microform] : "our boy	1886	1880	other
+971	cihm_30538.pdf	Manitoba, the Canadian North West [microform] : te	1886	1880	other
+972	cihm_30648.pdf	La question Riel [microforme] : discours de M. Tas	1886	1880	other
+973	cihm_30657.pdf	Petit manuel pour apprendre à lire la langue crise	1886	1880	other
+974	cihm_30661.pdf	Report of the Synod of the Diocese of Rupert's Lan	1886	1880	annual_report
+975	cihm_36083.pdf	Les anciens canadiens [microforme]	1886	1880	other
+976	esquissegnra00cana.pdf	Esquisse générale du Nord-Ouest du Canada; ou, Éte	1886	1880	other
+977	rapportdtaillsur00pear.pdf	Rapport détaillé sur toutes les demandes de terrai	1886	1880	other
+978	PTR_1886010801.pdf	Prince Albert times and Saskatchewan review (1886-	1886	1880	newspaper
+979	QPP_1886010801.pdf	Qu'Appelle progress (1886-01-08)	1886	1880	other
+980	QPP_1886011501.pdf	Qu'Appelle progress (1886-01-15)	1886	1880	other
+981	PTR_1886012201.pdf	Prince Albert times and Saskatchewan review (1886-	1886	1880	newspaper
+982	QPP_1886012201.pdf	Qu'Appelle progress (1886-01-22)	1886	1880	other
+983	QPP_1886012901.pdf	Qu'Appelle progress (1886-01-29)	1886	1880	other
+984	QPP_1886020501.pdf	Qu'Appelle progress (1886-02-05)	1886	1880	other
+985	PTR_1886021201.pdf	Prince Albert times and Saskatchewan review (1886-	1886	1880	newspaper
+986	QPP_1886021201.pdf	Qu'Appelle progress (1886-02-12)	1886	1880	other
+987	PTR_1886021901.pdf	Prince Albert times and Saskatchewan review (1886-	1886	1880	newspaper
+988	QPP_1886021901.pdf	Qu'Appelle progress (1886-02-19)	1886	1880	other
+989	PTR_1886022601.pdf	Prince Albert times and Saskatchewan review (1886-	1886	1880	newspaper
+990	QPP_1886022601.pdf	Qu'Appelle progress (1886-02-26)	1886	1880	other
+991	PTR_1886030501.pdf	Prince Albert times and Saskatchewan review (1886-	1886	1880	newspaper
+992	QPP_1886030501.pdf	Qu'Appelle progress (1886-03-05)	1886	1880	other
+993	PTR_1886031201.pdf	Prince Albert times and Saskatchewan review (1886-	1886	1880	newspaper
+994	QPP_1886031201.pdf	Qu'Appelle progress (1886-03-12)	1886	1880	other
+995	PTR_1886031901.pdf	Prince Albert times and Saskatchewan review (1886-	1886	1880	newspaper
+996	QPP_1886031901.pdf	Qu'Appelle progress (1886-03-19)	1886	1880	other
+997	PTR_1886032601.pdf	Prince Albert times and Saskatchewan review (1886-	1886	1880	newspaper
+998	QPP_1886032601.pdf	Qu'Appelle progress (1886-03-26)	1886	1880	other
+999	LMT_1886040101.pdf	Le Manitoba (1886-04-01)	1886	1880	other
+1000	PTR_1886040201.pdf	Prince Albert times and Saskatchewan review (1886-	1886	1880	newspaper
+1001	QPP_1886040201.pdf	Qu'Appelle progress (1886-04-02)	1886	1880	other
+1002	PTR_1886040901.pdf	Prince Albert times and Saskatchewan review (1886-	1886	1880	newspaper
+1003	QPP_1886040901.pdf	Qu'Appelle progress (1886-04-09)	1886	1880	other
+1004	PTR_1886041601.pdf	Prince Albert times and Saskatchewan review (1886-	1886	1880	newspaper
+1005	QPP_1886041601.pdf	Qu'Appelle progress (1886-04-16)	1886	1880	other
+1006	PTR_1886042301.pdf	Prince Albert times and Saskatchewan review (1886-	1886	1880	newspaper
+1007	QPP_1886042301.pdf	Qu'Appelle progress (1886-04-23)	1886	1880	other
+1008	PTR_1886043001.pdf	Prince Albert times and Saskatchewan review (1886-	1886	1880	newspaper
+1009	PTR_1886050701.pdf	Prince Albert times and Saskatchewan review (1886-	1886	1880	newspaper
+1010	PTR_1886051401.pdf	Prince Albert times and Saskatchewan review (1886-	1886	1880	newspaper
+1011	PTR_1886052101.pdf	Prince Albert times and Saskatchewan review (1886-	1886	1880	newspaper
+1012	PTR_1886052801.pdf	Prince Albert times and Saskatchewan review (1886-	1886	1880	newspaper
+1013	PTR_1886060401.pdf	Prince Albert times and Saskatchewan review (1886-	1886	1880	newspaper
+1014	PTR_1886061101.pdf	Prince Albert times and Saskatchewan review (1886-	1886	1880	newspaper
+1015	PTR_1886061801.pdf	Prince Albert times and Saskatchewan review (1886-	1886	1880	newspaper
+1016	PTR_1886062501.pdf	Prince Albert times and Saskatchewan review (1886-	1886	1880	newspaper
+1017	PTR_1886070201.pdf	Prince Albert times and Saskatchewan review (1886-	1886	1880	newspaper
+1018	PTR_1886070901.pdf	Prince Albert times and Saskatchewan review (1886-	1886	1880	newspaper
+1019	PTR_1886071601.pdf	Prince Albert times and Saskatchewan review (1886-	1886	1880	newspaper
+1020	PTR_1886072301.pdf	Prince Albert times and Saskatchewan review (1886-	1886	1880	newspaper
+1021	PTR_1886073001.pdf	Prince Albert times and Saskatchewan review (1886-	1886	1880	newspaper
+1022	PTR_1886080601.pdf	Prince Albert times and Saskatchewan review (1886-	1886	1880	newspaper
+1023	PTR_1886081301.pdf	Prince Albert times and Saskatchewan review (1886-	1886	1880	newspaper
+1024	PTR_1886082001.pdf	Prince Albert times and Saskatchewan review (1886-	1886	1880	newspaper
+1025	PTR_1886082701.pdf	Prince Albert times and Saskatchewan review (1886-	1886	1880	newspaper
+1026	PTR_1886090301.pdf	Prince Albert times and Saskatchewan review (1886-	1886	1880	newspaper
+1027	PTR_1886091001.pdf	Prince Albert times and Saskatchewan review (1886-	1886	1880	newspaper
+1028	PTR_1886091701.pdf	Prince Albert times and Saskatchewan review (1886-	1886	1880	newspaper
+1029	PTR_1886092401.pdf	Prince Albert times and Saskatchewan review (1886-	1886	1880	newspaper
+1030	PTR_1886100101.pdf	Prince Albert times and Saskatchewan review (1886-	1886	1880	newspaper
+1031	PTR_1886100801.pdf	Prince Albert times and Saskatchewan review (1886-	1886	1880	newspaper
+1032	PTR_1886101501.pdf	Prince Albert times and Saskatchewan review (1886-	1886	1880	newspaper
+1033	PTR_1886102201.pdf	Prince Albert times and Saskatchewan review (1886-	1886	1880	newspaper
+1034	PTR_1886102901.pdf	Prince Albert times and Saskatchewan review (1886-	1886	1880	newspaper
+1035	PTR_1886110501.pdf	Prince Albert times and Saskatchewan review (1886-	1886	1880	newspaper
+1036	PTR_1886111201.pdf	Prince Albert times and Saskatchewan review (1886-	1886	1880	newspaper
+1037	PTR_1886111901.pdf	Prince Albert times and Saskatchewan review (1886-	1886	1880	newspaper
+1038	PTR_1886112601.pdf	Prince Albert times and Saskatchewan review (1886-	1886	1880	newspaper
+1039	PTR_1886120301.pdf	Prince Albert times and Saskatchewan review (1886-	1886	1880	newspaper
+1040	PTR_1886121001.pdf	Prince Albert times and Saskatchewan review (1886-	1886	1880	newspaper
+1041	PTR_1886121701.pdf	Prince Albert times and Saskatchewan review (1886-	1886	1880	newspaper
+1042	PTR_1886122401.pdf	Prince Albert times and Saskatchewan review (1886-	1886	1880	newspaper
+1043	PTR_1886123101.pdf	Prince Albert times and Saskatchewan review (1886-	1886	1880	newspaper
+1044	P000534.pdf	Some Red River Settlement history: A paper read be	1887	1880	other
+1045	P001091.pdf	En route pour la mer Glaciale	1887	1880	other
+1046	P001314.pdf	Louis Riel and the North-West Rebellion: A review,	1887	1880	other
+1047	P001317.pdf	Le mot de la fin, voici le vote!: conspiration arm	1887	1880	other
+1048	P001318.pdf	Quelques renseignements pour les electeurs: les Or	1887	1880	other
+1049	P001322.pdf	The Riel Rebellion: How it began, how it was carri	1887	1880	other
+1050	P001377.pdf	Return to an order of the House of Commons, dated 	1887	1880	other
+1051	P001383.pdf	Continuation of appendix no.4 of the report of 18 	1887	1880	annual_report
+1052	P001409.pdf	A psycho-medical history of Louis Riel	1887	1880	other
+1053	P001416.pdf	Riel contre l'église catholique: aux Canadiens-fra	1887	1880	other
+1054	P001417.pdf	Elections de 1887: la vraie question	1887	1880	other
+1055	P001418.pdf	The Riel and Home Rule questions: Hon. John Costig	1887	1880	other
+1056	P001440.pdf	Le véritable Riel: tel que dépeint dans des lettre	1887	1880	other
+1057	P001470.pdf	Report of Lieutenant-Colonel W.H. Jackson, deputy 	1887	1880	annual_report
+1058	P001479.pdf	Report of Major General Laurie: Commanding base an	1887	1880	annual_report
+1059	P001513.pdf	Reminiscences of a bungle	1887	1880	other
+1060	P001559.pdf	Facts for the people: The Northwest Rebellion: The	1887	1880	other
+1061	P001560.pdf	Faits pour le peuple: la Rébellion du nord-ouest: 	1887	1880	other
+1062	P001656.pdf	The Selkirk Settlement and settlers: A concise his	1887	1880	other
+1063	P001661.pdf	North West of Canada: A general sketch of the exte	1887	1880	other
+1064	P001674.pdf	The "Boodle" Brigade, as represented among the mem	1887	1880	other
+1065	P001687.pdf	The history of Regina (illustrated): Its foundatio	1887	1880	other
+1066	P001699.pdf	Report on a part of northern Alberta, and portions	1887	1880	other
+1067	cihm_29695.pdf	Belcher's farmer's almanck for the province of Nov	1887	1880	other
+1068	cihm_30251.pdf	The French element in the Canadian Northwest [micr	1887	1880	other
+1069	cihm_30622.pdf	A prairie tragedy [microform] : the fate of Thomas	1887	1880	other
+1070	cihm_38278.pdf	The art of school management [microform] : a text-	1887	1880	other
+1071	cihm_38507.pdf	North West of Canada [microform] : a general sketc	1887	1880	other
+1072	PTR_1887010701.pdf	Prince Albert times and Saskatchewan review (1887-	1887	1880	newspaper
+1073	PTR_1887011401.pdf	Prince Albert times and Saskatchewan review (1887-	1887	1880	newspaper
+1074	PTR_1887012101.pdf	Prince Albert times and Saskatchewan review (1887-	1887	1880	newspaper
+1075	PTR_1887012801.pdf	Prince Albert times and Saskatchewan review (1887-	1887	1880	newspaper
+1076	PTR_1887020401.pdf	Prince Albert times and Saskatchewan review (1887-	1887	1880	newspaper
+1077	PTR_1887021101.pdf	Prince Albert times and Saskatchewan review (1887-	1887	1880	newspaper
+1078	PTR_1887021801.pdf	Prince Albert times and Saskatchewan review (1887-	1887	1880	newspaper
+1079	PTR_1887022501.pdf	Prince Albert times and Saskatchewan review (1887-	1887	1880	newspaper
+1080	BRM_1887030301.pdf	The Brandon mail (1887-03-03)	1887	1880	other
+1081	PTR_1887030401.pdf	Prince Albert times and Saskatchewan review (1887-	1887	1880	newspaper
+1082	PTR_1887031101.pdf	Prince Albert times and Saskatchewan review (1887-	1887	1880	newspaper
+1083	PTR_1887031801.pdf	Prince Albert times and Saskatchewan review (1887-	1887	1880	newspaper
+1084	PTR_1887032501.pdf	Prince Albert times and Saskatchewan review (1887-	1887	1880	newspaper
+1085	PTR_1887040101.pdf	Prince Albert times and Saskatchewan review (1887-	1887	1880	newspaper
+1086	PTR_1887040801.pdf	Prince Albert times and Saskatchewan review (1887-	1887	1880	newspaper
+1087	PTR_1887041501.pdf	Prince Albert times and Saskatchewan review (1887-	1887	1880	newspaper
+1088	PTR_1887042201.pdf	Prince Albert times and Saskatchewan review (1887-	1887	1880	newspaper
+1089	PTR_1887042901.pdf	Prince Albert times and Saskatchewan review (1887-	1887	1880	newspaper
+1090	PTR_1887050601.pdf	Prince Albert times and Saskatchewan review (1887-	1887	1880	newspaper
+1091	PTR_1887051301.pdf	Prince Albert times and Saskatchewan review (1887-	1887	1880	newspaper
+1092	PTR_1887052001.pdf	Prince Albert times and Saskatchewan review (1887-	1887	1880	newspaper
+1093	PTR_1887052701.pdf	Prince Albert times and Saskatchewan review (1887-	1887	1880	newspaper
+1094	PTR_1887060301.pdf	Prince Albert times and Saskatchewan review (1887-	1887	1880	newspaper
+1095	PTR_1887061001.pdf	Prince Albert times and Saskatchewan review (1887-	1887	1880	newspaper
+1096	PTR_1887061701.pdf	Prince Albert times and Saskatchewan review (1887-	1887	1880	newspaper
+1097	PTR_1887062401.pdf	Prince Albert times and Saskatchewan review (1887-	1887	1880	newspaper
+1098	PTR_1887070101.pdf	Prince Albert times and Saskatchewan review (1887-	1887	1880	newspaper
+1099	PTR_1887070801.pdf	Prince Albert times and Saskatchewan review (1887-	1887	1880	newspaper
+1100	PTR_1887071501.pdf	Prince Albert times and Saskatchewan review (1887-	1887	1880	newspaper
+1101	PTR_1887072201.pdf	Prince Albert times and Saskatchewan review (1887-	1887	1880	newspaper
+1102	PTR_1887072901.pdf	Prince Albert times and Saskatchewan review (1887-	1887	1880	newspaper
+1103	PTR_1887080501.pdf	Prince Albert times and Saskatchewan review (1887-	1887	1880	newspaper
+1104	PTR_1887081201.pdf	Prince Albert times and Saskatchewan review (1887-	1887	1880	newspaper
+1105	PTR_1887081901.pdf	Prince Albert times and Saskatchewan review (1887-	1887	1880	newspaper
+1106	PTR_1887082601.pdf	Prince Albert times and Saskatchewan review (1887-	1887	1880	newspaper
+1107	PTR_1887090201.pdf	Prince Albert times and Saskatchewan review (1887-	1887	1880	newspaper
+1108	PTR_1887090901.pdf	Prince Albert times and Saskatchewan review (1887-	1887	1880	newspaper
+1109	PTR_1887091601.pdf	Prince Albert times and Saskatchewan review (1887-	1887	1880	newspaper
+1110	PTR_1887092301.pdf	Prince Albert times and Saskatchewan review (1887-	1887	1880	newspaper
+1111	PTR_1887093001.pdf	Prince Albert times and Saskatchewan review (1887-	1887	1880	newspaper
+1112	PTR_1887100701.pdf	Prince Albert times and Saskatchewan review (1887-	1887	1880	newspaper
+1113	PTR_1887101401.pdf	Prince Albert times and Saskatchewan review (1887-	1887	1880	newspaper
+1114	PTR_1887102101.pdf	Prince Albert times and Saskatchewan review (1887-	1887	1880	newspaper
+1115	PTR_1887102801.pdf	Prince Albert times and Saskatchewan review (1887-	1887	1880	newspaper
+1116	PTR_1887110401.pdf	Prince Albert times and Saskatchewan review (1887-	1887	1880	newspaper
+1117	PTR_1887111101.pdf	Prince Albert times and Saskatchewan review (1887-	1887	1880	newspaper
+1118	PTR_1887120901.pdf	Prince Albert times and Saskatchewan review (1887-	1887	1880	newspaper
+1119	PTR_1887121601.pdf	Prince Albert times and Saskatchewan review (1887-	1887	1880	newspaper
+1120	PTR_1887122301.pdf	Prince Albert times and Saskatchewan review (1887-	1887	1880	newspaper
+1121	P000061.pdf	Henry's journal: Covering adventures and experienc	1888	1880	newspaper
+1122	P001354.pdf	Memorial in the matter of Louis Riel, the Senate o	1888	1880	other
+1123	P001711.pdf	Holiday rambles between Winnipeg and Victoria	1888	1880	other
+1124	P001726.pdf	Fort Qu'Appelle boating, fishing and shooting club	1888	1880	other
+1125	P001731.pdf	The new West: Extending from the Great Lakes acros	1888	1880	other
+1126	P001740.pdf	McPhillips' alphabetical and business directory of	1888	1880	other
+1127	P007764.pdf	Vicariat de Saint-Albert: journal de voyage de Mgr	1888	1880	other
+1128	P009536.15.pdf	Report on public works in the North-west Territori	1888	1880	other
+1129	P009536.16.pdf	Report on public works in the North-west Territori	1888	1880	other
+1130	P009536.18.pdf	Report on public works in the North-west Territori	1888	1880	other
+1131	P009536.19.pdf	Report on public works in the North-west Territori	1888	1880	other
+1132	P009536.34.pdf	Report on public works in the North-west Territori	1888	1880	other
+1133	P009539.10.pdf	Statement of the public accounts of the North-west	1888	1880	other
+1134	P009539.3.pdf	Statement of the public accounts of the North-west	1888	1880	other
+1135	P009539.4.pdf	Statement of the public accounts of the North-west	1888	1880	other
+1136	P009539.5.pdf	Statement of the public accounts of the North-west	1888	1880	other
+1137	P009539.7.pdf	Statement of the public accounts of the North-west	1888	1880	other
+1138	cihm_27159.pdf	Official report of the speech of Hon. Sir Charles 	1888	1880	annual_report
+1139	cihm_30054.pdf	Holiday rambles between Winnipeg and Victoria [mic	1888	1880	other
+1140	cihm_30644.pdf	McPhillips' alphabetical and business directory of	1888	1880	other
+1141	cihm_30668.pdf	The Canadian Pacific Railway [microform] : its geo	1888	1880	other
+1142	cihm_52199.pdf	The ethical import of Darwinism [microform]	1888	1880	other
+1143	PTR_1888010601.pdf	Prince Albert times and Saskatchewan review (1888-	1888	1880	newspaper
+1144	PTR_1888011301.pdf	Prince Albert times and Saskatchewan review (1888-	1888	1880	newspaper
+1145	PTR_1888012001.pdf	Prince Albert times and Saskatchewan review (1888-	1888	1880	newspaper
+1146	PTR_1888012701.pdf	Prince Albert times and Saskatchewan review (1888-	1888	1880	newspaper
+1147	PTR_1888020301.pdf	Prince Albert times and Saskatchewan review (1888-	1888	1880	newspaper
+1148	PTR_1888021001.pdf	Prince Albert times and Saskatchewan review (1888-	1888	1880	newspaper
+1149	PTR_1888021701.pdf	Prince Albert times and Saskatchewan review (1888-	1888	1880	newspaper
+1150	PTR_1888022401.pdf	Prince Albert times and Saskatchewan review (1888-	1888	1880	newspaper
+1151	PTR_1888030201.pdf	Prince Albert times and Saskatchewan review (1888-	1888	1880	newspaper
+1152	PTR_1888030901.pdf	Prince Albert times and Saskatchewan review (1888-	1888	1880	newspaper
+1153	PTR_1888031601.pdf	Prince Albert times and Saskatchewan review (1888-	1888	1880	newspaper
+1154	PTR_1888032301.pdf	Prince Albert times and Saskatchewan review (1888-	1888	1880	newspaper
+1155	PTR_1888033001.pdf	Prince Albert times and Saskatchewan review (1888-	1888	1880	newspaper
+1156	PTR_1888040601.pdf	Prince Albert times and Saskatchewan review (1888-	1888	1880	newspaper
+1157	LMT_1888041201.pdf	Le Manitoba (1888-04-12)	1888	1880	other
+1158	PTR_1888041301.pdf	Prince Albert times and Saskatchewan review (1888-	1888	1880	newspaper
+1159	PTR_1888042001.pdf	Prince Albert times and Saskatchewan review (1888-	1888	1880	newspaper
+1160	PTR_1888042701.pdf	Prince Albert times and Saskatchewan review (1888-	1888	1880	newspaper
+1161	PTR_1888050401.pdf	Prince Albert times and Saskatchewan review (1888-	1888	1880	newspaper
+1162	PTR_1888051101.pdf	Prince Albert times and Saskatchewan review (1888-	1888	1880	newspaper
+1163	PTR_1888051801.pdf	Prince Albert times and Saskatchewan review (1888-	1888	1880	newspaper
+1164	PTR_1888052501.pdf	Prince Albert times and Saskatchewan review (1888-	1888	1880	newspaper
+1165	PTR_1888060101.pdf	Prince Albert times and Saskatchewan review (1888-	1888	1880	newspaper
+1166	PTR_1888060801.pdf	Prince Albert times and Saskatchewan review (1888-	1888	1880	newspaper
+1167	PTR_1888061501.pdf	Prince Albert times and Saskatchewan review (1888-	1888	1880	newspaper
+1168	PTR_1888062201.pdf	Prince Albert times and Saskatchewan review (1888-	1888	1880	newspaper
+1169	PTR_1888062901.pdf	Prince Albert times and Saskatchewan review (1888-	1888	1880	newspaper
+1170	PTR_1888070601.pdf	Prince Albert times and Saskatchewan review (1888-	1888	1880	newspaper
+1171	PTR_1888071301.pdf	Prince Albert times and Saskatchewan review (1888-	1888	1880	newspaper
+1172	PTR_1888072001.pdf	Prince Albert times and Saskatchewan review (1888-	1888	1880	newspaper
+1173	PTR_1888072701.pdf	Prince Albert times and Saskatchewan review (1888-	1888	1880	newspaper
+1174	PTR_1888080301.pdf	Prince Albert times and Saskatchewan review (1888-	1888	1880	newspaper
+1175	PTR_1888081001.pdf	Prince Albert times and Saskatchewan review (1888-	1888	1880	newspaper
+1176	PTR_1888081701.pdf	Prince Albert times and Saskatchewan review (1888-	1888	1880	newspaper
+1177	PTR_1888083101.pdf	Prince Albert times and Saskatchewan review (1888-	1888	1880	newspaper
+1178	PTR_1888090701.pdf	Prince Albert times and Saskatchewan review (1888-	1888	1880	newspaper
+1179	PTR_1888091401.pdf	Prince Albert times and Saskatchewan review (1888-	1888	1880	newspaper
+1180	PTR_1888092101.pdf	Prince Albert times and Saskatchewan review (1888-	1888	1880	newspaper
+1181	PTR_1888092801.pdf	Prince Albert times and Saskatchewan review (1888-	1888	1880	newspaper
+1182	PTR_1888100501.pdf	Prince Albert times and Saskatchewan review (1888-	1888	1880	newspaper
+1183	PTR_1888101201.pdf	Prince Albert times and Saskatchewan review (1888-	1888	1880	newspaper
+1184	PTR_1888101901.pdf	Prince Albert times and Saskatchewan review (1888-	1888	1880	newspaper
+1185	PTR_1888102601.pdf	Prince Albert times and Saskatchewan review (1888-	1888	1880	newspaper
+1186	PTR_1888110201.pdf	Prince Albert times and Saskatchewan review (1888-	1888	1880	newspaper
+1187	PTR_1888110901.pdf	Prince Albert times and Saskatchewan review (1888-	1888	1880	newspaper
+1188	PTR_1888111601.pdf	Prince Albert times and Saskatchewan review (1888-	1888	1880	newspaper
+1189	PTR_1888112301.pdf	Prince Albert times and Saskatchewan review (1888-	1888	1880	newspaper
+1190	PTR_1888113001.pdf	Prince Albert times and Saskatchewan review (1888-	1888	1880	newspaper
+1191	PTR_1888120701.pdf	Prince Albert times and Saskatchewan review (1888-	1888	1880	newspaper
+1192	PTR_1888121401.pdf	Prince Albert times and Saskatchewan review (1888-	1888	1880	newspaper
+1193	PTR_1888122101.pdf	Prince Albert times and Saskatchewan review (1888-	1888	1880	newspaper
+1194	PTR_1888122801.pdf	Prince Albert times and Saskatchewan review (1888-	1888	1880	newspaper
+1195	P000060.pdf	Continuation of Henry's journal: Covering adventur	1889	1880	newspaper
+1196	P000181.pdf	Original letters and other documents relating to t	1889	1880	other
+1197	P001517.pdf	La vérité sur la question métisse au nord-ouest pa	1889	1880	other
+1198	P001763.pdf	The Historical and Scientific Society of Manitoba:	1889	1880	other
+1199	P001784.pdf	Un suprême appel: l'évêque du nord-ouest supplie t	1889	1880	other
+1200	P001804.pdf	Ceremony of unveiling a bronze statue erected on M	1889	1880	other
+1201	P001809.pdf	The district of Moose Jaw, North West Territories,	1889	1880	other
+1202	P001824.pdf	Message from the President of the United States, t	1889	1880	other
+1203	P007781.pdf	Province ecclésiastique de Saint-Boniface	1889	1880	other
+1204	P009641.pdf	Vicariat de Saint-Boniface: mission du Sacré-Coeur	1889	1880	other
+1205	P009642.pdf	Mission de Saint-Albert: lettre du R. P. Rapet, su	1889	1880	other
+1206	cihm_24665.pdf	A drama in four acts, entitled "Against the world"	1889	1880	other
+1207	cihm_25147.pdf	Gleason's veterinary hand-book and system of horse	1889	1880	other
+1208	cihm_25861.pdf	The evolution of the relation between capital and 	1889	1880	other
+1209	cihm_30700.pdf	Manitoba [microform] : an address delivered at the	1889	1880	other
+1210	cihm_38289.pdf	India [microform] : a few pages about it	1889	1880	other
+1211	cihm_38535.pdf	The Newfoundland almanac for the year of Our Lord 	1889	1880	other
+1212	cihm_38536.pdf	The Newfoundland almanac for the year of Our Lord 	1889	1880	other
+1213	PTR_1889010401.pdf	Prince Albert times and Saskatchewan review (1889-	1889	1880	newspaper
+1214	PTR_1889011101.pdf	Prince Albert times and Saskatchewan review (1889-	1889	1880	newspaper
+1215	PTR_1889011801.pdf	Prince Albert times and Saskatchewan review (1889-	1889	1880	newspaper
+1216	PTR_1889012501.pdf	Prince Albert times and Saskatchewan review (1889-	1889	1880	newspaper
+1217	PTR_1889020101.pdf	Prince Albert times and Saskatchewan review (1889-	1889	1880	newspaper
+1218	PTR_1889020801.pdf	Prince Albert times and Saskatchewan review (1889-	1889	1880	newspaper
+1219	PTR_1889021501.pdf	Prince Albert times and Saskatchewan review (1889-	1889	1880	newspaper
+1220	PTR_1889022201.pdf	Prince Albert times and Saskatchewan review (1889-	1889	1880	newspaper
+1221	PTR_1889030101.pdf	Prince Albert times and Saskatchewan review (1889-	1889	1880	newspaper
+1222	PTR_1889030801.pdf	Prince Albert times and Saskatchewan review (1889-	1889	1880	newspaper
+1223	PTR_1889031501.pdf	Prince Albert times and Saskatchewan review (1889-	1889	1880	newspaper
+1224	PTR_1889032201.pdf	Prince Albert times and Saskatchewan review (1889-	1889	1880	newspaper
+1225	PTR_1889032901.pdf	Prince Albert times and Saskatchewan review (1889-	1889	1880	newspaper
+1226	PTR_1889040501.pdf	Prince Albert times and Saskatchewan review (1889-	1889	1880	newspaper
+1227	PTR_1889041201.pdf	Prince Albert times and Saskatchewan review (1889-	1889	1880	newspaper
+1228	PTR_1889041901.pdf	Prince Albert times and Saskatchewan review (1889-	1889	1880	newspaper
+1229	PTR_1889042601.pdf	Prince Albert times and Saskatchewan review (1889-	1889	1880	newspaper
+1230	PTR_1889050301.pdf	Prince Albert times and Saskatchewan review (1889-	1889	1880	newspaper
+1231	PTR_1889051001.pdf	Prince Albert times and Saskatchewan review (1889-	1889	1880	newspaper
+1232	2016013-002.pdf	N.W. Rowell: letter book 2	1890	1890	other
+1233	2016013-003.pdf	N.W. Rowell: letter book 3	1890	1890	other
+1234	P001341.pdf	Speech of Hon. Edward Blake on the Bremner furs, M	1890	1890	other
+1235	P001448.pdf	Quatre hommes: Skobeleff, Brooke, Grant, Riel	1890	1890	other
+1236	P001502.pdf	Parting address to the people of Canada	1890	1890	other
+1237	P001837.pdf	Alphabetical and business directory of the town an	1890	1890	other
+1238	P001859.pdf	Report of the select committee in re Charles Bremn	1890	1890	annual_report
+1239	P001862.pdf	Free homes and cheap railway lands!: One hundred m	1890	1890	map
+1240	P001867.pdf	Western Canada, including Manitoba, Assiniboia, Al	1890	1890	other
+1241	P001868.pdf	Wo sich der deutsche Ansiedler eine neue Heimat gr	1890	1890	other
+1242	P001871.pdf	A manual of the law of registration of titles to r	1890	1890	other
+1243	P001875.pdf	For the Leader Company Limited, et al.: A speech b	1890	1890	newspaper
+1244	P001896.pdf	Prince Albert and the North Saskatchewan: A guide 	1890	1890	other
+1245	P009644.pdf	Lettre du R. P. Campeau au R. P. Boisramé, maitre 	1890	1890	other
+1246	P009645.pdf	Une conversion	1890	1890	other
+1247	P009647.pdf	Mission du lac Pélican, district de Cumberland	1890	1890	other
+1248	cihm_12826.pdf	Discours de M. le juge Routhier au concert de char	1890	1890	other
+1249	cihm_14987.pdf	Presidential address before the Royal Society of C	1890	1890	other
+1250	cihm_18734.pdf	By canoe and dog-train among the Cree and Salteaux	1890	1890	other
+1251	cihm_26668.pdf	Throwing-sticks in the national museum [microform]	1890	1890	other
+1252	cihm_28781.pdf	La légende d'un peuple [microforme]	1890	1890	other
+1253	cihm_29478.pdf	Prince Albert and the North Saskatchewan [microfor	1890	1890	other
+1254	cihm_30195.pdf	First reading book for schools and families [micro	1890	1890	other
+1255	cihm_30655.pdf	Un nouveau champ de colonisation [microforme] : la	1890	1890	other
+1256	cihm_30702.pdf	A Scotch farmer's success in the Canadian North-We	1890	1890	other
+1257	cihm_30703.pdf	The Qu'Appelle, Long Lake and Saskatchewan Railroa	1890	1890	other
+1258	cihm_34481.pdf	Free homes and cheap railway lands! [microform] : 	1890	1890	other
+1259	farminginnorthwe00cana.pdf	Farming in the North-West : Manitoba, Assiniboia, 	1890	1890	other
+1260	MJA_1890011001.pdf	The times (1890-01-10)	1890	1890	newspaper
+1261	MJA_1890012401.pdf	The times (1890-01-24)	1890	1890	newspaper
+1262	BRM_1890020601.pdf	The Brandon mail (1890-02-06)	1890	1890	other
+1263	MJA_1890021401.pdf	The times (1890-02-14)	1890	1890	newspaper

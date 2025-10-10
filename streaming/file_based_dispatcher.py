@@ -15,12 +15,7 @@ from datetime import datetime
 from pathlib import Path
 from typing import List, Dict
 
-try:
-    from PyPDF2 import PdfReader
-except ImportError:
-    print("Error: PyPDF2 library not installed")
-    print("Install with: pip install PyPDF2")
-    sys.exit(1)
+# PyPDF2 not needed - we trigger on PDF count, not page count
 
 
 class FileBasedDispatcher:
@@ -30,12 +25,12 @@ class FileBasedDispatcher:
         self,
         base_dir: Path,
         olmocr_submit_script: Path,
-        pages_per_chunk: int = 1500,
+        pdfs_per_chunk: int = 200,
         check_interval: int = 60
     ):
         self.base_dir = base_dir
         self.olmocr_submit_script = olmocr_submit_script
-        self.pages_per_chunk = pages_per_chunk
+        self.pdfs_per_chunk = pdfs_per_chunk
         self.check_interval = check_interval
 
         # Directories
@@ -76,21 +71,14 @@ class FileBasedDispatcher:
         num = int(last_id.split('_')[1]) + 1
         return f"batch_{num:04d}"
 
-    def _get_page_count(self, pdf_path: Path) -> int:
-        """Get page count from PDF file."""
-        try:
-            reader = PdfReader(pdf_path)
-            return len(reader.pages)
-        except Exception as e:
-            print(f"  ⚠ Could not read {pdf_path.name}: {e}")
-            return 0
+    # Page counting removed - we trigger on PDF count instead
 
-    def _scan_pending_pdfs(self) -> List[Dict]:
+    def _scan_pending_pdfs(self) -> List[Path]:
         """
         Scan pending directory for PDFs.
 
         Returns:
-            List of dicts with 'path', 'identifier', and 'pages' keys
+            List of PDF paths
         """
         pdfs = []
 
@@ -101,26 +89,16 @@ class FileBasedDispatcher:
                 pdf_path.unlink()
                 continue
 
-            # Get identifier from filename (remove .pdf extension)
-            identifier = pdf_path.stem
-
-            # Get page count
-            page_count = self._get_page_count(pdf_path)
-            if page_count > 0:
-                pdfs.append({
-                    'path': pdf_path,
-                    'identifier': identifier,
-                    'pages': page_count
-                })
+            pdfs.append(pdf_path)
 
         return pdfs
 
-    def _create_batch(self, pdfs: List[Dict]) -> Path:
+    def _create_batch(self, pdfs: List[Path]) -> Path:
         """
         Create a batch directory and move PDFs into it.
 
         Returns:
-            Path to batch directory
+            Path to batch directory and metadata
         """
         batch_id = self._get_next_batch_id()
         batch_dir = self.processing_dir / batch_id
@@ -132,11 +110,9 @@ class FileBasedDispatcher:
         (batch_dir / "logs").mkdir(exist_ok=True)
 
         identifiers = []
-        total_pages = 0
 
         # Move PDFs into batch directory
-        for pdf_info in pdfs:
-            src = pdf_info['path']
+        for src in pdfs:
             dst = batch_dir / src.name
 
             # Resolve symlink and copy actual file
@@ -144,22 +120,20 @@ class FileBasedDispatcher:
                 actual_file = src.resolve()
                 import shutil
                 shutil.copy2(actual_file, dst)
+                # Remove symlink from pending
+                src.unlink()
             else:
                 src.rename(dst)
 
-            # Remove symlink from pending
-            if src.is_symlink():
-                src.unlink()
-
-            identifiers.append(pdf_info['identifier'])
-            total_pages += pdf_info['pages']
+            # Get identifier from filename
+            identifier = src.stem
+            identifiers.append(identifier)
 
         # Save batch metadata
         batch_meta = {
             "batch_id": batch_id,
             "created_at": datetime.utcnow().isoformat() + 'Z',
             "total_pdfs": len(pdfs),
-            "total_pages": total_pages,
             "identifiers": identifiers,
             "status": "created"
         }
@@ -199,34 +173,21 @@ class FileBasedDispatcher:
 
         raise RuntimeError("Could not parse SLURM job ID from output")
 
-    def _bundle_and_submit(self, pdfs: List[Dict]):
+    def _bundle_and_submit(self, pdfs: List[Path]):
         """Bundle PDFs into batches and submit to OCR."""
         if not pdfs:
             return
 
-        current_batch = []
-        current_pages = 0
+        # Submit in chunks of pdfs_per_chunk
+        for i in range(0, len(pdfs), self.pdfs_per_chunk):
+            batch_pdfs = pdfs[i:i + self.pdfs_per_chunk]
+            self._submit_batch(batch_pdfs)
 
-        for pdf_info in pdfs:
-            current_batch.append(pdf_info)
-            current_pages += pdf_info['pages']
-
-            # Submit when we have enough pages
-            if current_pages >= self.pages_per_chunk:
-                self._submit_batch(current_batch, current_pages)
-                current_batch = []
-                current_pages = 0
-
-        # Submit remaining PDFs if any
-        if current_batch:
-            self._submit_batch(current_batch, current_pages)
-
-    def _submit_batch(self, batch_pdfs: List[Dict], total_pages: int):
+    def _submit_batch(self, batch_pdfs: List[Path]):
         """Submit a single batch to OCR."""
         print()
         print(f"📦 Creating batch")
         print(f"   PDFs: {len(batch_pdfs)}")
-        print(f"   Pages: {total_pages}")
 
         try:
             # Create batch directory and metadata
@@ -259,11 +220,11 @@ class FileBasedDispatcher:
     def run(self):
         """Run OCR dispatcher in continuous loop."""
         print("=" * 70)
-        print("File-Based OCR Dispatcher")
+        print("File-Based OCR Dispatcher (Simplified)")
         print("=" * 70)
         print(f"Pending directory: {self.pending_dir}")
         print(f"Processing directory: {self.processing_dir}")
-        print(f"Pages per chunk: {self.pages_per_chunk}")
+        print(f"PDFs per batch: {self.pdfs_per_chunk}")
         print(f"Check interval: {self.check_interval}s")
         print("=" * 70)
         print()
@@ -274,14 +235,13 @@ class FileBasedDispatcher:
                 pdfs = self._scan_pending_pdfs()
 
                 if pdfs:
-                    total_pages = sum(p['pages'] for p in pdfs)
-                    print(f"🔍 Found {len(pdfs)} PDFs ({total_pages} pages) in queue")
+                    print(f"🔍 Found {len(pdfs)} PDFs in queue")
 
-                    # Bundle and submit if we have enough pages
-                    if total_pages >= self.pages_per_chunk:
+                    # Bundle and submit if we have enough PDFs
+                    if len(pdfs) >= self.pdfs_per_chunk:
                         self._bundle_and_submit(pdfs)
                     else:
-                        print(f"   Waiting for more pages (need {self.pages_per_chunk - total_pages} more)")
+                        print(f"   Waiting for more PDFs (need {self.pdfs_per_chunk - len(pdfs)} more)")
                 else:
                     print("🔍 No new PDFs in queue")
 
@@ -322,10 +282,10 @@ def main():
         help="Path to olmOCR submission script"
     )
     parser.add_argument(
-        "--pages-per-chunk",
+        "--pdfs-per-chunk",
         type=int,
-        default=1500,
-        help="Minimum pages per OCR chunk (default: 1500)"
+        default=200,
+        help="Number of PDFs per OCR batch (default: 200)"
     )
     parser.add_argument(
         "--check-interval",
@@ -339,7 +299,7 @@ def main():
     dispatcher = FileBasedDispatcher(
         base_dir=args.base_dir,
         olmocr_submit_script=args.olmocr_script,
-        pages_per_chunk=args.pages_per_chunk,
+        pdfs_per_chunk=args.pdfs_per_chunk,
         check_interval=args.check_interval
     )
 
