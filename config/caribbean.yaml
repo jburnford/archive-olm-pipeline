@@ -19,8 +19,8 @@ batching:
 
 # Download phase settings
 download:
-  # CSV file with search results - will be automatically converted to JSON
-  identifiers_file: /home/jic823/archive-olm-pipeline/caribbean_search_results_main.csv
+  # JSON file with identifiers (converted from caribbean_search_results_main.csv)
+  identifiers_file: /home/jic823/projects/def-jic823/archive-olm-pipeline/caribbean_identifiers.json
   delay: 0.05
   download_all_pdfs: false  # Only download the main PDF
   subcollection: caribbean_collection

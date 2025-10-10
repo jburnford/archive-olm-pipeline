@@ -13,7 +13,7 @@
 set -e
 
 # Load configuration
-REPO_DIR="${SLURM_SUBMIT_DIR:-/project/6080182/archive-olm-pipeline}"
+REPO_DIR="${SLURM_SUBMIT_DIR:-/home/jic823/projects/def-jic823/archive-olm-pipeline}"
 
 echo "========================================="
 echo "Streaming Archive-OLM Pipeline"
