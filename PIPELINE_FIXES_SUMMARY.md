@@ -37,15 +37,38 @@
 - Modified downloader to create symlinks even for already-downloaded PDFs
 - Created `backfill_symlinks.sh` script for bulk symlink creation
 
-#### 4. Markdown Output Not Generated ⏳ TO DO
+#### 4. Cleanup Worker Identifier Extraction ✅ FIXED
+**Issue**: Cleanup worker aggregated all 154 JSONL files into single "unknown.ocr.jsonl" because it couldn't extract Archive.org identifiers from OLMoCR metadata.
+
+**Root Cause**: Worker was looking for top-level `identifier` field, but OLMoCR stores the filename in nested `metadata.Source-File` (or `source_file`, `source`).
+
+**Fix Applied**:
+- Updated `_split_jsonl()` to use same logic as existing `orchestration/split_jsonl_to_json.py`
+- Now checks multiple metadata fields: `Source-File`, `source_file`, `source`
+- Extracts filename from path and removes `.pdf` extension to get identifier
+
+**Current Situation**:
+- Cleanup worker already ran on batch_0001 (before this fix)
+- Created `unknown.ocr.jsonl` with all 154 JSONL files aggregated
+- Deleted all 2,053 PDFs (freed ~80GB disk space)
+- Marked batch as completed
+
+**Recovery Plan**:
+Since the original JSONL files still exist in `batch_0001/results/results/`, use the existing split script:
+```bash
+python3 orchestration/split_jsonl_to_json.py \
+  /home/jic823/projects/def-jic823/caribbean_pipeline/03_ocr_processing/batch_0001
+```
+This will create properly split JSON files in `batch_0001/results/json/` that can be moved to `04_ocr_completed/`.
+
+#### 5. Markdown Output Not Generated ✅ FIXED
 **Issue**: OLMoCR needs flag to generate markdown files alongside JSONL.
 
-**Research Needed**:
-- Determine correct OLMoCR flag for markdown generation
-- Add flag to environment variables in `smart_process_pdf_chunks.slurm`
-- Test that markdown files are created
+**Fix Applied**:
+- Added `--markdown` flag to `OLMOCR_FLAGS` in `smart_process_pdf_chunks.slurm`
+- Pushed to git repository for consistency
 
-#### 5. Batch Metadata Corruption ⚠️ ISSUE
+#### 6. Batch Metadata Corruption ⚠️ ISSUE
 **Issue**: batch_0001 metadata shows only 6 PDFs but directory contains 2,053 PDFs.
 
 **Cause**: Dispatcher kept calling `_create_batch()` which overwrites metadata instead of checking for existing batch.
@@ -93,14 +116,11 @@ Once fixes are working:
 ## Files Modified
 
 ### Fixed
-- `streaming/file_based_cleanup.py` - Recursive JSONL search, multiple file processing
+- `streaming/file_based_cleanup.py` - Recursive JSONL search, identifier extraction from metadata
 - `streaming/file_based_downloader.py` - Create symlinks for existing PDFs
 - `streaming/file_based_dispatcher.py` - Debug output logging
+- `streaming/smart_process_pdf_chunks.slurm` - Added `--markdown` flag for OLMoCR
 - `backfill_symlinks.sh` - Bulk symlink creation script
-
-### To Modify
-- `streaming/smart_process_pdf_chunks.slurm` - Add markdown flag to OLMOCR_FLAGS
-- `streaming/file_based_cleanup.py` - Handle markdown files alongside JSONL
 
 ## Testing Checklist
 
@@ -122,8 +142,16 @@ Once fixes are working:
 
 ## Next Immediate Steps
 
-1. ✅ Commit cleanup worker fixes
-2. Test cleanup worker on batch_0001
-3. Research OLMoCR markdown flag
-4. Add markdown flag to SLURM script
-5. Test end-to-end pipeline with small batch
+1. ✅ Commit cleanup worker identifier extraction fix
+2. ✅ Add markdown flag to OLMoCR SLURM script
+3. ⏳ Pull latest changes on Nibi cluster
+4. ⏳ Run split script on batch_0001 to properly extract identifiers:
+   ```bash
+   cd /home/jic823/projects/def-jic823/cluster
+   python3 orchestration/split_jsonl_to_json.py \
+     /home/jic823/projects/def-jic823/caribbean_pipeline/03_ocr_processing/batch_0001
+   ```
+5. ⏳ Move split JSON files from `batch_0001/results/json/` to `04_ocr_completed/`
+6. ⏳ Backfill symlinks for all downloaded PDFs
+7. ⏳ Test dispatcher submission (or submit new batch manually)
+8. ⏳ Verify cleanup worker works correctly on new batches
