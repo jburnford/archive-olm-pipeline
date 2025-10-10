@@ -15,6 +15,7 @@ import json
 import subprocess
 from datetime import datetime
 from pathlib import Path
+import shutil
 from typing import Dict, List
 
 import yaml
@@ -56,6 +57,23 @@ def submit_batch(olmocr_script: Path, batch_dir: Path) -> str:
     if result.returncode != 0:
         raise RuntimeError(f"Submit script failed (code {result.returncode})\n{output}")
     return parse_job_id(output)
+
+
+def reset_batch_state(batch_dir: Path):
+    """Clear flags that might make OLMoCR think PDFs are already processed."""
+    proc_log = batch_dir / "processed_files.log"
+    if proc_log.exists():
+        try:
+            proc_log.unlink()
+        except Exception:
+            pass
+    # Clear done flags and worker locks if present
+    for sub in [batch_dir / "results" / "done_flags", batch_dir / "results" / "worker_locks"]:
+        if sub.exists() and sub.is_dir():
+            try:
+                shutil.rmtree(sub)
+            except Exception:
+                pass
 
 
 def get_slurm_state(job_id: str) -> str:
@@ -169,7 +187,16 @@ def main():
 
         print(f"  → Submitting {batch_dir.name} with {len(pdfs)} PDFs")
         try:
-            job_id = submit_batch(olmocr_script, batch_dir)
+            try:
+                job_id = submit_batch(olmocr_script, batch_dir)
+            except RuntimeError as e:
+                msg = str(e)
+                if "No new PDFs to process" in msg:
+                    print(f"    ↻ Resetting state for {batch_dir.name} and retrying")
+                    reset_batch_state(batch_dir)
+                    job_id = submit_batch(olmocr_script, batch_dir)
+                else:
+                    raise
             print(f"    ✓ Submitted SLURM job {job_id}")
 
             # Update batch meta
