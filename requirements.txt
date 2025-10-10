@@ -3,6 +3,7 @@
 # Core dependencies
 pyyaml>=6.0
 requests>=2.31.0
+PyPDF2>=3.0.0
 
 # Note: The actual download and OCR components have their own dependencies
 # This file only lists dependencies for the orchestration layer itself
