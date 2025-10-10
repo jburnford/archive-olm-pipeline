@@ -116,7 +116,9 @@ class StreamOrchestrator:
         olmocr_script = olmocr_repo / "smart_submit_pdf_jobs.sh"
 
         ocr_cfg = self.config.get("ocr", {})
-        pages_per_chunk = ocr_cfg.get("max_pages_per_chunk", 1000)
+        pdfs_per_chunk = ocr_cfg.get("max_pdfs_per_chunk")
+        if pdfs_per_chunk is None:
+            pdfs_per_chunk = ocr_cfg.get("max_pages_per_chunk", 200)
 
         cmd = [
             "python3",
@@ -125,7 +127,7 @@ class StreamOrchestrator:
             "--download-queue", str(download_queue),
             "--ocr-processing", str(ocr_processing),
             "--olmocr-script", str(olmocr_script),
-            "--pages-per-chunk", str(pages_per_chunk),
+            "--pdfs-per-chunk", str(pdfs_per_chunk),
             "--check-interval", "60"
         ]
 
