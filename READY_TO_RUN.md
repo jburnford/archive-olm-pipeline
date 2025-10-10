@@ -33,14 +33,16 @@ tail -f slurm-XXXXXX.out
 
 ## What Changed
 
-### ❌ Old System (SQLite)
+### ❌ Old System (SQLite + Page Counting)
 - 3.5GB database causing corruption
 - Copying database on every job = failure risk
 - NFS + SQLite = locking issues
-- Database moved back and forth
+- Page counting with PyPDF2 = complex + fragile
 
-### ✅ New System (File-Based)
+### ✅ New System (File-Based + Simplified Trigger)
 - **No database** - everything tracked in JSON files
+- **Simplified trigger** - batch every 200 PDFs (not 1500 pages)
+- No PyPDF2 dependency in dispatcher
 - State = directory location
 - Atomic file operations (no corruption possible)
 - Easy to inspect: `ls`, `cat`, `jq`
@@ -62,10 +64,12 @@ caribbean_pipeline/
 ## Key Benefits
 
 1. **No corruption risk** - atomic file operations
-2. **Scales to millions** - no database size limits
-3. **Easy debugging** - just look at directories
-4. **Fully resumable** - can restart anytime
-5. **Works on NFS** - no database issues
+2. **Simple trigger** - just count PDFs, no page counting
+3. **Scales to millions** - no database size limits
+4. **Easy debugging** - just look at directories
+5. **Fully resumable** - can restart anytime
+6. **Works on NFS** - no database issues
+7. **Fewer dependencies** - no PyPDF2 in dispatcher
 
 ## Monitoring Commands
 
