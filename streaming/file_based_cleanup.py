@@ -69,8 +69,8 @@ class FileBasedCleanup:
         if not results_dir.exists():
             return False
 
-        # Check for combined JSONL file (OLMoCR output)
-        jsonl_files = list(results_dir.glob("*.jsonl"))
+        # Check for JSONL files (OLMoCR creates nested results/results/)
+        jsonl_files = list(results_dir.glob("**/*.jsonl"))
         return len(jsonl_files) > 0
 
     def _get_batch_job_status(self, job_id: str) -> str:
@@ -108,29 +108,31 @@ class FileBasedCleanup:
     def _split_jsonl(self, batch_dir: Path, metadata: Dict):
         """Split batch JSONL into individual identifier files."""
         results_dir = batch_dir / "results"
-        jsonl_files = list(results_dir.glob("*.jsonl"))
+
+        # OLMoCR creates results in nested results/results/ directory
+        jsonl_files = list(results_dir.glob("**/*.jsonl"))
 
         if not jsonl_files:
             print(f"  ⚠ No JSONL files found in {results_dir}")
             return
 
-        jsonl_file = jsonl_files[0]  # Should be only one
-        print(f"  📄 Splitting JSONL: {jsonl_file.name}")
+        print(f"  📄 Processing {len(jsonl_files)} JSONL files")
 
-        # Read JSONL and split by identifier
+        # Read all JSONL files and aggregate by identifier
         identifier_data = {}
 
         try:
-            with open(jsonl_file, 'r') as f:
-                for line in f:
-                    if line.strip():
-                        data = json.loads(line)
-                        identifier = data.get('identifier', 'unknown')
+            for jsonl_file in jsonl_files:
+                with open(jsonl_file, 'r') as f:
+                    for line in f:
+                        if line.strip():
+                            data = json.loads(line)
+                            identifier = data.get('identifier', 'unknown')
 
-                        if identifier not in identifier_data:
-                            identifier_data[identifier] = []
+                            if identifier not in identifier_data:
+                                identifier_data[identifier] = []
 
-                        identifier_data[identifier].append(data)
+                            identifier_data[identifier].append(data)
 
             # Write individual files to 04_ocr_completed/
             for identifier, pages in identifier_data.items():
