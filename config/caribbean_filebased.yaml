@@ -1,0 +1,40 @@
+# Caribbean Collection - File-Based Pipeline Configuration
+# No SQLite database - all tracking via JSON files in directory structure
+
+# Paths to existing component repositories
+components:
+  olmocr_repo: /home/jic823/projects/def-jic823/cluster/olmocr
+
+# Base directory for file-based pipeline
+# Will contain: 01_downloaded, 02_ocr_pending, 03_ocr_processing, etc.
+directories:
+  base_dir: /home/jic823/projects/def-jic823/caribbean_pipeline
+
+# Download phase settings
+download:
+  # JSON file with identifiers
+  identifiers_file: /home/jic823/projects/def-jic823/archive-olm-pipeline/caribbean_identifiers.json
+  delay: 0.05
+  collection: caribbean_collection
+
+# OCR phase settings
+ocr:
+  max_pages_per_chunk: 1500
+  check_interval: 60  # Seconds between dispatcher checks
+
+# Cleanup settings
+cleanup:
+  check_interval: 60  # Seconds between cleanup checks
+  auto_delete_pdfs: true  # Delete PDFs after OCR to save space
+
+# SLURM settings
+slurm:
+  email: jic823@usask.ca
+  account: def-jic823
+  time_limit: "144:00:00"  # 6 days
+  memory: "16G"
+  cpus: 4
+
+# Logging
+logging:
+  level: INFO
