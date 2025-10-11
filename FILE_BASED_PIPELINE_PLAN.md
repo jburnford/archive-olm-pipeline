@@ -7,6 +7,15 @@
 - Ensure outputs are consolidated, linked with original metadata, and original PDFs are deleted to free space.
 - Add basic monitoring to estimate throughput and runtime expectations for future runs.
 
+## Design Principles (updated)
+
+- Use proven components first: keep the working splitter, OLMoCR worker, and finalizer.
+- Prefer regular files over symlinks; if links are required, use hard links only on the same filesystem.
+- Make every step idempotent and crash-safe; re-running never corrupts state.
+- Keep state human-readable and append-only; compact periodically.
+- Shard directories to avoid millions of entries per folder.
+- Apply backpressure at multiple points (downloader, dispatcher) to protect disk and queue.
+
 ## Current State (as of now)
 
 - JSONL splitting: Fixed. `orchestration/split_jsonl_to_json.py` now searches recursively and extracts nested records by `metadata.Source-File` (and variants).
@@ -62,6 +71,36 @@ Two options to keep submission stable going forward:
 
 We can do Option A now for speed, and later contribute a PR upstream for Option B.
 
+### Remove symlinks from critical path
+
+- Downloader: write real files into `01_downloaded` only.
+- Dispatcher: when creating a batch, move/copy real files into the batch directory (no symlinks). If disk is tight and same filesystem, hard link then unlink after submit completes.
+- Submitter: continue using `streaming/direct_submit_batches.py` which handles files consistently and writes chunk lists explicitly.
+
+### Shard directories for scale
+
+- Use 2-level shard by first 2 hex chars of a stable hash (e.g., SHA1 of identifier):
+  - `01_downloaded/ab/<file>.pdf`
+  - `05_processed/ab/<identifier>/...`
+- Add a small helper to compute shard and apply in downloader/finalizer.
+- Keep batch directories unsharded (transient), but ensure they empty out quickly via cleanup/finalize.
+
+### Append-only manifests
+
+- Keep an append-only `batches.ndjson` and `metrics.ndjson` for writes; compact periodically into JSON summaries for dashboards.
+- Write one-line events (submitted, completed, failed) with timestamps; avoid rewriting large JSON blobs.
+
+### Backpressure
+
+- Downloader pauses when disk > 90% (already included) and when `03_ocr_processing` pending chunks > threshold (e.g., > 3,000 PDFs or > 2× daily throughput).
+- Dispatcher refuses to create new batches when a high-water mark is reached.
+- Finalizer frees space eagerly; run frequently.
+
+### Idempotency and safety
+
+- Finalizer deletes PDFs only after writing consolidated metadata and OCR JSON to `05_processed` and fsyncing files.
+- Splitter and cleanup worker can be rerun safely; they append/overwrite exactly the same outputs deterministically.
+- Use temp files + atomic rename for all writes.
 ## Monitoring & Runtime Estimation
 
 Goal: estimate processing throughput (pages/hour) and walltime per chunk to plan future capacity.
@@ -90,6 +129,12 @@ PY
 - Compare against expected per-page estimate:
   - `walltime ≈ 300s + pages*6s + 20% buffer` (already encoded in direct submit tool).
 - Track how many chunks complete per hour to estimate total time for a collection.
+
+### Minimal metrics we will capture
+
+- Per chunk on submit: `batch_id, chunk_index, pages, walltime_estimate, job_id, submitted_at`.
+- On completion (via sacct or log scraper): `job_id, state, elapsed`.
+- Persist to `_manifests/metrics.ndjson` and summarize daily into `_manifests/metrics_summary.json`.
 
 ## Error Handling / Recovery
 
@@ -130,3 +175,43 @@ PY
 - Contribute a PR to OLMoCR submitter to follow symlinks (fixing the `find` behavior) to align with our file layout.
 - Optional: add a throttle to downloader to avoid overwhelming storage while backlog processes.
 
+---
+
+## Cluster Best Practices (No DB / Weak DB options)
+
+Pragmatic guidelines for shared clusters (NFS/GPFS/Lustre) where traditional databases either fail or cause contention.
+
+- Prefer local scratch for job-local state:
+  - Use `$SLURM_TMPDIR` for per-task scratch (fast, node-local). Stage in PDFs/chunk lists when advantageous; stage back results atomically.
+- Avoid SQLite over NFS for concurrent writes:
+  - If absolutely necessary, use a per-job local copy (env `PIPELINE_DB_PATH=$SLURM_TMPDIR/db.sqlite`), then append-only ship logs to a central store.
+- Embrace file-based, append-only logs:
+  - Use NDJSON for manifests; avoid lock-heavy rewrites. Compact asynchronously.
+- Minimize metadata ops and small-file storms:
+  - Shard directories; batch filesystem writes; use atomic rename; avoid tight `stat` loops.
+- Keep jobs idempotent:
+  - Every task can be retried safely; outputs are versioned or atomically replaced.
+- Use SLURM arrays and backpressure:
+  - Submit arrays for chunks; cap concurrency by partition limits; pause submission when queue depth is high.
+- Monitor disk usage and inode counts:
+  - Set thresholds; enforce pauses in downloader/dispatcher.
+- Prefer regular files/hard links over symlinks:
+  - Many tools’ `find -type f` exclude symlinks; hard links are safe on same filesystem and count as files.
+- Consider compression where appropriate:
+  - Compress large intermediate JSONLs after split; keep a small index to rehydrate when needed.
+- Capture metrics cheaply:
+  - Sacct scraping + NDJSON is robust and low overhead.
+
+## Decisions Needed
+
+- Links policy: move real files into batches (preferred) vs. create hard links into `02_ocr_pending` (only if same FS and storage pressure is high).
+- Sharding parameters: 2 hex chars shard (256 dirs) vs 3 (4096). Start with 2 and revisit if directories get hot.
+- Backpressure thresholds: disk % (90% now), queue depth, max PDFs waiting.
+
+## Implementation Checklist (Tomorrow)
+
+- Integrate direct submit into `file_based_orchestrator.py` and disable smart submit.
+- Remove symlink creation in downloader; dispatcher moves/copies real files into batches.
+- Add shard helper and apply to downloader/finalizer paths.
+- Add metrics NDJSON writer; ship a one-liner summary script.
+- Keep cleanup worker and finalizer running regularly to free space.
