@@ -208,7 +208,7 @@ def main():
         for idx, (basenames, pages) in enumerate(chunks, start=1):
             chunk_file = batch_dir / 'chunks' / f'chunk_{idx}.txt'
             chunk_file.write_text('\n'.join(basenames) + '\n', encoding='utf-8')
-            wall = format_walltime(pages, args.time_per_page_seconds, args.startup_secon ds:=args.startup_seconds)
+            wall = format_walltime(pages, args.time_per_page_seconds, args.startup_seconds)
             try:
                 job_id = submit_chunk(slurm_script, batch_dir, idx, wall)
                 print(f'    ✓ Submitted chunk {idx} ({pages} pages) as job {job_id}')
@@ -234,4 +234,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
