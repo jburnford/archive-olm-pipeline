@@ -62,9 +62,31 @@ def consolidate_one(json_file: Path, meta_index: Dict[str, Dict], processed_dir:
     dest_json = dest_dir / f"{json_file.stem}.ocr.json"
     shutil.copy2(json_file, dest_json)
 
+    # Also copy corresponding markdown, if present next to PDFs in batch dir
+    # json_file path is .../batch_X/results/json/<pdf_stem>.json
+    # batch_dir is two parents up from results/json
+    try:
+        batch_dir = json_file.parent.parent.parent
+        pdf_stem = json_file.stem
+        md_candidates = [
+            batch_dir / f"{pdf_stem}.md",
+            batch_dir / "results" / f"{pdf_stem}.md",
+            batch_dir / "results" / "results" / f"{pdf_stem}.md",
+        ]
+        dest_md = None
+        for md in md_candidates:
+            if md.exists():
+                dest_md = dest_dir / f"{pdf_stem}.md"
+                shutil.copy2(md, dest_md)
+                break
+    except Exception:
+        dest_md = None
+
     # Write merged metadata
     merged = dict(meta)
     merged["ocr_json"] = str(dest_json)
+    if dest_md:
+        merged["ocr_markdown"] = str(dest_md)
     merged["ocr_consolidated_at"] = datetime.utcnow().isoformat() + "Z"
     merged["original_filename"] = pdf_filename
     merged["source_pdf"] = meta.get("filepath")
@@ -160,4 +182,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

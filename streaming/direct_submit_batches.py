@@ -92,7 +92,19 @@ def submit_chunk(slurm_script: Path, batch_dir: Path, chunk_idx: int, walltime: 
     logs_dir = batch_dir / 'logs'
     logs_dir.mkdir(parents=True, exist_ok=True)
 
-    env_export = f"ALL,PDF_DIR=\"{batch_dir}\",WORKERS=\"{os.environ.get('WORKERS','')}\",PAGES_PER_GROUP=\"{os.environ.get('PAGES_PER_GROUP','')}\""
+    # Build safe --export list without embedding literal quotes in values
+    exports = [
+        'ALL',
+        f'PDF_DIR={batch_dir}',
+    ]
+    workers = os.environ.get('WORKERS')
+    if workers:
+        exports.append(f'WORKERS={workers}')
+    pages_per_group = os.environ.get('PAGES_PER_GROUP')
+    if pages_per_group:
+        exports.append(f'PAGES_PER_GROUP={pages_per_group}')
+    env_export = ','.join(exports)
+
     cmd = [
         'sbatch',
         '--export', env_export,
@@ -100,6 +112,8 @@ def submit_chunk(slurm_script: Path, batch_dir: Path, chunk_idx: int, walltime: 
         '--output', str(logs_dir / f'slurm-%j_{chunk_idx}.out'),
         '--time', walltime,
         '--array', str(chunk_idx),
+        '--chdir', str(batch_dir),
+        '--parsable',
         str(slurm_script)
     ]
 
@@ -107,7 +121,11 @@ def submit_chunk(slurm_script: Path, batch_dir: Path, chunk_idx: int, walltime: 
     output = (r.stdout or '') + (r.stderr or '')
     if r.returncode != 0:
         raise RuntimeError(f"sbatch failed (code {r.returncode})\n{output}")
-    return parse_job_id(output)
+    job_id = (r.stdout or '').strip()
+    if not job_id:
+        # Fallback to parser if cluster did not honor --parsable
+        return parse_job_id(output)
+    return job_id
 
 
 def update_batch_meta(batch_dir: Path, job_ids: List[str], total_pdfs: int):
