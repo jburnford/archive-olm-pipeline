@@ -215,3 +215,36 @@ Pragmatic guidelines for shared clusters (NFS/GPFS/Lustre) where traditional dat
 - Add shard helper and apply to downloader/finalizer paths.
 - Add metrics NDJSON writer; ship a one-liner summary script.
 - Keep cleanup worker and finalizer running regularly to free space.
+
+## Data Exports and Local Analysis (SQLite-like convenience)
+
+To keep the robustness of a file-based pipeline while preserving the simplicity you had with SQLite, we will produce a few large, easy-to-download artifacts for local work.
+
+- Catalog database (single file): DuckDB with document-level metadata and pointers to OCR content.
+  - Tables:
+    - `documents(identifier, title, collection, file_sizes, shard, created_at, processed_at, paths...)`
+    - `ocr_docs(identifier, pages_count, text_bytes, content_path)`
+    - Optional: `ocr_pages(identifier, page_no, text)` if page-level queries are needed (larger export)
+- Content bundles (few big files per shard):
+  - `export/bundles/<shard>.tar.gz` containing OCR JSON/JSONL for that shard.
+  - `export/checksums.sha256` and `export/manifest.csv.gz` with identifier → content_path mapping.
+- Manifests and metrics:
+  - `_manifests/batches.ndjson`, `_manifests/metrics.ndjson` and a summarized `export/metrics_summary.json`.
+
+Cluster-side export scripts we will add:
+- `tools/export_catalog_duckdb.py`: scan `05_processed/` and write `export/catalog.duckdb` (documents + ocr_docs; optional ocr_pages).
+- `tools/build_content_bundles.py`: pack `05_processed/<identifier>/*.ocr.json` into `export/bundles/<shard>.tar.gz`, write checksums and `export/manifest.csv.gz`.
+- `tools/metrics_summary.py`: read `_manifests/metrics.ndjson` (and/or sacct) and write `export/metrics_summary.json` with throughput and ETA.
+
+Local usage:
+- Download `export/catalog.duckdb` and any shard bundles you need via `rsync`/`scp`.
+- Explore quickly with DuckDB:
+  - `duckdb export/catalog.duckdb`
+  - `SELECT * FROM documents LIMIT 10;`
+  - `SELECT d.identifier, d.title, o.content_path FROM documents d JOIN ocr_docs o USING(identifier) LIMIT 10;`
+- For full text, unzip one or two shard bundles locally, or rely on an `ocr_pages` table if exported.
+
+Scale handling:
+- Shard directories now (`01_downloaded/ab/...`, `05_processed/ab/...`).
+- Keep bundles to ~0.5–5GB each for manageable transfers.
+- Maintain a flat `export/manifest.csv.gz` and the DuckDB catalog so you never need to enumerate millions of small files remotely.
