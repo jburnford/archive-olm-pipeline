@@ -1,0 +1,18 @@
+{
+  "components": [
+    {
+      "name": "archive-olm-pipeline",
+      "repo_path": "/home/jic823/projects/def-jic823/archive-olm-pipeline",
+      "remote_url": "https://github.com/jburnford/archive-olm-pipeline",
+      "commit": "<this repo – managed via git>",
+      "committed_at": ""
+    },
+    {
+      "name": "olmocr",
+      "repo_path": "/home/jic823/projects/def-jic823/cluster/olmocr",
+      "remote_url": "<fill – e.g., https://github.com/<org>/olmocr>",
+      "commit": "<fill – run: git -C /home/jic823/projects/def-jic823/cluster/olmocr rev-parse HEAD>",
+      "committed_at": ""
+    }
+  ]
+}

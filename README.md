@@ -124,9 +124,17 @@ python3 orchestration/csv_to_identifiers.py input.csv -o output.json
 ## Documentation
 
 - [Installation Guide](INSTALLATION.md) - NIBI cluster setup
-- [Workflow Details](docs/WORKFLOW.md) - How the pipeline works
-- [Usage Examples](docs/EXAMPLES.md) - Common use cases
+- [File-Based Pipeline Overview](FILE_BASED_PIPELINE.md) - Streaming file-based pipeline
+- [Pipeline Plan](FILE_BASED_PIPELINE_PLAN.md) - Current stabilization and scale plan
+- [Components Inventory](docs/COMPONENTS.md) - What we use and where it is
+- [Interfaces](docs/INTERFACES.md) - Contracts for key scripts
+- [Contributing](docs/CONTRIBUTING.md) - Reuse-first guidance
 - [Troubleshooting](docs/TROUBLESHOOTING.md) - Common issues
+
+### Version Pins / Bootstrap
+
+- `_manifests/versions.json` holds pinned external repo commits.
+- `tools/bootstrap_components.sh` clones/updates external repos to pinned SHAs.
 
 ## Requirements
 
