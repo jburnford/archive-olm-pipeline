@@ -11,3 +11,4 @@ PyPDF2>=3.0.0
 # For full system setup, also install dependencies from:
 # - IA_downloader_cluster/requirements.txt (download component)
 # - olmocr uses Apptainer container (no pip install needed)
+duckdb>=1.0.0
