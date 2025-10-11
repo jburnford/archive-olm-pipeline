@@ -26,12 +26,16 @@ class FileBasedDispatcher:
         base_dir: Path,
         olmocr_submit_script: Path,
         pdfs_per_chunk: int = 200,
-        check_interval: int = 60
+        check_interval: int = 60,
+        use_direct_submit: bool = False,
+        config_path: Path | None = None,
     ):
         self.base_dir = base_dir
         self.olmocr_submit_script = olmocr_submit_script
         self.pdfs_per_chunk = pdfs_per_chunk
         self.check_interval = check_interval
+        self.use_direct_submit = use_direct_submit
+        self.config_path = config_path
 
         # Directories
         self.pending_dir = base_dir / "02_ocr_pending"
@@ -151,29 +155,43 @@ class FileBasedDispatcher:
         Returns:
             SLURM job ID
         """
-        cmd = [
-            str(self.olmocr_submit_script),
-            "--pdf-dir",
-            str(batch_dir)
-        ]
-
-        result = subprocess.run(
-            cmd,
-            capture_output=True,
-            text=True,
-            check=True
-        )
-
-        # Parse job ID from output
-        output = result.stdout + result.stderr
-        for line in output.split('\n'):
-            if 'Submitted batch job' in line:
-                job_id = line.split()[-1]
-                return job_id
-
-        # Log output for debugging
-        print(f"   ⚠ Script output:\n{output}")
-        raise RuntimeError("Could not parse SLURM job ID from output")
+        if self.use_direct_submit:
+            cmd = [
+                sys.executable,
+                str(Path(__file__).parent / 'direct_submit_batches.py'),
+                '--config', str(self.config_path),
+                '--batches', batch_dir.name,
+            ]
+            result = subprocess.run(cmd, capture_output=True, text=True)
+            output = (result.stdout or '') + (result.stderr or '')
+            if result.returncode != 0:
+                print(f"   ⚠ direct_submit failed:\n{output}")
+                raise RuntimeError("direct_submit failed")
+            try:
+                meta_path = batch_dir / 'batch.meta.json'
+                if meta_path.exists():
+                    with open(meta_path) as f:
+                        m = json.load(f)
+                        ids = m.get('slurm_job_ids')
+                        if isinstance(ids, list) and ids:
+                            return str(ids[0])
+            except Exception:
+                pass
+            return "unknown"
+        else:
+            cmd = [
+                str(self.olmocr_submit_script),
+                "--pdf-dir",
+                str(batch_dir)
+            ]
+            result = subprocess.run(cmd, capture_output=True, text=True, check=True)
+            output = result.stdout + result.stderr
+            for line in output.split('\n'):
+                if 'Submitted batch job' in line:
+                    job_id = line.split()[-1]
+                    return job_id
+            print(f"   ⚠ Script output:\n{output}")
+            raise RuntimeError("Could not parse SLURM job ID from output")
 
     def _bundle_and_submit(self, pdfs: List[Path]):
         """Bundle PDFs into batches and submit to OCR."""
@@ -203,7 +221,19 @@ class FileBasedDispatcher:
             print(f"   ✓ Submitted: Job {job_id}")
 
             # Update batch metadata with job ID
-            batch_meta['slurm_job_id'] = job_id
+            if self.use_direct_submit:
+                meta_path = batch_dir / 'batch.meta.json'
+                if meta_path.exists():
+                    try:
+                        with open(meta_path) as f:
+                            m = json.load(f)
+                            if 'slurm_job_ids' in m:
+                                batch_meta['slurm_job_ids'] = m['slurm_job_ids']
+                    except Exception:
+                        pass
+                batch_meta['slurm_job_id'] = job_id
+            else:
+                batch_meta['slurm_job_id'] = job_id
             batch_meta['submitted_at'] = datetime.utcnow().isoformat() + 'Z'
             batch_meta['status'] = 'submitted'
 

@@ -27,6 +27,7 @@ class FileBasedOrchestrator:
     """Orchestrate file-based streaming pipeline processes."""
 
     def __init__(self, config_path: str):
+        self.config_path = config_path
         self.config = self._load_config(config_path)
         self._setup_logging()
         self.processes: List[subprocess.Popen] = []
@@ -100,7 +101,9 @@ class FileBasedOrchestrator:
             "--base-dir", str(base_dir),
             "--olmocr-script", str(olmocr_script),
             "--pdfs-per-chunk", str(pdfs_per_batch),
-            "--check-interval", "60"
+            "--check-interval", "60",
+            "--use-direct-submit",
+            "--config", str(Path(self.config_path))
         ]
 
         self.logger.info(f"Launching dispatcher: {' '.join(cmd)}")
@@ -126,7 +129,9 @@ class FileBasedOrchestrator:
             str(self.streaming_dir / "file_based_cleanup.py"),
             "--base-dir", str(base_dir),
             "--split-script", str(split_script),
-            "--check-interval", "60"
+            "--check-interval", "60",
+            "--use-direct-submit",
+            "--config", str(Path(self.config_path))
         ]
 
         self.logger.info(f"Launching cleanup worker: {' '.join(cmd)}")
