@@ -76,6 +76,32 @@ def reset_batch_state(batch_dir: Path):
                 pass
 
 
+def materialize_pdfs(batch_dir: Path) -> int:
+    """Ensure PDFs in batch_dir are regular files (not symlinks).
+
+    Returns number of files materialized.
+    """
+    import tempfile
+    import shutil as _sh
+
+    changed = 0
+    for pdf in batch_dir.glob("*.pdf"):
+        try:
+            if pdf.is_symlink():
+                target = pdf.resolve()
+                if target.exists():
+                    # Replace symlink with real file
+                    with tempfile.NamedTemporaryFile(dir=str(batch_dir), delete=False) as tmp:
+                        tmp_path = Path(tmp.name)
+                    _sh.copy2(target, tmp_path)
+                    pdf.unlink()
+                    tmp_path.rename(pdf)
+                    changed += 1
+        except Exception:
+            continue
+    return changed
+
+
 def get_slurm_state(job_id: str) -> str:
     """Return a coarse job state using sacct/squeue.
 
@@ -179,6 +205,10 @@ def main():
                 print(f"  → Submitting {batch_dir.name}: status=running but no job ID present")
 
         # Ensure there are PDFs to process
+        # First, materialize symlinks if any
+        mat = materialize_pdfs(batch_dir)
+        if mat:
+            print(f"    ✓ Materialized {mat} symlink PDFs into regular files")
         pdfs = list(batch_dir.glob("*.pdf"))
         if not pdfs:
             print(f"  ↷ Skip {batch_dir.name}: no PDFs found")
