@@ -76,13 +76,15 @@ python3 streaming/simple_batch_submitter.py \
   --config config/caribbean_filebased.yaml \
   --dry-run
 
-# Submit test batch of 200 PDFs
+# Submit test batch of 200 PDFs (will be split into ~31 chunks of ≤1500 pages each)
 python3 streaming/simple_batch_submitter.py \
   --config config/caribbean_filebased.yaml \
   --batch-size 200
 
-# Monitor
+# Monitor all chunk jobs
 squeue -u $USER
+
+# Expected: 31 separate jobs, each processing ≤1500 pages
 ```
 
 ### Step 4: Check Where OLMoCR Results Go
@@ -150,7 +152,16 @@ Use this to verify everything works:
 
 ## 🎯 Key Features to Test
 
-### 1. Smart Backpressure
+### 1. Page-based Chunking
+
+Each batch of 200 PDFs is split into chunks of ≤1500 pages:
+
+- **Why**: Smaller jobs queue faster in SLURM and are more stable
+- **How**: Dynamic packing algorithm groups PDFs by page count
+- **Result**: 200 PDFs → ~31 chunks (varies by document size)
+- **Walltime**: Calculated per chunk: 300s startup + 6s/page + 20% buffer
+
+### 2. Smart Backpressure
 
 The batch submitter will report status:
 
@@ -158,7 +169,7 @@ The batch submitter will report status:
 - `APPROACHING_LIMIT (450/500)` - Getting close
 - `HIGH_BACKLOG (550/500)` - Pause downloads (exit code 2)
 
-### 2. PDF Deletion
+### 3. PDF Deletion
 
 After finalization, PDFs should be deleted from `01_downloaded/`:
 
@@ -172,7 +183,7 @@ ls ~/projects/def-jic823/caribbean_pipeline/01_downloaded/*.pdf | wc -l
 # Should decrease by ~200
 ```
 
-### 3. Tracking Updates
+### 4. Tracking Updates
 
 ```bash
 # Check tracking
