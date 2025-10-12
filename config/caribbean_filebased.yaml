@@ -3,7 +3,7 @@
 
 # Paths to existing component repositories
 components:
-  olmocr_repo: /home/jic823/projects/def-jic823/cluster/olmocr
+  olmocr_repo: /home/jic823/projects/def-jic823/archive-olm-pipeline/olmocr
 
 # Base directory for file-based pipeline
 # Will contain: 01_downloaded, 02_ocr_pending, 03_ocr_processing, etc.
