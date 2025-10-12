@@ -24,8 +24,27 @@ echo "========================================="
 CONFIG_FILE="${CONFIG_FILE:-config/caribbean_filebased.yaml}"
 CHECK_INTERVAL="${CHECK_INTERVAL:-60}"
 
-# Load Python environment (if needed)
-# module load python/3.11
+# Load Python and activate virtual environment used by downloader/olmocr tools
+if command -v module >/dev/null 2>&1; then
+  module load python/3.11 || {
+    echo "ERROR: Failed to load Python module" >&2
+    exit 1
+  }
+fi
+
+VENV_DIR="${VENV_DIR:-/home/jic823/projects/def-jic823/InternetArchive/venv}"
+
+if [ ! -d "$VENV_DIR" ]; then
+  echo "ERROR: Virtual environment not found at: $VENV_DIR" >&2
+  exit 1
+fi
+
+echo "Activating virtual environment: $VENV_DIR"
+# shellcheck source=/dev/null
+source "$VENV_DIR/bin/activate" || {
+  echo "ERROR: Failed to activate virtual environment" >&2
+  exit 1
+}
 
 # Change to repo directory
 cd ~/projects/def-jic823/archive-olm-pipeline
