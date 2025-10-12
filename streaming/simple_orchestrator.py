@@ -42,7 +42,7 @@ def run_command(cmd: list, description: str) -> int:
         return 1
 
 
-def download_phase(config_path: Path, batch_size: int = 200) -> int:
+def download_phase(config_path: Path, batch_size: int = 200, backpressure_active: bool = False) -> int:
     """
     Run download phase.
 
@@ -55,10 +55,40 @@ def download_phase(config_path: Path, batch_size: int = 200) -> int:
     print("PHASE: Download")
     print("─" * 70)
 
-    # For now, downloads are managed externally
-    # In future, can integrate downloader here
-    print("⏭  Skipping download (run manually or via separate job)")
-    return 0
+    # Skip downloads if backpressure is active
+    if backpressure_active:
+        print("  ⏸  Backpressure active - pausing downloads")
+        return 2
+
+    # Load config
+    with open(config_path) as f:
+        config = yaml.safe_load(f)
+
+    base_dir = Path(config['directories']['base_dir'])
+    identifiers_file = Path(config['download']['identifiers_file'])
+    delay = config['download'].get('delay', 0.05)
+    collection = config['download'].get('collection', 'unknown')
+
+    # Download a batch worth of PDFs (matching batch_size)
+    cmd = [
+        'python3',
+        str(Path(__file__).parent / 'file_based_downloader.py'),
+        '--identifiers-file', str(identifiers_file),
+        '--max-items', str(batch_size),
+        '--base-dir', str(base_dir),
+        '--delay', str(delay),
+        '--collection', collection,
+        '--start-from', '0'  # Will resume from manifest
+    ]
+
+    exit_code = run_command(cmd, "downloader")
+
+    if exit_code == 0:
+        print("  ✓ Download phase complete")
+    else:
+        print("  ⚠️  Download phase encountered issues")
+
+    return exit_code
 
 
 def batch_submit_phase(config_path: Path, batch_size: int = 200) -> int:
@@ -335,17 +365,20 @@ def main():
 
             print_status(iteration, backpressure_active)
 
-            # Phase 1: Batch Submit (checks backpressure internally)
+            # Phase 1: Download (pauses if backpressure active)
+            download_phase(args.config, batch_size, backpressure_active)
+
+            # Phase 2: Batch Submit (checks backpressure internally)
             batch_exit = batch_submit_phase(args.config, batch_size)
             backpressure_active = (batch_exit == 2)
 
-            # Phase 2: Split (process any completed JSONL)
+            # Phase 3: Split (process any completed JSONL)
             split_phase(base_dir)
 
-            # Phase 3: Finalize (move to 02_processed and delete PDFs)
+            # Phase 4: Finalize (move to 02_processed and delete PDFs)
             finalize_phase(args.config)
 
-            # Phase 4: Export (periodic)
+            # Phase 5: Export (periodic)
             if iteration % args.export_interval == 0:
                 export_phase(args.config)
 
