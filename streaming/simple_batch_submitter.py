@@ -30,6 +30,10 @@ from pathlib import Path
 from typing import List, Set, Tuple
 import yaml
 
+# Import batch state tracker
+sys.path.insert(0, str(Path(__file__).parent))
+from batch_state_tracker import BatchStateTracker
+
 
 class ProcessedPDFTracker:
     """Track which PDFs have been completely processed."""
@@ -82,10 +86,11 @@ def get_metadata_mapping(downloaded_dir: Path) -> dict:
 
 def get_unprocessed_pdfs(
     downloaded_dir: Path,
-    tracker: ProcessedPDFTracker
+    processed_tracker: ProcessedPDFTracker,
+    batch_tracker: BatchStateTracker
 ) -> Tuple[List[Path], int, int]:
     """
-    Get list of unprocessed PDFs.
+    Get list of unprocessed PDFs (not completed AND not already submitted).
 
     Returns:
         (unprocessed_pdfs, total_pdfs, processed_pdfs)
@@ -96,16 +101,27 @@ def get_unprocessed_pdfs(
     # Get metadata mapping
     filename_to_id = get_metadata_mapping(downloaded_dir)
 
+    # Get PDFs already in submitted/processing batches
+    submitted_filenames = batch_tracker.get_submitted_pdfs()
+
     # Filter unprocessed
     unprocessed = []
 
     for pdf in all_pdfs:
         identifier = filename_to_id.get(pdf.name)
 
-        if identifier and not tracker.is_processed(identifier):
+        # Skip if already processed
+        if identifier and processed_tracker.is_processed(identifier):
+            continue
+
+        # Skip if already in a submitted batch
+        if pdf.name in submitted_filenames:
+            continue
+
+        if identifier:
             unprocessed.append(pdf)
 
-    return unprocessed, len(all_pdfs), tracker.count()
+    return unprocessed, len(all_pdfs), processed_tracker.count()
 
 
 def count_pdf_pages(pdf_path: Path) -> int:
@@ -308,12 +324,24 @@ def main():
     print(f"Mode: {'DRY RUN' if args.dry_run else 'LIVE'}")
     print("-" * 70)
 
-    # Load tracker
-    tracker_path = base_dir / "_manifests" / "processed_pdfs.json"
-    tracker = ProcessedPDFTracker(tracker_path)
+    # Load trackers
+    processed_tracker_path = base_dir / "_manifests" / "processed_pdfs.json"
+    processed_tracker = ProcessedPDFTracker(processed_tracker_path)
 
-    # Get unprocessed PDFs
-    unprocessed, total_pdfs, processed_count = get_unprocessed_pdfs(pdf_dir, tracker)
+    batch_tracker_path = base_dir / "_manifests" / "batch_state.json"
+    batch_tracker = BatchStateTracker(batch_tracker_path)
+
+    # Update batch states from SLURM
+    print("Checking batch states...")
+    changed = batch_tracker.update_batch_states()
+    if changed:
+        for batch_id, new_status in changed.items():
+            print(f"  {batch_id}: {new_status}")
+
+    # Get unprocessed PDFs (excluding submitted/processing)
+    unprocessed, total_pdfs, processed_count = get_unprocessed_pdfs(
+        pdf_dir, processed_tracker, batch_tracker
+    )
 
     print(f"Total PDFs: {total_pdfs}")
     print(f"Processed: {processed_count}")
@@ -375,6 +403,14 @@ def main():
             chunks,
             olmocr_script,
             batch_number
+        )
+
+        # Register batch in state tracker
+        batch_tracker.register_batch(
+            batch_number=batch_number,
+            job_id=job_id,
+            pdf_filenames=[pdf.name for pdf in batch_pdfs],
+            chunk_count=len(chunks)
         )
 
         print()
