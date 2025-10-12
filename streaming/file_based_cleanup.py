@@ -106,17 +106,27 @@ class FileBasedCleanup:
             return 'UNKNOWN'
 
     def _split_jsonl(self, batch_dir: Path, metadata: Dict):
-        """Split batch JSONL into individual identifier files."""
-        results_dir = batch_dir / "results"
+        """Split batch JSONL into per-PDF JSON using the shared splitter.
 
-        # OLMoCR creates results in nested results/results/ directory
-        jsonl_files = list(results_dir.glob("**/*.jsonl"))
-
-        if not jsonl_files:
-            print(f"  ⚠ No JSONL files found in {results_dir}")
-            return
-
-        print(f"  📄 Processing {len(jsonl_files)} JSONL files")
+        This mirrors the behavior of orchestration/split_jsonl_to_json.py and
+        avoids maintaining a second JSON parser here. Results are written to
+        <batch>/results/json/<pdf>.json for consumption by the finalizer.
+        """
+        try:
+            split_script = Path(__file__).parent.parent / "orchestration" / "split_jsonl_to_json.py"
+            if not split_script.exists():
+                print(f"  ✗ Split script not found: {split_script}")
+                self.stats['errors'] += 1
+                return
+            print(f"  📄 Splitting JSONL via: {split_script.name}")
+            subprocess.run([
+                sys.executable,
+                str(split_script),
+                str(batch_dir)
+            ], check=False)
+        except Exception as e:
+            print(f"  ✗ Error invoking split script: {e}")
+            self.stats['errors'] += 1
 
         # Helpers for nested JSON extraction
         PDF_SOURCE_KEYS = (
@@ -172,7 +182,7 @@ class FileBasedCleanup:
                 for v in obj:
                     yield from _iter_records(v, inherited_source)
 
-        # Read all JSONL files and aggregate by identifier
+        # (Split now handled by external tool) # Read all JSONL files and aggregate by identifier
         identifier_data: Dict[str, List[Dict[str, Any]]] = {}
 
         try:
@@ -249,10 +259,7 @@ class FileBasedCleanup:
         print(f"\n🔧 Processing batch: {batch_id}")
 
         # Load metadata
-        metadata = self._load_batch_metadata(batch_dir)
-        if not metadata:
-            print(f"  ⚠ No metadata found for {batch_id}")
-            return
+        metadata = self._load_batch_metadata(batch_dir) or {"batch_id": batch_id}
 
         # Check job status if we have a job ID
         job_id = metadata.get('slurm_job_id')
@@ -270,21 +277,31 @@ class FileBasedCleanup:
                 self._save_batch_metadata(batch_dir, metadata)
                 return
 
-        # Check if results are available
+        # If any JSONL exists, proceed regardless of SLURM status
         if not self._is_batch_complete(batch_dir):
             print(f"  ⏳ Results not ready yet")
             return
 
-        # Split JSONL into individual files
+        # Split JSONL into per-PDF JSON
         self._split_jsonl(batch_dir, metadata)
+
+        # After splitting, run the finalizer once to consolidate and clean up
+        try:
+            subprocess.run([
+                sys.executable,
+                str(Path(__file__).parent / 'file_based_finalize.py'),
+                '--base-dir', str(self.base_dir)
+            ], check=False)
+        except Exception as e:
+            print(f"  ⚠ Finalizer invocation failed: {e}")
+
+        # Archive batch (remove PDFs inside the batch dir)
+        self._archive_batch(batch_dir)
 
         # Update batch metadata
         metadata['status'] = 'completed'
         metadata['completed_at'] = datetime.utcnow().isoformat() + 'Z'
         self._save_batch_metadata(batch_dir, metadata)
-
-        # Archive batch
-        self._archive_batch(batch_dir)
 
         self.stats['batches_processed'] += 1
         print(f"  ✓ Batch {batch_id} completed")
