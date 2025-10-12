@@ -185,42 +185,49 @@ def pack_pdfs_into_chunks(
     return chunks
 
 
-def submit_chunk_to_olmocr(
+def submit_batch_to_olmocr(
     pdf_dir: Path,
-    chunk_pdfs: List[Path],
-    total_pages: int,
+    chunks: List[Tuple[List[Path], int]],
     olmocr_script: Path,
-    batch_number: int,
-    chunk_number: int
+    batch_number: int
 ) -> str:
     """
-    Submit a single chunk to OLMoCR via SLURM.
+    Submit all chunks as a SLURM job array.
 
     Returns job ID.
     """
-    # Estimate walltime based on actual page count
-    walltime = estimate_walltime(total_pages)
+    # Create batch-specific directories
+    batch_dir = pdf_dir / f"batch_{batch_number:04d}"
+    batch_dir.mkdir(parents=True, exist_ok=True)
 
-    # Create results directory
-    results_dir = pdf_dir / "results"
+    results_dir = batch_dir / "results"
     results_dir.mkdir(parents=True, exist_ok=True)
 
-    # Create chunks directory
-    chunks_dir = pdf_dir / "chunks"
+    chunks_dir = batch_dir / "chunks"
     chunks_dir.mkdir(parents=True, exist_ok=True)
 
-    # Write chunk file
-    chunk_file = chunks_dir / f"batch_{batch_number:04d}_chunk_{chunk_number:03d}.txt"
-    chunk_file.write_text('\n'.join(pdf.name for pdf in chunk_pdfs) + '\n')
+    # Write chunk files named chunk_1.txt, chunk_2.txt, etc. (OLMoCR expects this)
+    for i, (chunk_pdfs, _) in enumerate(chunks, 1):
+        chunk_file = chunks_dir / f"chunk_{i}.txt"
+        chunk_file.write_text('\n'.join(pdf.name for pdf in chunk_pdfs) + '\n')
 
-    # Submit to SLURM
+    # Find max walltime needed
+    max_pages = max(pages for _, pages in chunks)
+    walltime_seconds = int((300 + max_pages * 6) * 1.2)  # 300s startup + 6s/page + 20% buffer
+    walltime_minutes = (walltime_seconds + 59) // 60  # Round up to minutes
+
+    # Submit as job array
     cmd = [
         'sbatch',
-        '--export', f'ALL,PDF_DIR={pdf_dir}',
-        '--job-name', f'olmocr_b{batch_number:04d}_c{chunk_number:03d}',
-        '--output', str(pdf_dir / f'slurm-%j_batch_{batch_number:04d}_chunk_{chunk_number:03d}.out'),
-        '--time', walltime,
-        '--chdir', str(pdf_dir),
+        '--account', 'def-jic823_gpu',
+        '--gres', 'gpu:h100:1',
+        '--cpus-per-task', '8',
+        '--mem', '64G',
+        '--time', str(walltime_minutes),  # Minutes format
+        '--array', f'1-{len(chunks)}',
+        '--export', f'ALL,PDF_DIR={batch_dir}',
+        '--job-name', f'olmocr_batch_{batch_number:04d}',
+        '--output', str(batch_dir / 'slurm-%A_%a.out'),
         '--parsable',
         str(olmocr_script)
     ]
@@ -347,9 +354,9 @@ def main():
         return 0
 
     # Determine batch number
-    existing_batches = sorted(pdf_dir.glob("chunks/batch_*_chunk_*.txt"))
+    existing_batches = sorted(pdf_dir.glob("batch_*"))
     if existing_batches:
-        # Extract highest batch number
+        # Extract highest batch number from directory name
         last_batch = existing_batches[-1].name
         batch_num_str = last_batch.split('_')[1]
         batch_number = int(batch_num_str) + 1
@@ -359,25 +366,16 @@ def main():
     print(f"\nBatch number: {batch_number:04d}")
     print("-" * 70)
 
-    # Submit each chunk
-    job_ids = []
+    # Submit all chunks as a single job array
     try:
-        for chunk_num, (chunk_pdfs, total_pages) in enumerate(chunks, 1):
-            print(f"\nSubmitting chunk {chunk_num}/{len(chunks)}...")
-            print(f"  PDFs: {len(chunk_pdfs)}")
-            print(f"  Pages: {total_pages:,}")
+        print(f"\nSubmitting job array for {len(chunks)} chunks...")
 
-            job_id = submit_chunk_to_olmocr(
-                pdf_dir,
-                chunk_pdfs,
-                total_pages,
-                olmocr_script,
-                batch_number,
-                chunk_num
-            )
-
-            job_ids.append(job_id)
-            print(f"  Job ID: {job_id}")
+        job_id = submit_batch_to_olmocr(
+            pdf_dir,
+            chunks,
+            olmocr_script,
+            batch_number
+        )
 
         print()
         print("=" * 70)
@@ -386,8 +384,8 @@ def main():
         print(f"Batch: batch_{batch_number:04d}")
         print(f"Total chunks: {len(chunks)}")
         print(f"Total PDFs: {len(batch_pdfs)}")
-        print(f"Job IDs: {', '.join(job_ids)}")
-        print(f"Results will appear in: {pdf_dir}/results/")
+        print(f"Job Array ID: {job_id}")
+        print(f"Results will appear in: {pdf_dir}/batch_{batch_number:04d}/results/")
         print("=" * 70)
 
         return 0
@@ -398,8 +396,6 @@ def main():
         print("❌ Submission Failed")
         print("=" * 70)
         print(f"Error: {e}")
-        if job_ids:
-            print(f"Partial success - submitted {len(job_ids)} chunks: {', '.join(job_ids)}")
         print("=" * 70)
         return 1
 

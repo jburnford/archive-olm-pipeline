@@ -106,20 +106,27 @@ def split_phase(base_dir: Path) -> int:
     print("─" * 70)
 
     downloaded_dir = base_dir / "01_downloaded"
-    results_dir = downloaded_dir / "results" / "results"
 
-    # Check if there are JSONL files to split
-    if not results_dir.exists():
-        print("  ⏭  No results directory yet")
+    # Find all batch directories with results
+    batch_dirs = sorted(downloaded_dir.glob("batch_*/results"))
+
+    if not batch_dirs:
+        print("  ⏭  No batch results directories yet")
         return 0
 
-    jsonl_files = list(results_dir.glob("*.jsonl"))
+    # Count total JSONL files across all batches
+    total_jsonl = 0
+    for batch_result_dir in batch_dirs:
+        jsonl_count = len(list(batch_result_dir.glob("*.jsonl")))
+        if jsonl_count > 0:
+            print(f"  Batch {batch_result_dir.parent.name}: {jsonl_count} JSONL files")
+            total_jsonl += jsonl_count
 
-    if not jsonl_files:
+    if total_jsonl == 0:
         print("  ⏭  No JSONL files to split")
         return 0
 
-    print(f"  Found {len(jsonl_files)} JSONL files")
+    print(f"  Total: {total_jsonl} JSONL files")
 
     cmd = [
         'python3',
