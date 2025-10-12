@@ -108,7 +108,8 @@ def split_phase(base_dir: Path) -> int:
     downloaded_dir = base_dir / "01_downloaded"
 
     # Find all batch directories with results
-    batch_dirs = sorted(downloaded_dir.glob("batch_*/results"))
+    # Note: OLMoCR creates results in batch_*/results/results/ (nested)
+    batch_dirs = sorted(downloaded_dir.glob("batch_*/results/results"))
 
     if not batch_dirs:
         print("  ⏭  No batch results directories yet")
@@ -119,7 +120,7 @@ def split_phase(base_dir: Path) -> int:
     for batch_result_dir in batch_dirs:
         jsonl_count = len(list(batch_result_dir.glob("*.jsonl")))
         if jsonl_count > 0:
-            print(f"  Batch {batch_result_dir.parent.name}: {jsonl_count} JSONL files")
+            print(f"  Batch {batch_result_dir.parent.parent.name}: {jsonl_count} JSONL files")
             total_jsonl += jsonl_count
 
     if total_jsonl == 0:
@@ -128,20 +129,33 @@ def split_phase(base_dir: Path) -> int:
 
     print(f"  Total: {total_jsonl} JSONL files")
 
-    cmd = [
-        'python3',
-        str(Path(__file__).parent.parent / 'orchestration' / 'split_jsonl_to_json.py'),
-        str(downloaded_dir)
-    ]
+    # Process each batch directory separately
+    split_script = Path(__file__).parent.parent / 'orchestration' / 'split_jsonl_to_json.py'
+    all_success = True
 
-    exit_code = run_command(cmd, "splitter")
+    for batch_result_dir in batch_dirs:
+        batch_dir = batch_result_dir.parent.parent  # Go up from results/results to batch_NNNN
+        batch_name = batch_dir.name
 
-    if exit_code == 0:
-        print("  ✓ Split phase complete")
+        print(f"\n  Processing {batch_name}...")
+
+        cmd = [
+            'python3',
+            str(split_script),
+            str(batch_dir)
+        ]
+
+        exit_code = run_command(cmd, f"splitter ({batch_name})")
+
+        if exit_code != 0:
+            all_success = False
+
+    if all_success:
+        print("\n  ✓ Split phase complete")
     else:
-        print("  ⚠️  Split phase encountered issues")
+        print("\n  ⚠️  Split phase encountered issues")
 
-    return exit_code
+    return 0 if all_success else 1
 
 
 def finalize_phase(config_path: Path) -> int:
