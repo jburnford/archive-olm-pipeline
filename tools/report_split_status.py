@@ -94,8 +94,7 @@ def main():
     missing = total_pdfs - total_split
     print(f"Missing per-PDF JSON: {missing}")
     if per_batch_summary:
-        print("
-Per-batch summary (batch_id, complete_chunks, partial_chunks, missing_files):")
+        print("\nPer-batch summary (batch_id, complete_chunks, partial_chunks, missing_files):")
         for b in per_batch_summary[:20]:
             print("  ", b)
 
