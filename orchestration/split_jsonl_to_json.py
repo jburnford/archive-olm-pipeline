@@ -8,6 +8,7 @@ JSON files in results/json/<pdf_name>.json for easier ingestion.
 
 import argparse
 import json
+import shutil
 from collections import defaultdict
 from pathlib import Path
 from typing import Any, Dict, Iterable, List, Optional, Tuple
@@ -216,9 +217,32 @@ def split_jsonl_files(pdf_dir: Path, dry_run: bool = False):
     print("\n" + "=" * 70)
     if dry_run:
         print(f"DRY RUN: Would create {saved_count} JSON files")
+        print("=" * 70)
+        return True
     else:
         print(f"✓ Successfully created {saved_count} JSON files in {json_output_dir}")
-    print("=" * 70)
+        print("=" * 70)
+
+    # After successful split, move JSONL files to central backup to avoid re-splitting
+    # Determine base_dir (two levels up from batch dir: 01_downloaded -> base_dir)
+    try:
+        base_dir = pdf_dir.parent.parent
+        backup_dir = base_dir / "03_backups" / "jsonl" / pdf_dir.name
+        backup_dir.mkdir(parents=True, exist_ok=True)
+
+        moved = 0
+        for src in jsonl_files:
+            dest = backup_dir / src.name
+            try:
+                shutil.move(str(src), str(dest))
+                moved += 1
+            except Exception as e:
+                # If move fails for any file, continue with others
+                print(f"⚠ Could not move {src.name}: {e}")
+
+        print(f"📦 Moved {moved} JSONL files to {backup_dir}")
+    except Exception as e:
+        print(f"⚠ Backup step failed: {e}")
 
     return True
 
