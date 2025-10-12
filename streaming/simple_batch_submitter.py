@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
-Simple Batch Submitter
+Simple Batch Submitter with Page-based Chunking
 
-Scans 01_downloaded/ for unprocessed PDFs and submits batches of 200
-directly to OLMoCR. Includes backpressure monitoring.
+Scans 01_downloaded/ for unprocessed PDFs, packs them into 1500-page chunks,
+and submits each chunk as a separate SLURM job. Includes backpressure monitoring.
 
 Usage:
   python3 streaming/simple_batch_submitter.py \
@@ -14,9 +14,11 @@ Usage:
 
 Features:
   - Filters PDFs using _manifests/processed_pdfs.json
-  - Submits batches directly to OLMoCR (no intermediate directories)
+  - Packs PDFs into chunks of ≤1500 pages (conservative for SLURM)
+  - Submits each chunk as separate job with dynamic walltime
   - Reports backlog status for orchestrator
   - Prevents submission when backlog too large
+  - Dynamic walltime: 300s startup + 6s/page + 20% buffer
 """
 
 import argparse
@@ -147,25 +149,57 @@ def estimate_walltime(total_pages: int) -> str:
     return f"{hours:02d}:{minutes:02d}:{seconds:02d}"
 
 
-def submit_batch_to_olmocr(
-    pdf_dir: Path,
+def pack_pdfs_into_chunks(
     pdfs: List[Path],
+    max_pages_per_chunk: int = 1500
+) -> List[Tuple[List[Path], int]]:
+    """
+    Pack PDFs into chunks where each chunk has <= max_pages_per_chunk.
+
+    Returns:
+        List of (pdf_list, total_pages) tuples
+    """
+    chunks = []
+    current_chunk = []
+    current_pages = 0
+
+    print(f"  Packing PDFs into {max_pages_per_chunk}-page chunks...")
+
+    for pdf in pdfs:
+        pages = count_pdf_pages(pdf)
+
+        # If adding this PDF would exceed limit, start new chunk
+        if current_pages > 0 and current_pages + pages > max_pages_per_chunk:
+            chunks.append((current_chunk, current_pages))
+            current_chunk = []
+            current_pages = 0
+
+        # Add PDF to current chunk
+        current_chunk.append(pdf)
+        current_pages += pages
+
+    # Add final chunk
+    if current_chunk:
+        chunks.append((current_chunk, current_pages))
+
+    return chunks
+
+
+def submit_chunk_to_olmocr(
+    pdf_dir: Path,
+    chunk_pdfs: List[Path],
+    total_pages: int,
     olmocr_script: Path,
-    batch_number: int
+    batch_number: int,
+    chunk_number: int
 ) -> str:
     """
-    Submit batch to OLMoCR via SLURM.
+    Submit a single chunk to OLMoCR via SLURM.
 
     Returns job ID.
     """
-    # Count total pages
-    print(f"  Counting pages...")
-    total_pages = sum(count_pdf_pages(pdf) for pdf in pdfs)
-    print(f"  Total pages: {total_pages:,}")
-
-    # Estimate walltime
+    # Estimate walltime based on actual page count
     walltime = estimate_walltime(total_pages)
-    print(f"  Estimated walltime: {walltime}")
 
     # Create results directory
     results_dir = pdf_dir / "results"
@@ -176,17 +210,15 @@ def submit_batch_to_olmocr(
     chunks_dir.mkdir(parents=True, exist_ok=True)
 
     # Write chunk file
-    chunk_file = chunks_dir / f"batch_{batch_number:04d}.txt"
-    chunk_file.write_text('\n'.join(pdf.name for pdf in pdfs) + '\n')
-
-    print(f"  Chunk list: {chunk_file}")
+    chunk_file = chunks_dir / f"batch_{batch_number:04d}_chunk_{chunk_number:03d}.txt"
+    chunk_file.write_text('\n'.join(pdf.name for pdf in chunk_pdfs) + '\n')
 
     # Submit to SLURM
     cmd = [
         'sbatch',
         '--export', f'ALL,PDF_DIR={pdf_dir}',
-        '--job-name', f'olmocr_batch_{batch_number:04d}',
-        '--output', str(pdf_dir / f'slurm-%j_batch_{batch_number:04d}.out'),
+        '--job-name', f'olmocr_b{batch_number:04d}_c{chunk_number:03d}',
+        '--output', str(pdf_dir / f'slurm-%j_batch_{batch_number:04d}_chunk_{chunk_number:03d}.out'),
         '--time', walltime,
         '--chdir', str(pdf_dir),
         '--parsable',
@@ -303,37 +335,58 @@ def main():
 
     print(f"\n📦 Ready to submit batch of {len(batch_pdfs)} PDFs")
 
+    # Pack into 1500-page chunks
+    chunks = pack_pdfs_into_chunks(batch_pdfs, max_pages_per_chunk=1500)
+
+    print(f"  Created {len(chunks)} chunks:")
+    for i, (chunk_pdfs, pages) in enumerate(chunks, 1):
+        print(f"    Chunk {i}: {len(chunk_pdfs)} PDFs, {pages:,} pages")
+
     if args.dry_run:
-        print("\n[DRY RUN] Would submit:")
-        for i, pdf in enumerate(batch_pdfs[:10], 1):
-            print(f"  {i}. {pdf.name}")
-        if len(batch_pdfs) > 10:
-            print(f"  ... and {len(batch_pdfs) - 10} more")
+        print("\n[DRY RUN] Would submit these chunks to SLURM")
         return 0
 
     # Determine batch number
-    existing_chunks = sorted(pdf_dir.glob("chunks/batch_*.txt"))
-    batch_number = len(existing_chunks) + 1
+    existing_batches = sorted(pdf_dir.glob("chunks/batch_*_chunk_*.txt"))
+    if existing_batches:
+        # Extract highest batch number
+        last_batch = existing_batches[-1].name
+        batch_num_str = last_batch.split('_')[1]
+        batch_number = int(batch_num_str) + 1
+    else:
+        batch_number = 1
 
     print(f"\nBatch number: {batch_number:04d}")
     print("-" * 70)
 
-    # Submit
+    # Submit each chunk
+    job_ids = []
     try:
-        job_id = submit_batch_to_olmocr(
-            pdf_dir,
-            batch_pdfs,
-            olmocr_script,
-            batch_number
-        )
+        for chunk_num, (chunk_pdfs, total_pages) in enumerate(chunks, 1):
+            print(f"\nSubmitting chunk {chunk_num}/{len(chunks)}...")
+            print(f"  PDFs: {len(chunk_pdfs)}")
+            print(f"  Pages: {total_pages:,}")
+
+            job_id = submit_chunk_to_olmocr(
+                pdf_dir,
+                chunk_pdfs,
+                total_pages,
+                olmocr_script,
+                batch_number,
+                chunk_num
+            )
+
+            job_ids.append(job_id)
+            print(f"  Job ID: {job_id}")
 
         print()
         print("=" * 70)
         print("✅ Batch Submitted")
         print("=" * 70)
         print(f"Batch: batch_{batch_number:04d}")
-        print(f"Job ID: {job_id}")
-        print(f"PDFs: {len(batch_pdfs)}")
+        print(f"Total chunks: {len(chunks)}")
+        print(f"Total PDFs: {len(batch_pdfs)}")
+        print(f"Job IDs: {', '.join(job_ids)}")
         print(f"Results will appear in: {pdf_dir}/results/")
         print("=" * 70)
 
@@ -345,6 +398,8 @@ def main():
         print("❌ Submission Failed")
         print("=" * 70)
         print(f"Error: {e}")
+        if job_ids:
+            print(f"Partial success - submitted {len(job_ids)} chunks: {', '.join(job_ids)}")
         print("=" * 70)
         return 1
 
