@@ -319,7 +319,7 @@ def main():
     if args.auto_delete_pdfs and not args.dry_run:
         print(f"PDFs deleted: {deleted_pdfs}")
 
-    print(f"Total processed: {tracker.count()}")
+    print(f"Total processed: {len(tracker.processed)}")
     print(f"Output: {processed_dir}")
     print("=" * 70)
 
