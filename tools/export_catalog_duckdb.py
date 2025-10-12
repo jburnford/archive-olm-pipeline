@@ -21,6 +21,7 @@ Notes:
 import argparse
 import json
 import os
+import shutil
 import tempfile
 from dataclasses import dataclass
 from pathlib import Path
@@ -228,10 +229,10 @@ def write_duckdb(out_path: Path, documents: List[DocumentRow], ocr_docs: List[Oc
             ) for o in ocr_docs]
         )
         con.close()
-        # Move into place
+        # Move into place (use shutil.move for cross-filesystem compatibility)
         if out_path.exists():
             out_path.unlink()
-        os.replace(tmp_path, out_path)
+        shutil.move(str(tmp_path), str(out_path))
 
 
 def main():
