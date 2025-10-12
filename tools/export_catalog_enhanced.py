@@ -16,6 +16,7 @@ Usage:
 
 import argparse
 import json
+import shutil
 import tempfile
 from dataclasses import dataclass
 from datetime import datetime
@@ -314,10 +315,10 @@ def write_catalog(
 
         con.close()
 
-        # Atomic replace
+        # Move to final location (use shutil.move for cross-filesystem support)
         if out_path.exists():
             out_path.unlink()
-        os.replace(tmp_path, out_path)
+        shutil.move(str(tmp_path), str(out_path))
 
 
 def main():
