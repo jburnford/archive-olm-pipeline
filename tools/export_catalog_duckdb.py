@@ -75,7 +75,7 @@ def count_pages_in_json(json_path: Path) -> Optional[int]:
 
 
 def scan_processed(base_dir: Path, fast: bool = False) -> Tuple[List[DocumentRow], List[OcrDocRow]]:
-    processed = base_dir / "05_processed"
+    processed = base_dir / "02_processed"
     documents: List[DocumentRow] = []
     ocr_docs: List[OcrDocRow] = []
 

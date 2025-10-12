@@ -46,11 +46,10 @@ class FileBasedDownloader:
 
         # Create directory structure
         self.downloaded_dir = base_dir / "01_downloaded"
-        self.ocr_pending_dir = base_dir / "02_ocr_pending"
         self.errors_dir = base_dir / "99_errors" / "download_failed"
         self.manifests_dir = base_dir / "_manifests"
 
-        for d in [self.downloaded_dir, self.ocr_pending_dir, self.errors_dir, self.manifests_dir]:
+        for d in [self.downloaded_dir, self.errors_dir, self.manifests_dir]:
             d.mkdir(parents=True, exist_ok=True)
 
         # Load identifiers
@@ -187,13 +186,6 @@ class FileBasedDownloader:
                 existing = list(self.downloaded_dir.glob(f"{identifier}*.pdf"))
                 print(f"  ⏭ Already exists: {existing[0].name}")
                 self.stats['skipped'] += 1
-
-                # Create symlink if it doesn't exist
-                pending_link = self.ocr_pending_dir / existing[0].name
-                if not pending_link.exists():
-                    pending_link.symlink_to(existing[0])
-                    print(f"  🔗 Created symlink for existing PDF")
-
                 return True
 
             # Get item
@@ -241,11 +233,6 @@ class FileBasedDownloader:
                     output_path,
                     file_size
                 )
-
-                # Create symlink in 02_ocr_pending
-                pending_link = self.ocr_pending_dir / filename
-                if not pending_link.exists():
-                    pending_link.symlink_to(output_path)
 
                 return True
             else:

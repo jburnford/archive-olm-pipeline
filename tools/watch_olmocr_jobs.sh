@@ -50,4 +50,4 @@ trap 'echo "[watch] stopping" | tee -a "$LOGFILE"; exit 0' INT TERM
 while true; do
   tick
   sleep "$INTERVAL"
-Done
+done

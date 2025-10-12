@@ -1,0 +1,26 @@
+Updating 7bae1c4..d591e45
+Fast-forward
+ tools/report_split_status.py | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+======================================================================
+Split Coverage Report
+======================================================================
+Output: analysis_output/split_status.csv
+Batches covered: 12
+PDFs total in chunk lists: 4071
+PDFs with split JSON present: 1552
+Missing per-PDF JSON: 2519
+
+Per-batch summary (batch_id, complete_chunks, partial_chunks, missing_files):
+   ('batch_0001', 0, 292, 1923)
+   ('batch_0002', 11, 15, 164)
+   ('batch_0003', 6, 16, 177)
+   ('batch_0004', 21, 3, 105)
+   ('batch_0005', 20, 0, 0)
+   ('batch_0006', 18, 1, 1)
+   ('batch_0007', 29, 3, 3)
+   ('batch_0008', 25, 0, 0)
+   ('batch_0009', 35, 0, 0)
+   ('batch_0010', 27, 1, 1)
+   ('batch_0011', 42, 3, 3)
+   ('batch_0012', 1, 22, 142)
