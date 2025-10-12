@@ -16,6 +16,11 @@ if [ -z "$PDF_DIR" ]; then
     exit 1
 fi
 
+if [ -z "$BATCH_DIR" ]; then
+    echo "❌ ERROR: BATCH_DIR environment variable is not set."
+    exit 1
+fi
+
 # === APPTAINER/SYSTEM TEMP SETUP ===
 # Large arrays can exhaust or race on node /tmp. Use per-task scratch tmp.
 JOB_TMP_BASE="${SLURM_TMPDIR:-/scratch/$USER/tmp}"
@@ -26,10 +31,10 @@ export APPTAINER_TMPDIR="$JOB_TASK_TMP"
 export SINGULARITY_TMPDIR="$JOB_TASK_TMP"  # backward compatibility
 export XDG_RUNTIME_DIR="$JOB_TASK_TMP/runtime"
 
-COMPLETED_LOG="$PDF_DIR/processed_files.log"
-CHUNK_DIR="$PDF_DIR/chunks"
-LOCK_DIR="$PDF_DIR/log.lock"
-FINAL_RESULTS_DIR="$PDF_DIR/results"
+COMPLETED_LOG="$BATCH_DIR/processed_files.log"
+CHUNK_DIR="$BATCH_DIR/chunks"
+LOCK_DIR="$BATCH_DIR/log.lock"
+FINAL_RESULTS_DIR="$BATCH_DIR/results"
 
 # === DYNAMIC PATHS ===
 CHUNK_FILE="$CHUNK_DIR/chunk_${SLURM_ARRAY_TASK_ID}.txt"

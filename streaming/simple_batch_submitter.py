@@ -233,6 +233,8 @@ def submit_batch_to_olmocr(
     walltime_minutes = (walltime_seconds + 59) // 60  # Round up to minutes
 
     # Submit as job array
+    # NOTE: PDF_DIR must point to where PDFs are located (01_downloaded),
+    # but chunks are in batch_dir/chunks/
     cmd = [
         'sbatch',
         '--account', 'def-jic823_gpu',
@@ -241,7 +243,7 @@ def submit_batch_to_olmocr(
         '--mem', '64G',
         '--time', str(walltime_minutes),  # Minutes format
         '--array', f'1-{len(chunks)}',
-        '--export', f'ALL,PDF_DIR={batch_dir}',
+        '--export', f'ALL,PDF_DIR={pdf_dir},BATCH_DIR={batch_dir}',
         '--job-name', f'olmocr_batch_{batch_number:04d}',
         '--output', str(batch_dir / 'slurm-%A_%a.out'),
         '--parsable',
@@ -365,8 +367,8 @@ def main():
         print("   Continue downloading...")
         return 0
 
-    # Take batch
-    batch_pdfs = unprocessed[:args.batch_size]
+    # Take ALL unprocessed PDFs (not just batch_size)
+    batch_pdfs = unprocessed
 
     print(f"\n📦 Ready to submit batch of {len(batch_pdfs)} PDFs")
 
