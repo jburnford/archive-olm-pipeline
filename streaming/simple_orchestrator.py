@@ -175,36 +175,62 @@ def finalize_phase(config_path: Path) -> int:
         config = yaml.safe_load(f)
 
     base_dir = Path(config['directories']['base_dir'])
-    results_json_dir = base_dir / "01_downloaded" / "results" / "json"
+    downloaded_dir = base_dir / "01_downloaded"
 
-    # Check if there are JSON files to finalize
-    if not results_json_dir.exists():
-        print("  ⏭  No results/json directory yet")
+    # Find all batch directories with JSON results
+    batch_json_dirs = sorted(downloaded_dir.glob("batch_*/results/json"))
+
+    if not batch_json_dirs:
+        print("  ⏭  No batch JSON directories yet")
         return 0
 
-    json_files = list(results_json_dir.glob("*.json"))
+    # Count total JSON files across all batches
+    total_json = 0
+    for json_dir in batch_json_dirs:
+        json_count = len(list(json_dir.glob("*.json")))
+        if json_count > 0:
+            print(f"  Batch {json_dir.parent.parent.name}: {json_count} JSON files")
+            total_json += json_count
 
-    if not json_files:
+    if total_json == 0:
         print("  ⏭  No JSON files to finalize")
         return 0
 
-    print(f"  Found {len(json_files)} JSON files")
+    print(f"  Total: {total_json} JSON files")
 
-    cmd = [
-        'python3',
-        str(Path(__file__).parent / 'simplified_finalizer.py'),
-        '--base-dir', str(base_dir),
-        '--auto-delete-pdfs'  # Delete PDFs after successful finalization
-    ]
+    # Process each batch directory separately
+    finalizer_script = Path(__file__).parent / 'simplified_finalizer.py'
+    all_success = True
 
-    exit_code = run_command(cmd, "finalizer")
+    for json_dir in batch_json_dirs:
+        batch_dir = json_dir.parent.parent  # Go up from results/json to batch_NNNN
+        batch_name = batch_dir.name
 
-    if exit_code == 0:
-        print("  ✓ Finalize phase complete")
+        # Check if this batch has JSON files
+        if not list(json_dir.glob("*.json")):
+            continue
+
+        print(f"\n  Finalizing {batch_name}...")
+
+        cmd = [
+            'python3',
+            str(finalizer_script),
+            '--base-dir', str(base_dir),
+            '--results-dir', str(json_dir),
+            '--auto-delete-pdfs'
+        ]
+
+        exit_code = run_command(cmd, f"finalizer ({batch_name})")
+
+        if exit_code != 0:
+            all_success = False
+
+    if all_success:
+        print("\n  ✓ Finalize phase complete")
     else:
-        print("  ⚠️  Finalize phase encountered issues")
+        print("\n  ⚠️  Finalize phase encountered issues")
 
-    return exit_code
+    return 0 if all_success else 1
 
 
 def export_phase(config_path: Path) -> int:

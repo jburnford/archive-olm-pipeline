@@ -130,24 +130,23 @@ def finalize_one(
     dest_dir.mkdir(parents=True, exist_ok=True)
 
     # Copy OCR JSON
-    dest_json = dest_dir / f"{json_file.stem}.json"
+    dest_json = dest_dir / "olmocr_results.json"
     shutil.copy2(json_file, dest_json)
 
-    # Look for markdown file (optional)
-    results_dir = json_file.parent
-    md_file = results_dir / f"{json_file.stem}.md"
+    # Look for markdown file (OLMoCR creates these in 01_downloaded/)
+    md_file = downloaded_dir / f"{json_file.stem}.md"
     dest_md = None
 
     if md_file.exists():
-        dest_md = dest_dir / f"{json_file.stem}.md"
+        dest_md = dest_dir / "olmocr_results.md"
         shutil.copy2(md_file, dest_md)
 
     # Create consolidated metadata
     merged = dict(meta)
-    merged["ocr_json"] = f"{json_file.stem}.json"
+    merged["ocr_json"] = "olmocr_results.json"
 
     if dest_md:
-        merged["ocr_markdown"] = f"{json_file.stem}.md"
+        merged["ocr_markdown"] = "olmocr_results.md"
 
     merged["ocr_consolidated_at"] = datetime.utcnow().isoformat() + "Z"
     merged["original_filename"] = pdf_filename
@@ -156,7 +155,7 @@ def finalize_one(
     merged.pop("__meta_file", None)
 
     # Write metadata
-    dest_meta = dest_dir / f"{identifier}.meta.json"
+    dest_meta = dest_dir / "metadata.json"
     with open(dest_meta, 'w') as f:
         json.dump(merged, f, indent=2)
 
@@ -167,16 +166,23 @@ def finalize_one(
     # Consider successful if meta + json exist
     # (markdown is optional - olmOCR may not generate it)
     if has_meta and has_json:
-        # Delete original PDF if requested
+        # Delete original PDF and markdown if requested
         if auto_delete_pdfs:
             pdf_path = downloaded_dir / pdf_filename
+            md_source = downloaded_dir / f"{json_file.stem}.md"
+
             if pdf_path.exists():
                 try:
                     pdf_path.unlink()
-                    return identifier
                 except Exception as e:
                     print(f"  ⚠️  Could not delete {pdf_filename}: {e}")
-                    return identifier  # Still successful even if delete fails
+
+            if md_source.exists():
+                try:
+                    md_source.unlink()
+                except Exception as e:
+                    print(f"  ⚠️  Could not delete {md_source.name}: {e}")
+
         return identifier
 
     return None
@@ -191,6 +197,11 @@ def main():
         type=Path,
         required=True,
         help="Pipeline base directory"
+    )
+    parser.add_argument(
+        "--results-dir",
+        type=Path,
+        help="Results JSON directory (default: 01_downloaded/results/json)"
     )
     parser.add_argument(
         "--auto-delete-pdfs",
@@ -208,7 +219,12 @@ def main():
     base_dir = args.base_dir
     downloaded_dir = base_dir / "01_downloaded"
     processed_dir = base_dir / "02_processed"
-    results_json_dir = downloaded_dir / "results" / "json"
+
+    # Use provided results directory or default
+    if args.results_dir:
+        results_json_dir = args.results_dir
+    else:
+        results_json_dir = downloaded_dir / "results" / "json"
 
     print("=" * 70)
     print("Simplified Finalizer")
