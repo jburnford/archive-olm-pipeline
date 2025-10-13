@@ -3,21 +3,22 @@
 Simple Batch Submitter with Page-based Chunking
 
 Scans 01_downloaded/ for unprocessed PDFs, packs them into 1500-page chunks,
-and submits each chunk as a separate SLURM job. Includes backpressure monitoring.
+and submits each chunk as a separate SLURM job. Backpressure has been removed
+in favour of disk-usage protection in the downloader and continuous queueing.
 
 Usage:
   python3 streaming/simple_batch_submitter.py \
     --config config/caribbean_filebased.yaml \
     [--batch-size 200] \
-    [--max-unprocessed 500] \
+    [--max-unprocessed 0] \
     [--dry-run]
 
 Features:
   - Filters PDFs using _manifests/processed_pdfs.json
+  - Requeues PDFs from failed batches automatically
   - Packs PDFs into chunks of ≤1500 pages (conservative for SLURM)
   - Submits each chunk as separate job with dynamic walltime
-  - Reports backlog status for orchestrator
-  - Prevents submission when backlog too large
+  - Reports backlog for visibility (no enforced cap)
   - Dynamic walltime: 300s startup + 6s/page + 20% buffer
 """
 
@@ -103,6 +104,15 @@ def get_unprocessed_pdfs(
 
     # Get PDFs already in submitted/processing batches
     submitted_filenames = batch_tracker.get_submitted_pdfs()
+
+    # Auto requeue PDFs from failed batches so they re-enter the pool
+    try:
+        failed_from_batches = set(batch_tracker.get_failed_batch_pdfs())
+        if failed_from_batches:
+            submitted_filenames = {fn for fn in submitted_filenames if fn not in failed_from_batches}
+    except Exception:
+        # If tracker read fails, proceed without requeue this cycle
+        pass
 
     # Filter unprocessed
     unprocessed = []
@@ -259,22 +269,11 @@ def submit_batch_to_olmocr(
     return job_id
 
 
-def check_backpressure(
-    unprocessed_count: int,
-    max_unprocessed: int
-) -> Tuple[bool, str]:
-    """
-    Check if backpressure should be applied.
-
-    Returns:
-        (should_pause_downloads, status_message)
-    """
-    if unprocessed_count >= max_unprocessed:
-        return True, f"HIGH_BACKLOG ({unprocessed_count} >= {max_unprocessed})"
-    elif unprocessed_count >= max_unprocessed * 0.8:
-        return False, f"APPROACHING_LIMIT ({unprocessed_count}/{max_unprocessed})"
-    else:
-        return False, f"OK ({unprocessed_count}/{max_unprocessed})"
+def _format_backlog(unprocessed_count: int, max_unprocessed: int) -> str:
+    """Format backlog status for logs (no enforcement)."""
+    if max_unprocessed in (None, 0):
+        return f"{unprocessed_count} (no cap)"
+    return f"{unprocessed_count}/{max_unprocessed}"
 
 
 def main():
@@ -322,7 +321,7 @@ def main():
     print(f"Base directory: {base_dir}")
     print(f"PDF directory: {pdf_dir}")
     print(f"Batch size: {args.batch_size}")
-    print(f"Max unprocessed: {args.max_unprocessed}")
+    print(f"Max unprocessed: {args.max_unprocessed} (0 = no cap)")
     print(f"Mode: {'DRY RUN' if args.dry_run else 'LIVE'}")
     print("-" * 70)
 
@@ -340,7 +339,7 @@ def main():
         for batch_id, new_status in changed.items():
             print(f"  {batch_id}: {new_status}")
 
-    # Get unprocessed PDFs (excluding submitted/processing)
+    # Get unprocessed PDFs (excluding submitted/processing; requeue failed)
     unprocessed, total_pdfs, processed_count = get_unprocessed_pdfs(
         pdf_dir, processed_tracker, batch_tracker
     )
@@ -350,15 +349,9 @@ def main():
     print(f"Unprocessed: {len(unprocessed)}")
     print("-" * 70)
 
-    # Check backpressure
-    should_pause, status = check_backpressure(len(unprocessed), args.max_unprocessed)
-
-    print(f"\nBackpressure status: {status}")
-
-    if should_pause:
-        print("⚠️  BACKLOG TOO HIGH - Downloads should pause")
-        print(f"   Wait for processing to catch up before downloading more")
-        return 2  # Exit code 2 = backpressure active
+    # Report backlog (no enforced backpressure)
+    status = _format_backlog(len(unprocessed), args.max_unprocessed)
+    print(f"\nBacklog: {status}")
 
     # Check if we have enough for a batch
     if len(unprocessed) < args.batch_size:
