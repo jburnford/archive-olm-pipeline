@@ -169,3 +169,30 @@ The simplified pipeline processes batches sequentially to avoid duplicates:
 5. **Submit next batch** → Now sees remaining unprocessed PDFs
 
 **Important**: Don't submit a new batch until the previous one is finalized!
+
+## Split Daemons: Downloader + Submit/Cleanup
+
+Under heavy backlog, run two dedicated SLURM daemons so downloading never delays splitting/finalization:
+
+- `streaming/run_downloader_daemon.sh`: continuously downloads and auto-pauses at 80% disk usage.
+- `streaming/run_submit_cleanup_daemon.sh`: loops through submit → split → finalize, reclaiming space.
+
+Launch both:
+
+```
+sbatch streaming/run_downloader_daemon.sh
+sbatch streaming/run_submit_cleanup_daemon.sh
+```
+
+Monitor queues and progress:
+
+- `squeue -u $USER -o "%18i %20j %8T %10M %9l %R"`
+- `sacct -S now-12hours -u $USER -o JobID,JobName,State,Elapsed,ExitCode -X | grep -i olmocr || true`
+
+What the submit/cleanup daemon does:
+
+- Submits all unprocessed PDFs (page-capped to ~1500 pages per array task)
+- Splits any completed `*.jsonl` in `batch_*/results[/results]` to `results/json/*.json`
+- Finalizes outputs to `02_processed/` and deletes original PDFs
+
+This keeps disk usage under control and ensures the pipeline cycles continuously without stalling between phases.
