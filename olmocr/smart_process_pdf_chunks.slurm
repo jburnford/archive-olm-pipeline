@@ -54,9 +54,12 @@ fi
 mapfile -t PDF_FILENAMES < "$CHUNK_FILE"
 echo "Processing ${#PDF_FILENAMES[@]} PDFs from $PDF_DIR"
 mkdir -p "$OUTPUT_DIR"
+# Build repeated --pdfs flags to match current olmocr CLI expectations
 PROCESS_ARGS=""
 for pdf in "${PDF_FILENAMES[@]}"; do
-    PROCESS_ARGS="$PROCESS_ARGS \"$PDF_DIR/$pdf\""
+    # Skip empty lines defensively
+    [ -z "$pdf" ] && continue
+    PROCESS_ARGS="$PROCESS_ARGS --pdfs \"$PDF_DIR/$pdf\""
 done
 OLMOCR_DIR="/home/jic823/projects/def-jic823/olmocr"
 CONTAINER_PATH="$OLMOCR_DIR/olmocr.sif"
@@ -83,7 +86,7 @@ eval "apptainer run --nv \
   --env REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt \
   --env SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt \
   $CONTAINER_PATH \
-  python -m olmocr.pipeline $OUTPUT_DIR --pdfs $PROCESS_ARGS $OLMOCR_FLAGS"
+  python -m olmocr.pipeline $OUTPUT_DIR $PROCESS_ARGS $OLMOCR_FLAGS"
 if [ $? -ne 0 ]; then
     echo "❌ ERROR: OLMoCR process failed for this chunk. Not updating log."
     exit 1
