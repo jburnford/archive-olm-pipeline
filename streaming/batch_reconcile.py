@@ -14,6 +14,7 @@ Usage:
 """
 
 import argparse
+import sys
 from pathlib import Path
 from typing import List, Set, Tuple
 
@@ -42,8 +43,14 @@ def read_processed_log(batch_dir: Path) -> Set[str]:
 
 
 def pack_by_pages(pdf_paths: List[Path], max_pages_per_chunk: int = 1500) -> List[Tuple[List[Path], int]]:
-    # Local import from submitter to reuse counting logic
-    from .simple_batch_submitter import count_pdf_pages
+    # Import submitter helper when running as a script
+    try:
+        from streaming.simple_batch_submitter import count_pdf_pages
+    except Exception:
+        # Fallback: add repo root to path
+        repo_root = Path(__file__).parent.parent
+        sys.path.insert(0, str(repo_root))
+        from streaming.simple_batch_submitter import count_pdf_pages
 
     chunks: List[Tuple[List[Path], int]] = []
     current: List[Path] = []
@@ -89,7 +96,13 @@ def submit_missing(
     chunks = pack_by_pages(missing_pdfs, max_pages_per_chunk=1500)
 
     # Submit via submitter utility
-    from .simple_batch_submitter import submit_batch_to_olmocr
+    # Import submitter helper when running as a script
+    try:
+        from streaming.simple_batch_submitter import submit_batch_to_olmocr
+    except Exception:
+        repo_root = Path(__file__).parent.parent
+        sys.path.insert(0, str(repo_root))
+        from streaming.simple_batch_submitter import submit_batch_to_olmocr
     job_id = submit_batch_to_olmocr(
         pdf_dir,
         chunks,
@@ -117,7 +130,56 @@ def main():
     total_missing: List[Path] = []
     batches_checked = 0
 
-    for batch_dir in sorted(pdf_dir.glob("batch_*")):
+    # Load batch state tracker if present to avoid duplicating in-flight batches
+    in_flight: Set[str] = set()
+    state_path = base / "_manifests" / "batch_state.json"
+    if state_path.exists():
+        try:
+            import json
+            state = json.loads(state_path.read_text(encoding="utf-8"))
+            for bid, info in state.get("batches", {}).items():
+                if info.get("status") in {"submitted", "processing"}:
+                    in_flight.add(bid)
+        except Exception:
+            pass
+
+    # Also query squeue for active OLMoCR batch job names and skip those
+    try:
+        import subprocess
+        res = subprocess.run(
+            ['squeue', '-u', str(Path.home().name), '-h', '-o', '%j'],
+            capture_output=True, text=True, timeout=5
+        )
+        if res.returncode == 0:
+            for line in res.stdout.splitlines():
+                if line.startswith('olmocr_batch_'):
+                    batch_label = line.split('_', 2)[-1]
+                    # Reconstruct folder name 'batch_XXXX' from job name 'olmocr_batch_XXXX'
+                    in_flight.add(f"batch_{batch_label}")
+    except Exception:
+        pass
+
+    batch_dirs = sorted(pdf_dir.glob("batch_*"))
+    max_batch_num = -1
+    if batch_dirs:
+        try:
+            last_name = batch_dirs[-1].name
+            max_batch_num = int(last_name.split('_')[1])
+        except Exception:
+            max_batch_num = -1
+
+    for batch_dir in batch_dirs:
+        batch_id = batch_dir.name
+        if batch_id in in_flight:
+            # Skip batches that are currently submitted/processing to avoid duplicates
+            continue
+        # Also skip the most recent batch as it is likely in-flight even if not recorded
+        try:
+            num = int(batch_id.split('_')[1])
+            if num == max_batch_num:
+                continue
+        except Exception:
+            pass
         chunks_dir = batch_dir / "chunks"
         if not chunks_dir.exists():
             continue
@@ -149,4 +211,3 @@ def main():
 
 if __name__ == "__main__":
     raise SystemExit(main())
-
