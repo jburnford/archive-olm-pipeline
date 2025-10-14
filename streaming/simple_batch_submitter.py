@@ -215,7 +215,9 @@ def submit_batch_to_olmocr(
     pdf_dir: Path,
     chunks: List[Tuple[List[Path], int]],
     olmocr_script: Path,
-    batch_number: int
+    batch_number: int,
+    workers: int | None = None,
+    pages_per_group: int | None = None
 ) -> str:
     """
     Submit all chunks as a SLURM job array.
@@ -245,6 +247,12 @@ def submit_batch_to_olmocr(
     # Submit as job array
     # NOTE: PDF_DIR must point to where PDFs are located (01_downloaded),
     # but chunks are in batch_dir/chunks/
+    export_env = f"ALL,PDF_DIR={pdf_dir},BATCH_DIR={batch_dir}"
+    if workers is not None:
+        export_env += f",WORKERS={workers}"
+    if pages_per_group is not None:
+        export_env += f",PAGES_PER_GROUP={pages_per_group}"
+
     cmd = [
         'sbatch',
         '--account', 'def-jic823_gpu',
@@ -253,7 +261,7 @@ def submit_batch_to_olmocr(
         '--mem', '64G',
         '--time', str(walltime_minutes),  # Minutes format
         '--array', f'1-{len(chunks)}',
-        '--export', f'ALL,PDF_DIR={pdf_dir},BATCH_DIR={batch_dir}',
+        '--export', export_env,
         '--job-name', f'olmocr_batch_{batch_number:04d}',
         '--output', str(batch_dir / 'slurm-%A_%a.out'),
         '--parsable',
@@ -303,6 +311,18 @@ def main():
         action="store_true",
         help="Show what would be done"
     )
+    parser.add_argument(
+        "--workers",
+        type=int,
+        default=None,
+        help="Set WORKERS env for OLMoCR (concurrency inside container)"
+    )
+    parser.add_argument(
+        "--pages-per-group",
+        type=int,
+        default=None,
+        help="Set PAGES_PER_GROUP env for OLMoCR grouping"
+    )
 
     args = parser.parse_args()
 
@@ -323,6 +343,10 @@ def main():
     print(f"Batch size: {args.batch_size}")
     print(f"Max unprocessed: {args.max_unprocessed} (0 = no cap)")
     print(f"Mode: {'DRY RUN' if args.dry_run else 'LIVE'}")
+    if args.workers is not None:
+        print(f"Workers: {args.workers}")
+    if args.pages_per_group is not None:
+        print(f"Pages per group: {args.pages_per_group}")
     print("-" * 70)
 
     # Load trackers
@@ -397,7 +421,9 @@ def main():
             pdf_dir,
             chunks,
             olmocr_script,
-            batch_number
+            batch_number,
+            workers=args.workers,
+            pages_per_group=args.pages_per_group
         )
 
         # Register batch in state tracker

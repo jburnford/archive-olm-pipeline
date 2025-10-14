@@ -196,3 +196,19 @@ What the submit/cleanup daemon does:
 - Finalizes outputs to `02_processed/` and deletes original PDFs
 
 This keeps disk usage under control and ensures the pipeline cycles continuously without stalling between phases.
+
+## GPU Queue Pending Is Normal
+
+When submitting large OLMoCR arrays, jobs may spend hours pending. This is expected on shared H100 GPU partitions and does not indicate a pipeline failure.
+
+- Typical pending reason: `ReqNodeNotAvail, UnavailableNodes: g[...]` — the scheduler is waiting for suitable GPU nodes to free up.
+- Check priority and start estimates:
+  - `sprio -l -j <JOBID>` (priority components: FairShare, Age, Partition)
+  - `squeue --start -j <JOBID>` (Slurm’s current start-time estimate)
+  - `scontrol show job -o <JOBID>` (full details and pending reason)
+- Fairshare snapshot (if enabled): `sshare -u $USER -A def-jic823`
+
+Notes:
+- The submit/cleanup daemon will continue to split/finalize as soon as results land.
+- The downloader daemon may appear RUNNING even when it is paused internally by disk threshold (e.g., ≥80%); this is normal.
+- Long PD after processing thousands of PDFs in a short time is normal and expected; the scheduler will backfill your array as capacity opens.
