@@ -66,18 +66,22 @@ echo ""
 echo "Starting OLMoCR processing..."
 echo "========================================="
 
-apptainer run --nv \
-    --bind "$PDF_DIR:/pdfs:ro" \
-    --bind "$OUTPUT_DIR:/output:rw" \
-    --bind "$TMPDIR:/tmp" \
-    "$CONTAINER" \
-    python -m olmocr \
-    --input-dir /pdfs \
-    --output-dir /output \
-    --workers 6 \
-    --gpu-memory-utilization 0.7 \
-    --max_model_len 16384 \
-    --verbose
+# Build per-PDF arguments for the pipeline entrypoint
+PDF_ARGS=""
+shopt -s nullglob
+for f in "$PDF_DIR"/*.pdf; do
+    base=$(basename "$f")
+    PDF_ARGS="$PDF_ARGS --pdfs \"/pdfs/$base\""
+done
+shopt -u nullglob
+
+# Execute using the same pipeline entrypoint used by our chunk scripts
+eval "apptainer run --nv \
+    --bind \"$PDF_DIR:/pdfs:ro\" \
+    --bind \"$OUTPUT_DIR:/output:rw\" \
+    --bind \"$TMPDIR:/tmp\" \
+    \"$CONTAINER\" \
+    python -m olmocr.pipeline /output $PDF_ARGS --workers 6 --verbose"
 
 echo ""
 echo "========================================="
