@@ -54,12 +54,12 @@ fi
 mapfile -t PDF_FILENAMES < "$CHUNK_FILE"
 echo "Processing ${#PDF_FILENAMES[@]} PDFs from $PDF_DIR"
 mkdir -p "$OUTPUT_DIR"
-# Build repeated --pdfs flags to match current olmocr CLI expectations
-PROCESS_ARGS=""
+# Build repeated --pdfs flags as array to avoid quote issues
+PROCESS_ARGS=()
 for pdf in "${PDF_FILENAMES[@]}"; do
     # Skip empty lines defensively
     [ -z "$pdf" ] && continue
-    PROCESS_ARGS="$PROCESS_ARGS --pdfs \"$PDF_DIR/$pdf\""
+    PROCESS_ARGS+=("--pdfs" "$PDF_DIR/$pdf")
 done
 OLMOCR_DIR="/home/jic823/projects/def-jic823/olmocr"
 CONTAINER_PATH="$OLMOCR_DIR/olmocr.sif"
@@ -75,18 +75,24 @@ fi
 if [ -n "$PAGES_PER_GROUP" ] && [ "$PAGES_PER_GROUP" != "0" ]; then
   OLMOCR_FLAGS="$OLMOCR_FLAGS --pages_per_group $PAGES_PER_GROUP"
 fi
+# Allow arbitrary extra flags to be passed through from the environment.
+# Example: export OLMOCR_EXTRA_FLAGS="--model llama-3.1-70b --max_new_tokens 4096"
+if [ -n "$OLMOCR_EXTRA_FLAGS" ]; then
+  OLMOCR_FLAGS="$OLMOCR_FLAGS $OLMOCR_EXTRA_FLAGS"
+fi
 
 echo "Using TMPDIR: $TMPDIR"
 echo "Chunk file: $CHUNK_FILE"
 echo "Output dir: $OUTPUT_DIR"
 echo "Container: $CONTAINER_PATH"
 echo "OLMoCR flags: ${OLMOCR_FLAGS:-<none - using defaults for stability>}"
+echo "Number of PDFs in args: $((${#PROCESS_ARGS[@]} / 2))"
 
-eval "apptainer run --nv \
+apptainer run --nv \
   --env REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt \
   --env SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt \
-  $CONTAINER_PATH \
-  python -m olmocr.pipeline $OUTPUT_DIR $PROCESS_ARGS $OLMOCR_FLAGS"
+  "$CONTAINER_PATH" \
+  python -m olmocr.pipeline "$OUTPUT_DIR" "${PROCESS_ARGS[@]}" $OLMOCR_FLAGS
 if [ $? -ne 0 ]; then
     echo "❌ ERROR: OLMoCR process failed for this chunk. Not updating log."
     exit 1
