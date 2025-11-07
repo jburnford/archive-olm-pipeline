@@ -81,7 +81,7 @@ eval "apptainer run --nv \
     --bind \"$OUTPUT_DIR:/output:rw\" \
     --bind \"$TMPDIR:/tmp\" \
     \"$CONTAINER\" \
-    python -m olmocr.pipeline /output $PDF_ARGS --workers 6 --verbose"
+    python -m olmocr.pipeline /output $PDF_ARGS --workers 6"
 
 echo ""
 echo "========================================="
