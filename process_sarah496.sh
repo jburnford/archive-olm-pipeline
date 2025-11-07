@@ -19,10 +19,15 @@ echo "Job ID: $SLURM_JOB_ID"
 echo "Start time: $(date)"
 echo ""
 
-# Configuration
-PDF_DIR="$HOME/projects/def-jic823/sarah496_ocr/pdfs"
-OUTPUT_DIR="$HOME/projects/def-jic823/sarah496_ocr/results"
-CONTAINER="$HOME/projects/def-jic823/olmocr/olmocr.sif"
+# Configuration (env-overridable)
+PDF_DIR="${PDF_DIR:-$HOME/projects/def-jic823/sarah496_ocr/pdfs}"
+OUTPUT_DIR="${OUTPUT_DIR:-$HOME/projects/def-jic823/sarah496_ocr/results}"
+CONTAINER="${CONTAINER:-$HOME/projects/def-jic823/olmocr/olmocr.sif}"
+
+# Load Apptainer/Singularity if modules are available (Nibi usage)
+if command -v module >/dev/null 2>&1; then
+    module load apptainer 2>/dev/null || module load singularity 2>/dev/null || true
+fi
 
 # Verify setup
 echo "Checking environment..."
@@ -43,8 +48,17 @@ echo ""
 # Create output directory
 mkdir -p "$OUTPUT_DIR"
 
-# Set up temp directory
-export TMPDIR=$SLURM_TMPDIR
+# Set up temp directory (and apptainer tmp/runtime)
+export TMPDIR="${SLURM_TMPDIR:-$TMPDIR}"
+mkdir -p "$TMPDIR" "$TMPDIR/runtime"
+export APPTAINER_TMPDIR="$TMPDIR"
+export SINGULARITY_TMPDIR="$TMPDIR"
+export XDG_RUNTIME_DIR="$TMPDIR/runtime"
+
+# TLS certs (defensive for network calls inside container)
+export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
+export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
+
 echo "Using temp directory: $TMPDIR"
 echo ""
 
