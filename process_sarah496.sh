@@ -1,0 +1,88 @@
+#!/bin/bash
+#SBATCH --job-name=sarah496_ocr
+#SBATCH --account=def-jic823
+#SBATCH --time=08:00:00
+#SBATCH --mem=64G
+#SBATCH --cpus-per-task=8
+#SBATCH --gres=gpu:h100:1
+#SBATCH --output=%x-%j.out
+
+# OLMoCR Processing Script for Sarah496 Collection
+# 33 PDFs, ~2.5GB, estimated ~3000-4000 pages total
+
+set -e
+
+echo "========================================="
+echo "Sarah496 OLMoCR Processing"
+echo "========================================="
+echo "Job ID: $SLURM_JOB_ID"
+echo "Start time: $(date)"
+echo ""
+
+# Configuration
+PDF_DIR="$HOME/projects/def-jic823/sarah496_ocr/pdfs"
+OUTPUT_DIR="$HOME/projects/def-jic823/sarah496_ocr/results"
+CONTAINER="$HOME/projects/def-jic823/olmocr/olmocr.sif"
+
+# Verify setup
+echo "Checking environment..."
+if [ ! -f "$CONTAINER" ]; then
+    echo "ERROR: OLMoCR container not found at $CONTAINER"
+    exit 1
+fi
+
+if [ ! -d "$PDF_DIR" ]; then
+    echo "ERROR: PDF directory not found at $PDF_DIR"
+    exit 1
+fi
+
+PDF_COUNT=$(ls "$PDF_DIR"/*.pdf 2>/dev/null | wc -l)
+echo "Found $PDF_COUNT PDFs to process"
+echo ""
+
+# Create output directory
+mkdir -p "$OUTPUT_DIR"
+
+# Set up temp directory
+export TMPDIR=$SLURM_TMPDIR
+echo "Using temp directory: $TMPDIR"
+echo ""
+
+# Run OLMoCR
+echo "Starting OLMoCR processing..."
+echo "========================================="
+
+apptainer run --nv \
+    --bind "$PDF_DIR:/pdfs:ro" \
+    --bind "$OUTPUT_DIR:/output:rw" \
+    --bind "$TMPDIR:/tmp" \
+    "$CONTAINER" \
+    python -m olmocr \
+    --input-dir /pdfs \
+    --output-dir /output \
+    --workers 6 \
+    --gpu-memory-utilization 0.7 \
+    --max_model_len 16384 \
+    --verbose
+
+echo ""
+echo "========================================="
+echo "Processing Complete"
+echo "========================================="
+echo "End time: $(date)"
+echo ""
+
+# Count results
+RESULT_COUNT=$(ls "$OUTPUT_DIR"/*.jsonl 2>/dev/null | wc -l)
+echo "Results: $RESULT_COUNT JSONL files created"
+echo "Output directory: $OUTPUT_DIR"
+echo ""
+
+# Calculate statistics
+if [ -d "$OUTPUT_DIR" ]; then
+    TOTAL_SIZE=$(du -sh "$OUTPUT_DIR" | cut -f1)
+    echo "Total output size: $TOTAL_SIZE"
+fi
+
+echo ""
+echo "To view results, check: $OUTPUT_DIR"
