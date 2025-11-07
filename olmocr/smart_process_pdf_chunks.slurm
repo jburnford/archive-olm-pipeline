@@ -87,12 +87,15 @@ echo "Output dir: $OUTPUT_DIR"
 echo "Container: $CONTAINER_PATH"
 echo "OLMoCR flags: ${OLMOCR_FLAGS:-<none - using defaults for stability>}"
 echo "Number of PDFs in args: $((${#PROCESS_ARGS[@]} / 2))"
+echo "First few PDF args: ${PROCESS_ARGS[@]:0:10}"
 
+set -x
 apptainer run --nv \
   --env REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt \
   --env SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt \
   "$CONTAINER_PATH" \
-  python -m olmocr.pipeline "$OUTPUT_DIR" "${PROCESS_ARGS[@]}" $OLMOCR_FLAGS
+  python -m olmocr.pipeline "$OUTPUT_DIR" $OLMOCR_FLAGS "${PROCESS_ARGS[@]}"
+set +x
 if [ $? -ne 0 ]; then
     echo "❌ ERROR: OLMoCR process failed for this chunk. Not updating log."
     exit 1
