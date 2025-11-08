@@ -1,0 +1,5 @@
+# Exclude large JSON result files from git
+*.json
+
+# Keep the README
+!README.md
