@@ -54,12 +54,12 @@ fi
 mapfile -t PDF_FILENAMES < "$CHUNK_FILE"
 echo "Processing ${#PDF_FILENAMES[@]} PDFs from $PDF_DIR"
 mkdir -p "$OUTPUT_DIR"
-# Build repeated --pdfs flags as array to avoid quote issues
-PROCESS_ARGS=()
+# Build single --pdfs flag with all PDF paths (olmocr expects: --pdfs file1 file2 file3)
+PROCESS_ARGS=("--pdfs")
 for pdf in "${PDF_FILENAMES[@]}"; do
     # Skip empty lines defensively
     [ -z "$pdf" ] && continue
-    PROCESS_ARGS+=("--pdfs" "$PDF_DIR/$pdf")
+    PROCESS_ARGS+=("$PDF_DIR/$pdf")
 done
 OLMOCR_DIR="/home/jic823/projects/def-jic823/olmocr"
 CONTAINER_PATH="$OLMOCR_DIR/olmocr.sif"
@@ -86,8 +86,8 @@ echo "Chunk file: $CHUNK_FILE"
 echo "Output dir: $OUTPUT_DIR"
 echo "Container: $CONTAINER_PATH"
 echo "OLMoCR flags: ${OLMOCR_FLAGS:-<none - using defaults for stability>}"
-echo "Number of PDFs in args: $((${#PROCESS_ARGS[@]} / 2))"
-echo "First few PDF args: ${PROCESS_ARGS[@]:0:10}"
+echo "Number of PDFs in args: $((${#PROCESS_ARGS[@]} - 1))"
+echo "First few PDF args: ${PROCESS_ARGS[@]:0:6}"
 
 set -x
 apptainer run --nv \
