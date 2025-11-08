@@ -1,5 +1,21 @@
 # Claude Navigation Guide - Nibi Cluster and File-Based Pipeline
 
+## ⚠️ IMPORTANT: Before Running OLMoCR Jobs
+
+**📖 READ FIRST:** [docs/OLMOCR_BEST_PRACTICES.md](docs/OLMOCR_BEST_PRACTICES.md)
+
+This guide is **mandatory reading** before submitting any OLMoCR batch processing jobs. It covers critical issues that cause jobs to silently process only 1 PDF instead of hundreds, wasting hours of debugging time.
+
+**Key topics:**
+- Why jobs complete in 2 minutes when they should take 30+ minutes
+- How to verify your chunk files are formatted correctly
+- Pre-flight checklist to catch issues before submission
+- Understanding the "Found N total pdf paths" debug line
+
+**Created November 7, 2025** after a debugging session where we fixed 4 different argument-passing bugs that caused silent failures.
+
+---
+
 ## Quick Reference
 
 ### SSH Access
