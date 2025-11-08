@@ -216,6 +216,15 @@ wc -l $BATCH_DIR/chunks/chunk_0.txt
 
 # Check for results
 ls -lh $BATCH_DIR/results/results/*.jsonl
+
+# Split JSONL into per-PDF JSON files (recommended)
+cd ~/projects/def-jic823/archive-olm-pipeline
+python3 tools/split_olmocr_results.py \
+  $BATCH_DIR/results/results \
+  $BATCH_DIR/split
+
+# Each PDF now has a matching JSON file
+ls $BATCH_DIR/split/*.json
 ```
 
 ---
@@ -415,6 +424,55 @@ If you encounter issues not covered here:
 
 ---
 
-**Document Version:** 1.0
+## Post-Processing Tools
+
+### Split JSONL Results into Per-PDF JSON Files
+
+OLMoCR with `--markdown` flag outputs consolidated JSONL files (one entry per PDF containing all pages). The `split_olmocr_results.py` tool splits these into individual JSON files with names matching the source PDFs.
+
+**Usage:**
+```bash
+cd ~/projects/def-jic823/archive-olm-pipeline
+python3 tools/split_olmocr_results.py <results_dir> <output_dir>
+
+# Example:
+python3 tools/split_olmocr_results.py \
+  batch_0001/results/results \
+  batch_0001/split
+```
+
+**Output Structure:**
+Each JSON file contains:
+- `pdf_name`: Source PDF filename (without .pdf)
+- `total_pages`: Number of document entries (1 per PDF when using --markdown)
+- `metadata`: Processing metadata (page count, tokens, version)
+- `pages`: Array with the consolidated OCR text and attributes
+
+**Example Output:**
+```json
+{
+  "pdf_name": "Document_Name",
+  "total_pages": 1,
+  "metadata": {
+    "Source-File": "/path/to/Document_Name.pdf",
+    "pdf-total-pages": 117,
+    "total-input-tokens": 194220,
+    "total-output-tokens": 30629
+  },
+  "pages": [
+    {
+      "id": "...",
+      "text": "...full OCR text from all pages...",
+      "metadata": {...}
+    }
+  ]
+}
+```
+
+This makes it easy to process results programmatically, one PDF at a time.
+
+---
+
+**Document Version:** 1.1
 **Last Updated:** 2025-11-07
 **Based on:** Sarah496 debugging session (Jobs 4055141, 4055429, 4058470, 4064443, 4068720)
