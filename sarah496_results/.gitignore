@@ -1,5 +1,6 @@
-# Exclude large JSON result files from git
+# Exclude large data files from git
 *.json
+*.txt
 
-# Keep the README
+# Keep documentation
 !README.md
