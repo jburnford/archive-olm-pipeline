@@ -1,0 +1,40 @@
+# Saskatchewan Canadiana - Bulk Processing Configuration
+# 55,744 pre-downloaded PDFs (~210 GB)
+#
+# Key differences from Caribbean pipeline:
+#   - No download phase (PDFs already complete)
+#   - No PDF deletion (preserve originals)
+#   - Rolling batch submission (keep 5-10 in queue)
+#   - Smart error handling with retry + fallback OCR
+
+# Paths to existing component repositories
+components:
+  olmocr_repo: /home/jic823/projects/def-jic823/archive-olm-pipeline/olmocr
+
+# Base directory for pipeline data
+directories:
+  base_dir: /home/jic823/projects/def-jic823/saskatchewan_canadiana
+
+# Download phase settings
+download:
+  enabled: false  # PDFs already downloaded
+
+# OCR phase settings
+ocr:
+  pdfs_per_batch: 500         # PDFs per batch submission
+  max_queued_batches: 8       # Rolling submission limit (keep 5-10 in queue)
+  check_interval: 120         # Seconds between orchestrator checks
+
+# Cleanup settings
+cleanup:
+  auto_delete_pdfs: false     # PRESERVE ORIGINAL PDFs
+
+# SLURM settings
+slurm:
+  email: jic823@usask.ca
+  account: def-jic823_gpu
+  retry_time_multiplier: 10   # For failed PDFs (10x original walltime)
+
+# Logging
+logging:
+  level: INFO
