@@ -3,7 +3,7 @@
 OCR Dispatcher for Streaming Pipeline
 
 Monitors download_queue/ for new PDFs and submits them to olmOCR
-when enough pages have accumulated (≥1000 pages per chunk).
+when enough downloads have accumulated (default: 200 PDFs per chunk).
 """
 
 import argparse
@@ -23,21 +23,21 @@ except ImportError:
 
 
 class OCRDispatcher:
-    """Monitor downloads and dispatch OCR jobs when enough pages accumulated."""
+    """Monitor downloads and dispatch OCR jobs when enough PDFs accumulate."""
 
     def __init__(
         self,
         download_queue_dir: Path,
         ocr_processing_dir: Path,
         olmocr_submit_script: Path,
-        pages_per_chunk: int = 1000,
+        pdfs_per_chunk: int = 200,
         check_interval: int = 60,
         state_file: Path = None
     ):
         self.download_queue_dir = download_queue_dir
         self.ocr_processing_dir = ocr_processing_dir
         self.olmocr_submit_script = olmocr_submit_script
-        self.pages_per_chunk = pages_per_chunk
+        self.pdfs_per_chunk = pdfs_per_chunk
         self.check_interval = check_interval
         self.state_file = state_file or ocr_processing_dir / ".dispatcher_state"
 
@@ -160,16 +160,19 @@ class OCRDispatcher:
 
         current_chunk = []
         current_pages = 0
+        current_count = 0
 
         for pdf_info in pdfs:
             current_chunk.append(pdf_info)
             current_pages += pdf_info['pages']
+            current_count += 1
 
-            # Submit when we have enough pages
-            if current_pages >= self.pages_per_chunk:
+            # Submit when we have enough PDFs
+            if current_count >= self.pdfs_per_chunk:
                 self._submit_chunk(current_chunk, current_pages)
                 current_chunk = []
                 current_pages = 0
+                current_count = 0
 
         # Submit remaining PDFs if any
         if current_chunk:
@@ -226,7 +229,7 @@ class OCRDispatcher:
         print("=" * 70)
         print(f"Download queue: {self.download_queue_dir}")
         print(f"OCR processing: {self.ocr_processing_dir}")
-        print(f"Pages per chunk: {self.pages_per_chunk}")
+        print(f"PDFs per chunk: {self.pdfs_per_chunk}")
         print(f"Check interval: {self.check_interval}s")
         print("=" * 70)
         print()
@@ -238,13 +241,14 @@ class OCRDispatcher:
 
                 if pdfs:
                     total_pages = sum(p['pages'] for p in pdfs)
-                    print(f"🔍 Found {len(pdfs)} PDFs ({total_pages} pages) in queue")
+                    total_pdfs = len(pdfs)
+                    print(f"🔍 Found {total_pdfs} PDFs ({total_pages} pages) in queue")
 
-                    # Bundle and submit if we have enough pages
-                    if total_pages >= self.pages_per_chunk:
+                    # Bundle and submit if we have enough PDFs
+                    if total_pdfs >= self.pdfs_per_chunk:
                         self._bundle_and_submit(pdfs)
                     else:
-                        print(f"   Waiting for more pages (need {self.pages_per_chunk - total_pages} more)")
+                        print(f"   Waiting for more PDFs (need {self.pdfs_per_chunk - total_pdfs} more)")
                 else:
                     print("🔍 No new PDFs in queue")
 
@@ -290,10 +294,15 @@ def main():
         help="Path to olmOCR submission script"
     )
     parser.add_argument(
+        "--pdfs-per-chunk",
         "--pages-per-chunk",
+        dest="pdfs_per_chunk",
         type=int,
-        default=1000,
-        help="Minimum pages per OCR chunk (default: 1000)"
+        default=200,
+        help=(
+            "Minimum PDFs per OCR chunk (default: 200). "
+            "--pages-per-chunk is kept for backward compatibility."
+        )
     )
     parser.add_argument(
         "--check-interval",
@@ -308,7 +317,7 @@ def main():
         download_queue_dir=args.download_queue,
         ocr_processing_dir=args.ocr_processing,
         olmocr_submit_script=args.olmocr_script,
-        pages_per_chunk=args.pages_per_chunk,
+        pdfs_per_chunk=args.pdfs_per_chunk,
         check_interval=args.check_interval
     )
 
